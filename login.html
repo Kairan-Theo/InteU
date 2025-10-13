@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="login">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html"><span class="logo-mark">U</span> InteU</a>
+        <nav class="nav">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="login.html" class="active" data-i18n="nav.login">Login</a>
+        </nav>
+        <div class="actions">
+          <button id="toggleTheme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container narrow">
+      <section class="card">
+        <h1 class="card-title" data-i18n="login.title">Login</h1>
+        <form id="loginPageForm" novalidate>
+          <label>
+            <span data-i18n="login.email">Email</span>
+            <input type="email" id="loginPageEmail" required />
+          </label>
+          <label>
+            <span data-i18n="login.password">Password</span>
+            <input type="password" id="loginPagePassword" required />
+          </label>
+          <div class="row space-between">
+            <button type="submit" class="btn primary" data-i18n="login.submit">Login</button>
+            <a href="#" id="loginForgot" class="btn link" data-i18n="login.forgot">Forgot Password?</a>
+          </div>
+          <p class="muted">
+            <span data-i18n="login.noaccount">No account?</span>
+            <a href="register.html" data-i18n="register.title">Register</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  
+</html>

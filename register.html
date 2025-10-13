@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="register">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html"><span class="logo-mark">U</span> InteU</a>
+        <nav class="nav">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="login.html" data-i18n="nav.login">Login</a>
+        </nav>
+        <div class="actions">
+          <button id="toggleTheme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container narrow">
+      <section class="card">
+        <h1 class="card-title" data-i18n="register.title">Register</h1>
+        <form id="registerPageForm" novalidate>
+          <label>
+            <span data-i18n="register.role">Role</span>
+            <select id="registerPageRole" required>
+              <option value="student" selected>Student</option>
+              <option value="employer">Employer</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <label>
+            <span data-i18n="register.name">Full Name</span>
+            <input type="text" id="registerPageName" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" id="registerPageEmail" required />
+          </label>
+          <label>
+            <span data-i18n="register.password">Password</span>
+            <input type="password" id="registerPagePassword" required />
+          </label>
+          <div class="row">
+            <label class="half">
+              <span data-i18n="register.resume">Resume (simulated)</span>
+              <input type="file" id="registerPageResume" accept=".pdf,.doc,.docx" />
+            </label>
+            <label class="half">
+              <span data-i18n="register.transcript">Transcript (simulated)</span>
+              <input type="file" id="registerPageTranscript" accept=".pdf,.doc,.docx" />
+            </label>
+          </div>
+          <div class="row space-between">
+            <button type="submit" class="btn primary" data-i18n="register.submit">Create Account</button>
+            <span class="muted"><a href="login.html" data-i18n="login.title">Login</a></span>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Find Verified Internships</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-+f6L2V7wHnT1ZkVZfQXf7oTQeDkWJ4g9yYkMSSfVYHfVQ0pQwE6LZqVf4bJHkqvKPL9uJwX2tH0FQfNf3FzC0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body data-page="home">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="InteU home">
+          <span class="logo-mark">U</span> InteU
+        </a>
+        <nav class="nav">
+          <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+          <a href="companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="login.html" data-i18n="nav.login">Login</a>
+        </nav>
+        <div class="actions">
+          <button id="toggleTheme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero" role="banner">
+      <div class="container">
+        <h1 class="hero-title" data-i18n="hero.title">Find Verified Internships That Match Your Future.</h1>
+        <p class="hero-sub" data-i18n="hero.sub">Trusted opportunities from verified companies in Thailand.</p>
+        <div class="search-bar" role="search" aria-label="Search internships">
+          <input id="searchKeyword" type="text" placeholder="Keyword (e.g., UX, Data)" aria-label="Keyword" />
+          <select id="searchLocation" aria-label="Location">
+            <option value="" selected>All Locations</option>
+            <option value="Bangkok">Bangkok</option>
+            <option value="Chiang Mai">Chiang Mai</option>
+            <option value="Phuket">Phuket</option>
+          </select>
+          <select id="searchIndustry" aria-label="Industry">
+            <option value="" selected>All Industries</option>
+            <option value="Technology">Technology</option>
+            <option value="Design">Design</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Finance">Finance</option>
+          </select>
+          <select id="searchLanguage" aria-label="Language">
+            <option value="" selected>Any Language</option>
+            <option value="English">English</option>
+            <option value="Thai">Thai</option>
+          </select>
+          <select id="searchNationality" aria-label="Nationality Requirement">
+            <option value="" selected>Any Nationality</option>
+            <option value="Thai">Thai</option>
+            <option value="International">International</option>
+          </select>
+          <label class="checkbox">
+            <input id="filterVerified" type="checkbox" checked /> <span>Verified only</span>
+          </label>
+          <button id="searchBtn" class="btn primary"><i class="fa fa-search"></i> <span data-i18n="search.btn">Search</span></button>
+        </div>
+        <div id="loading" class="loading" aria-live="polite" hidden>
+          <div class="spinner"></div>
+          <span data-i18n="loading">Loading results...</span>
+        </div>
+        <div class="recent-searches" aria-live="polite">
+          <h3 data-i18n="recent.title">Recent searches</h3>
+          <div id="recentSearches" class="chips"></div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <section aria-labelledby="statusTitle" class="status-summary">
+        <h2 id="statusTitle" data-i18n="status.title">Application Status</h2>
+        <div class="status-grid">
+          <div class="status-card">
+            <span class="status-label pending" data-i18n="status.pending">Pending</span>
+            <strong id="statusPending">0</strong>
+          </div>
+          <div class="status-card">
+            <span class="status-label accepted" data-i18n="status.accepted">Accepted</span>
+            <strong id="statusAccepted">0</strong>
+          </div>
+          <div class="status-card">
+            <span class="status-label rejected" data-i18n="status.rejected">Rejected</span>
+            <strong id="statusRejected">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="recommendedTitle">
+        <h2 id="recommendedTitle" data-i18n="recommended.title">Recommended Internships</h2>
+        <div id="recommendedList" class="cards-grid"></div>
+      </section>
+
+      <section aria-labelledby="resultsTitle">
+        <div class="section-header">
+          <h2 id="resultsTitle" data-i18n="results.title">Internship Listings</h2>
+          <span id="resultsCount" class="muted">0 results</span>
+        </div>
+        <div id="internshipList" class="cards-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Modals -->
+    <dialog id="loginModal" class="modal">
+      <form method="dialog" class="modal-content" id="loginForm" novalidate>
+        <header class="modal-header">
+          <h3 data-i18n="login.title">Login</h3>
+          <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
+        </header>
+        <label>
+          <span data-i18n="login.email">Email</span>
+          <input type="email" id="loginEmail" required />
+        </label>
+        <label>
+          <span data-i18n="login.password">Password</span>
+          <input type="password" id="loginPassword" required />
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary" data-i18n="login.submit">Login</button>
+          <button type="button" class="btn link" id="forgotPassword" data-i18n="login.forgot">Forgot Password?</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="registerModal" class="modal">
+      <form method="dialog" class="modal-content" id="registerForm" novalidate>
+        <header class="modal-header">
+          <h3 data-i18n="register.title">Register</h3>
+          <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
+        </header>
+        <label>
+          <span data-i18n="register.role">Role</span>
+          <select id="registerRole" required>
+            <option value="student" selected>Student</option>
+            <option value="employer">Employer</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="register.name">Full Name</span>
+          <input type="text" id="registerName" required />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" id="registerEmail" required />
+        </label>
+        <label>
+          <span data-i18n="register.password">Password</span>
+          <input type="password" id="registerPassword" required />
+        </label>
+        <label>
+          <span data-i18n="register.resume">Resume (simulated)</span>
+          <input type="file" id="registerResume" accept=".pdf,.doc,.docx" />
+        </label>
+        <label>
+          <span data-i18n="register.transcript">Transcript (simulated)</span>
+          <input type="file" id="registerTranscript" accept=".pdf,.doc,.docx" />
+        </label>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary" data-i18n="register.submit">Create Account</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="applyModal" class="modal">
+      <form method="dialog" class="modal-content" id="applyForm">
+        <header class="modal-header">
+          <h3 data-i18n="apply.title">Apply for Internship</h3>
+          <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
+        </header>
+        <p id="applySummary" class="muted"></p>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary" data-i18n="apply.submit">Confirm Application</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  
+</html>

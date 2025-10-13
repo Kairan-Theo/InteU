@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Articles & Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body data-page="articles">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html"><span class="logo-mark">U</span> InteU</a>
+        <nav class="nav">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="articles.html" class="active" data-i18n="nav.articles">Articles</a>
+          <a href="login.html" data-i18n="nav.login">Login</a>
+        </nav>
+        <div class="actions">
+          <button id="toggleTheme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="sub-hero">
+      <div class="container">
+        <h1 data-i18n="articles.title">Articles & Short Courses</h1>
+        <div class="search-bar">
+          <input id="articleKeyword" type="text" placeholder="Search articles or courses" aria-label="Search Articles" />
+          <button id="articleSearchBtn" class="btn primary"><i class="fa fa-search"></i> <span data-i18n="search.btn">Search</span></button>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <section aria-labelledby="articlesListTitle">
+        <div class="section-header">
+          <h2 id="articlesListTitle" data-i18n="articles.list">Learn & Grow</h2>
+          <span id="articlesCount" class="muted">0 items</span>
+        </div>
+        <div id="articlesList" class="cards-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+  
+</html>
