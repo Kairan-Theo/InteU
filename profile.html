@@ -55,15 +55,15 @@
         <div>
           <h4 data-i18n="footer.help">Help & Support</h4>
           <ul>
-            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
-            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+            <li><a href="#" id="contactUsLink" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" id="faqLink" data-i18n="footer.faq">FAQ</a></li>
           </ul>
         </div>
         <div>
           <h4 data-i18n="footer.privacy">Privacy</h4>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">PDPA Notice</a></li>
+            <li><a href="#" id="privacyPolicyLink" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
+            <li><a href="#" id="pdpaNoticeLink" data-i18n="footer.pdpaNotice">PDPA Notice</a></li>
           </ul>
         </div>
         <div>
@@ -74,6 +74,129 @@
     </footer>
 
     <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Footer Popup Modals -->
+    <!-- Contact Us Modal -->
+    <dialog id="contactUsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="contact.title">Contact Us</h2>
+                <button class="modal-close" onclick="document.getElementById('contactUsModal').close()" aria-label="Close">&times;</button>
+            </div>
+            <form id="contactForm" novalidate>
+                <div class="form-group">
+                    <label for="contactName" data-i18n="contact.name">Name</label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail" data-i18n="contact.email">Email</label>
+                    <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactSubject" data-i18n="contact.subject">Subject</label>
+                    <input type="text" id="contactSubject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage" data-i18n="contact.message">Message</label>
+                    <textarea id="contactMessage" name="message" rows="5" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn primary" data-i18n="contact.send">Send Message</button>
+                    <button type="button" class="btn" onclick="document.getElementById('contactUsModal').close()" data-i18n="contact.cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- FAQ Modal -->
+    <dialog id="faqModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="faq.title">Frequently Asked Questions</h2>
+                <button class="modal-close" onclick="document.getElementById('faqModal').close()" aria-label="Close">&times;</button>
+            </div>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <h3 data-i18n="faq.q1">How do I apply for an internship?</h3>
+                    <p data-i18n="faq.a1">Browse our companies page, find an internship that matches your interests, and click "Apply Now" to submit your application.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 data-i18n="faq.q2">What documents do I need to apply?</h3>
+                    <p data-i18n="faq.a2">You'll need your resume/CV, a cover letter, and any relevant academic transcripts or certificates.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 data-i18n="faq.q3">How long does the application process take?</h3>
+                    <p data-i18n="faq.a3">Most companies respond within 1-2 weeks. You can track your application status in your profile dashboard.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 data-i18n="faq.q4">Are these internships paid?</h3>
+                    <p data-i18n="faq.a4">Compensation varies by company and position. Check the internship details for specific information about stipends or benefits.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 data-i18n="faq.q5">Can international students apply?</h3>
+                    <p data-i18n="faq.a5">Yes! Many of our partner companies welcome international students. Make sure to check visa requirements for your specific situation.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn primary" onclick="document.getElementById('faqModal').close()" data-i18n="faq.close">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Privacy Policy Modal -->
+    <dialog id="privacyPolicyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="privacy.title">Privacy Policy</h2>
+                <button class="modal-close" onclick="document.getElementById('privacyPolicyModal').close()" aria-label="Close">&times;</button>
+            </div>
+            <div class="privacy-content">
+                <h3 data-i18n="privacy.collection">Information We Collect</h3>
+                <p data-i18n="privacy.collectionText">We collect information you provide directly to us, such as when you create an account, apply for internships, or contact us for support.</p>
+                
+                <h3 data-i18n="privacy.usage">How We Use Your Information</h3>
+                <p data-i18n="privacy.usageText">We use your information to provide our services, process applications, communicate with you, and improve our platform.</p>
+                
+                <h3 data-i18n="privacy.sharing">Information Sharing</h3>
+                <p data-i18n="privacy.sharingText">We share your application information with companies you apply to. We do not sell your personal information to third parties.</p>
+                
+                <h3 data-i18n="privacy.security">Data Security</h3>
+                <p data-i18n="privacy.securityText">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn primary" onclick="document.getElementById('privacyPolicyModal').close()" data-i18n="privacy.close">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- PDPA Notice Modal -->
+    <dialog id="pdpaNoticeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="pdpa.title">PDPA Notice</h2>
+                <button class="modal-close" onclick="document.getElementById('pdpaNoticeModal').close()" aria-label="Close">&times;</button>
+            </div>
+            <div class="pdpa-content">
+                <h3 data-i18n="pdpa.purpose">Purpose of Data Collection</h3>
+                <p data-i18n="pdpa.purposeText">We collect and process your personal data in accordance with Thailand's Personal Data Protection Act (PDPA) for the purpose of providing internship matching services.</p>
+                
+                <h3 data-i18n="pdpa.rights">Your Rights</h3>
+                <ul>
+                    <li data-i18n="pdpa.right1">Right to access your personal data</li>
+                    <li data-i18n="pdpa.right2">Right to rectify inaccurate data</li>
+                    <li data-i18n="pdpa.right3">Right to erase your data</li>
+                    <li data-i18n="pdpa.right4">Right to restrict processing</li>
+                    <li data-i18n="pdpa.right5">Right to data portability</li>
+                </ul>
+                
+                <h3 data-i18n="pdpa.contact">Contact for Data Protection</h3>
+                <p data-i18n="pdpa.contactText">For any questions regarding your personal data or to exercise your rights, please contact our Data Protection Officer at privacy@inteu.com</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn primary" onclick="document.getElementById('pdpaNoticeModal').close()" data-i18n="pdpa.close">Close</button>
+            </div>
+        </div>
+    </dialog>
 
     <script src="js/notifications.js"></script>
     <script src="js/search.js"></script>

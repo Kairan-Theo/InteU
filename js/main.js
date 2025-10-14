@@ -38,7 +38,54 @@
      'footer.contact': 'Contact us',
      'footer.faq': 'FAQ',
      'footer.privacy': 'Privacy',
+     'footer.privacyPolicy': 'Privacy Policy',
+     'footer.pdpaNotice': 'PDPA Notice',
      'footer.copy': 'Trusted internships for global learners.',
+     // Contact Us Modal
+     'contact.title': 'Contact Us',
+     'contact.name': 'Name',
+     'contact.email': 'Email',
+     'contact.subject': 'Subject',
+     'contact.message': 'Message',
+     'contact.send': 'Send Message',
+     'contact.cancel': 'Cancel',
+     // FAQ Modal
+     'faq.title': 'Frequently Asked Questions',
+     'faq.q1': 'How do I apply for an internship?',
+     'faq.a1': 'Browse our companies page, find an internship that matches your interests, and click "Apply Now" to submit your application.',
+     'faq.q2': 'What documents do I need to apply?',
+     'faq.a2': 'You\'ll need your resume/CV, a cover letter, and any relevant academic transcripts or certificates.',
+     'faq.q3': 'How long does the application process take?',
+     'faq.a3': 'Most companies respond within 1-2 weeks. You can track your application status in your profile dashboard.',
+     'faq.q4': 'Are these internships paid?',
+     'faq.a4': 'Compensation varies by company and position. Check the internship details for specific information about stipends or benefits.',
+     'faq.q5': 'Can international students apply?',
+     'faq.a5': 'Yes! Many of our partner companies welcome international students. Make sure to check visa requirements for your specific situation.',
+     'faq.close': 'Close',
+     // Privacy Policy Modal
+     'privacy.title': 'Privacy Policy',
+     'privacy.collection': 'Information We Collect',
+     'privacy.collectionText': 'We collect information you provide directly to us, such as when you create an account, apply for internships, or contact us for support.',
+     'privacy.usage': 'How We Use Your Information',
+     'privacy.usageText': 'We use your information to provide our services, process applications, communicate with you, and improve our platform.',
+     'privacy.sharing': 'Information Sharing',
+     'privacy.sharingText': 'We share your application information with companies you apply to. We do not sell your personal information to third parties.',
+     'privacy.security': 'Data Security',
+     'privacy.securityText': 'We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.',
+     'privacy.close': 'Close',
+     // PDPA Notice Modal
+     'pdpa.title': 'PDPA Notice',
+     'pdpa.purpose': 'Purpose of Data Collection',
+     'pdpa.purposeText': 'We collect and process your personal data in accordance with Thailand\'s Personal Data Protection Act (PDPA) for the purpose of providing internship matching services.',
+     'pdpa.rights': 'Your Rights',
+     'pdpa.right1': 'Right to access your personal data',
+     'pdpa.right2': 'Right to rectify inaccurate data',
+     'pdpa.right3': 'Right to erase your data',
+     'pdpa.right4': 'Right to restrict processing',
+     'pdpa.right5': 'Right to data portability',
+     'pdpa.contact': 'Contact for Data Protection',
+     'pdpa.contactText': 'For any questions regarding your personal data or to exercise your rights, please contact our Data Protection Officer at privacy@inteu.com',
+     'pdpa.close': 'Close',
      'login.title': 'Login',
      'login.email': 'Email',
      'login.password': 'Password',
@@ -195,7 +242,54 @@
      'footer.contact': 'ติดต่อเรา',
      'footer.faq': 'คำถามที่พบบ่อย',
      'footer.privacy': 'ความเป็นส่วนตัว',
+     'footer.privacyPolicy': 'นโยบายความเป็นส่วนตัว',
+     'footer.pdpaNotice': 'ประกาศ PDPA',
      'footer.copy': 'ฝึกงานที่เชื่อถือได้ สำหรับผู้เรียนทั่วโลก',
+     // Contact Us Modal
+     'contact.title': 'ติดต่อเรา',
+     'contact.name': 'ชื่อ',
+     'contact.email': 'อีเมล',
+     'contact.subject': 'หัวข้อ',
+     'contact.message': 'ข้อความ',
+     'contact.send': 'ส่งข้อความ',
+     'contact.cancel': 'ยกเลิก',
+     // FAQ Modal
+     'faq.title': 'คำถามที่พบบ่อย',
+     'faq.q1': 'ฉันจะสมัครฝึกงานได้อย่างไร?',
+     'faq.a1': 'เรียกดูหน้าบริษัทของเรา หาตำแหน่งฝึกงานที่ตรงกับความสนใจของคุณ และคลิก "สมัครเลย" เพื่อส่งใบสมัครของคุณ',
+     'faq.q2': 'ฉันต้องใช้เอกสารอะไรในการสมัคร?',
+     'faq.a2': 'คุณจะต้องมีเรซูเม่/CV จดหมายแนะนำตัว และใบแสดงผลการเรียนหรือใบรับรองที่เกี่ยวข้อง',
+     'faq.q3': 'กระบวนการสมัครใช้เวลานานเท่าไหร่?',
+     'faq.a3': 'บริษัทส่วนใหญ่จะตอบกลับภายใน 1-2 สัปดาห์ คุณสามารถติดตามสถานะการสมัครของคุณในแดชบอร์ดโปรไฟล์',
+     'faq.q4': 'ตำแหน่งฝึกงานเหล่านี้ได้รับค่าตอบแทนหรือไม่?',
+     'faq.a4': 'ค่าตอบแทนแตกต่างกันไปตามบริษัทและตำแหน่ง ตรวจสอบรายละเอียดการฝึกงานสำหรับข้อมูลเฉพาะเกี่ยวกับเงินช่วยเหลือหรือสวัสดิการ',
+     'faq.q5': 'นักเรียนต่างชาติสามารถสมัครได้หรือไม่?',
+     'faq.a5': 'ได้! บริษัทพันธมิตรหลายแห่งของเรายินดีต้อนรับนักเรียนต่างชาติ ตรวจสอบข้อกำหนดวีซ่าสำหรับสถานการณ์เฉพาะของคุณ',
+     'faq.close': 'ปิด',
+     // Privacy Policy Modal
+     'privacy.title': 'นโยบายความเป็นส่วนตัว',
+     'privacy.collection': 'ข้อมูลที่เราเก็บรวบรวม',
+     'privacy.collectionText': 'เราเก็บรวบรวมข้อมูลที่คุณให้กับเราโดยตรง เช่น เมื่อคุณสร้างบัญชี สมัครฝึกงาน หรือติดต่อเราเพื่อขอความช่วยเหลือ',
+     'privacy.usage': 'วิธีที่เราใช้ข้อมูลของคุณ',
+     'privacy.usageText': 'เราใช้ข้อมูลของคุณเพื่อให้บริการ ดำเนินการสมัครงาน ติดต่อสื่อสารกับคุณ และปรับปรุงแพลตฟอร์มของเรา',
+     'privacy.sharing': 'การแบ่งปันข้อมูล',
+     'privacy.sharingText': 'เราแบ่งปันข้อมูลการสมัครของคุณกับบริษัทที่คุณสมัคร เราไม่ขายข้อมูลส่วนบุคคลของคุณให้กับบุคคลที่สาม',
+     'privacy.security': 'ความปลอดภัยของข้อมูล',
+     'privacy.securityText': 'เราใช้มาตรการรักษาความปลอดภัยที่เหมาะสมเพื่อปกป้องข้อมูลส่วนบุคคลของคุณจากการเข้าถึง การเปลี่ยนแปลง การเปิดเผย หรือการทำลายโดยไม่ได้รับอนุญาต',
+     'privacy.close': 'ปิด',
+     // PDPA Notice Modal
+     'pdpa.title': 'ประกาศ PDPA',
+     'pdpa.purpose': 'วัตถุประสงค์ของการเก็บรวบรวมข้อมูล',
+     'pdpa.purposeText': 'เราเก็บรวบรวมและประมวลผลข้อมูลส่วนบุคคลของคุณตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล (PDPA) ของประเทศไทย เพื่อวัตถุประสงค์ในการให้บริการจับคู่ฝึกงาน',
+     'pdpa.rights': 'สิทธิของคุณ',
+     'pdpa.right1': 'สิทธิในการเข้าถึงข้อมูลส่วนบุคคลของคุณ',
+     'pdpa.right2': 'สิทธิในการแก้ไขข้อมูลที่ไม่ถูกต้อง',
+     'pdpa.right3': 'สิทธิในการลบข้อมูลของคุณ',
+     'pdpa.right4': 'สิทธิในการจำกัดการประมวลผล',
+     'pdpa.right5': 'สิทธิในการพกพาข้อมูล',
+     'pdpa.contact': 'ติดต่อเพื่อการคุ้มครองข้อมูล',
+     'pdpa.contactText': 'หากมีคำถามเกี่ยวกับข้อมูลส่วนบุคคลของคุณหรือต้องการใช้สิทธิของคุณ โปรดติดต่อเจ้าหน้าที่คุ้มครองข้อมูลของเราที่ privacy@inteu.com',
+     'pdpa.close': 'ปิด',
      'login.title': 'เข้าสู่ระบบ',
      'login.email': 'อีเมล',
      'login.password': 'รหัสผ่าน',
@@ -331,18 +425,19 @@
 
 
  document.addEventListener('DOMContentLoaded', () => {
-   initTheme();
-   initLanguage();
-   wireHeaderActions();
-   const page = document.body.dataset.page;
-   if (page === 'home') initHomePage();
-   if (page === 'companies') initCompaniesPage();
-   if (page === 'articles') initArticlesPage();
-   if (page === 'login') initLoginPage();
-   if (page === 'register') initRegisterPage();
-   if (page === 'profile') initProfilePage();
-   if (page === 'sections') initAdminPage();
- });
+  initTheme();
+  initLanguage();
+  wireHeaderActions();
+  wireFooterActions();
+  const page = document.body.dataset.page;
+  if (page === 'home') initHomePage();
+  if (page === 'companies') initCompaniesPage();
+  if (page === 'articles') initArticlesPage();
+  if (page === 'login') initLoginPage();
+  if (page === 'register') initRegisterPage();
+  if (page === 'profile') initProfilePage();
+  if (page === 'sections') initAdminPage();
+});
 
 
  function buildData(){
@@ -516,6 +611,64 @@
      localStorage.setItem('lang', STATE.lang);
      applyTranslations();
    });
+ }
+
+ function wireFooterActions(){
+   // Contact Us popup
+   const contactUsLink = document.getElementById('contactUsLink');
+   if (contactUsLink) {
+     contactUsLink.addEventListener('click', (e) => {
+       e.preventDefault();
+       document.getElementById('contactUsModal').showModal();
+     });
+   }
+
+   // FAQ popup
+   const faqLink = document.getElementById('faqLink');
+   if (faqLink) {
+     faqLink.addEventListener('click', (e) => {
+       e.preventDefault();
+       document.getElementById('faqModal').showModal();
+     });
+   }
+
+   // Privacy Policy popup
+   const privacyPolicyLink = document.getElementById('privacyPolicyLink');
+   if (privacyPolicyLink) {
+     privacyPolicyLink.addEventListener('click', (e) => {
+       e.preventDefault();
+       document.getElementById('privacyPolicyModal').showModal();
+     });
+   }
+
+   // PDPA Notice popup
+   const pdpaNoticeLink = document.getElementById('pdpaNoticeLink');
+   if (pdpaNoticeLink) {
+     pdpaNoticeLink.addEventListener('click', (e) => {
+       e.preventDefault();
+       document.getElementById('pdpaNoticeModal').showModal();
+     });
+   }
+
+   // Contact form submission
+   const contactForm = document.getElementById('contactForm');
+   if (contactForm) {
+     contactForm.addEventListener('submit', (e) => {
+       e.preventDefault();
+       const formData = new FormData(contactForm);
+       const data = {
+         name: formData.get('name'),
+         email: formData.get('email'),
+         subject: formData.get('subject'),
+         message: formData.get('message')
+       };
+       
+       // Simulate form submission
+       Toast.show('success', 'Message sent successfully! We\'ll get back to you soon.');
+       contactForm.reset();
+       document.getElementById('contactUsModal').close();
+     });
+   }
  }
 
 
