@@ -191,18 +191,62 @@
       </form>
     </dialog>
 
-    <dialog id="applyModal" class="modal">
-      <form method="dialog" class="modal-content" id="applyForm">
-        <header class="modal-header">
-          <h3 data-i18n="apply.title">Apply for Internship</h3>
-          <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
-        </header>
-        <p id="applySummary" class="muted"></p>
-        <div class="modal-actions">
-          <button type="submit" class="btn primary" data-i18n="apply.submit">Confirm Application</button>
-        </div>
-      </form>
-    </dialog>
+        <!-- Apply Modal -->
+        <dialog id="applyModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-i18n="apply.title">Apply for Internship</h3>
+                    <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="job-header">
+                        <h4 id="jobTitle"></h4>
+                        <p id="jobCompany"></p>
+                    </div>
+                    
+                    <div class="job-details">
+                        <div class="detail-section">
+                            <h5 data-i18n="apply.description">Job Description</h5>
+                            <p id="jobDescription"></p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h5 data-i18n="apply.requirements">Requirements</h5>
+                            <ul id="jobRequirements"></ul>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h5 data-i18n="apply.benefits">Benefits</h5>
+                            <ul id="jobBenefits"></ul>
+                        </div>
+                        
+                        <div class="job-info-grid">
+                            <div class="info-item">
+                                <span class="info-label" data-i18n="apply.duration">Duration</span>
+                                <span id="jobDuration"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label" data-i18n="apply.location">Location</span>
+                                <span id="jobLocation"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label" data-i18n="apply.industry">Industry</span>
+                                <span id="jobIndustry"></span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label" data-i18n="apply.language">Language</span>
+                                <span id="jobLanguage"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn-secondary" data-close data-i18n="apply.cancel">Cancel</button>
+                        <button id="confirmApply" class="btn-primary" data-i18n="apply.confirm">Confirm Application</button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
 
     <script src="js/notifications.js"></script>
     <script src="js/search.js"></script>

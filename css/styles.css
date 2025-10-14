@@ -131,6 +131,25 @@ main { flex: 1 0 auto; }
 .modal-content label { display: grid; gap: 6px; margin-bottom: 8px; }
 .modal-content input, .modal-content select { height: 40px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 0 10px; background: transparent; color: var(--text); }
 
+/* Enhanced Apply Modal */
+#applyModal .modal-content { min-width: 500px; max-width: 600px; max-height: 80vh; overflow-y: auto; }
+.modal-body { margin: 16px 0; }
+.job-header { margin-bottom: 20px; }
+.job-header h4 { margin: 0 0 4px 0; color: var(--text); font-size: 20px; }
+.job-header p { margin: 0; font-size: 14px; color: var(--muted); }
+.job-details { display: grid; gap: 16px; }
+.detail-section h5 { margin: 0 0 8px 0; color: var(--text); font-size: 16px; font-weight: 600; }
+.detail-section p { margin: 0; line-height: 1.5; color: var(--muted); }
+.detail-section ul { margin: 0; padding-left: 20px; }
+.detail-section li { margin-bottom: 4px; color: var(--muted); line-height: 1.4; }
+.job-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; padding: 16px; background: rgba(0,0,0,0.02); border-radius: 8px; }
+.info-item { display: flex; flex-direction: column; gap: 2px; }
+.info-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; }
+.info-item span:last-child { font-size: 14px; color: var(--text); font-weight: 500; }
+.modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.1); }
+.btn-secondary { padding: 8px 16px; border: 1px solid rgba(0,0,0,0.2); background: transparent; color: var(--text); border-radius: 6px; cursor: pointer; }
+.btn-primary { padding: 8px 16px; border: none; background: var(--primary); color: white; border-radius: 6px; cursor: pointer; }
+
 /* Forms */
 form label { display: grid; gap: 6px; margin-bottom: 10px; }
 input, select { height: 40px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 0 10px; background: transparent; color: var(--text); }
@@ -342,6 +361,11 @@ body.dark .modal-content select {
   color: #e5e7eb;
 }
 body.dark .modal-content input::placeholder { color: rgba(229, 231, 235, 0.7); }
+
+/* Dark mode for enhanced apply modal */
+body.dark .job-info-grid { background: rgba(255,255,255,0.05); }
+body.dark .modal-actions { border-top-color: rgba(255,255,255,0.1); }
+body.dark .btn-secondary { border-color: rgba(255,255,255,0.2); }
 /* Dark mode: glass login form with floating labels */
 body.dark[data-page="login"] .card {
   background: rgba(255, 255, 255, 0.14);

@@ -52,6 +52,15 @@
       'articles.title': 'Articles & Short Courses',
       'articles.list': 'Learn & Grow',
       'apply.title': 'Apply for Internship',
+      'apply.description': 'Job Description',
+      'apply.requirements': 'Requirements',
+      'apply.benefits': 'Benefits',
+      'apply.duration': 'Duration',
+      'apply.location': 'Location',
+      'apply.industry': 'Industry',
+      'apply.language': 'Language',
+      'apply.cancel': 'Cancel',
+      'apply.confirm': 'Confirm Application',
       'apply.submit': 'Confirm Application',
     },
     th: {
@@ -99,6 +108,15 @@
       'articles.title': 'บทความและคอร์สสั้น',
       'articles.list': 'เรียนรู้และเติบโต',
       'apply.title': 'สมัครฝึกงาน',
+      'apply.description': 'รายละเอียดงาน',
+      'apply.requirements': 'คุณสมบัติที่ต้องการ',
+      'apply.benefits': 'สิทธิประโยชน์',
+      'apply.duration': 'ระยะเวลา',
+      'apply.location': 'สถานที่',
+      'apply.industry': 'อุตสาหกรรม',
+      'apply.language': 'ภาษา',
+      'apply.cancel': 'ยกเลิก',
+      'apply.confirm': 'ยืนยันการสมัคร',
       'apply.submit': 'ยืนยันการสมัคร',
     }
   };
@@ -127,14 +145,70 @@
       { id: 'c5', name: 'SeaView Resorts', logo: 'images/swv.png', description: 'Hospitality & leisure', verified: true, positions: ['Operations Intern'] },
     ];
     const internships = [
-      { id: 'i1', companyId: 'c1', companyName: 'TechFusion Co.', position: 'Frontend Intern', location: 'Bangkok', industry: 'Technology', language: 'English', duration: '3 months', verified: true, nationalityRequirement: 'Any' },
-      { id: 'i2', companyId: 'c1', companyName: 'TechFusion Co.', position: 'Data Intern', location: 'Bangkok', industry: 'Technology', language: 'English', duration: '4 months', verified: true, nationalityRequirement: 'International' },
-      { id: 'i3', companyId: 'c2', companyName: 'DesignHub Studio', position: 'UI Design Intern', location: 'Chiang Mai', industry: 'Design', language: 'Thai', duration: '3 months', verified: true, nationalityRequirement: 'Thai' },
-      { id: 'i4', companyId: 'c2', companyName: 'DesignHub Studio', position: 'UX Research Intern', location: 'Bangkok', industry: 'Design', language: 'English', duration: '3 months', verified: true, nationalityRequirement: 'Any' },
-      { id: 'i5', companyId: 'c3', companyName: 'MarketMinds Ltd.', position: 'Content Intern', location: 'Bangkok', industry: 'Marketing', language: 'English', duration: '2 months', verified: true, nationalityRequirement: 'Any' },
-      { id: 'i6', companyId: 'c4', companyName: 'FinNext', position: 'Finance Analyst Intern', location: 'Bangkok', industry: 'Finance', language: 'Thai', duration: '3 months', verified: false, nationalityRequirement: 'Thai' },
-      { id: 'i7', companyId: 'c5', companyName: 'SeaView Resorts', position: 'Operations Intern', location: 'Phuket', industry: 'Marketing', language: 'English', duration: '3 months', verified: true, nationalityRequirement: 'Any' },
-      { id: 'i8', companyId: 'c3', companyName: 'MarketMinds Ltd.', position: 'Growth Intern', location: 'Bangkok', industry: 'Marketing', language: 'Thai', duration: '4 months', verified: true, nationalityRequirement: 'Thai' },
+      { 
+        id: 'i1', companyId: 'c1', companyName: 'TechFusion Co.', position: 'Frontend Intern', 
+        location: 'Bangkok', industry: 'Technology', language: 'English', duration: '3 months', 
+        verified: true, nationalityRequirement: 'Any',
+        description: 'Join our frontend team to build cutting-edge web applications using React, TypeScript, and modern development tools. You\'ll work on real projects that impact thousands of users.',
+        requirements: ['Proficiency in HTML, CSS, and JavaScript', 'Experience with React or Vue.js', 'Understanding of responsive design', 'Git version control knowledge', 'Strong problem-solving skills'],
+        benefits: ['Mentorship from senior developers', 'Access to latest development tools', 'Flexible working hours', 'Team lunch every Friday', 'Certificate upon completion']
+      },
+      { 
+        id: 'i2', companyId: 'c1', companyName: 'TechFusion Co.', position: 'Data Intern', 
+        location: 'Bangkok', industry: 'Technology', language: 'English', duration: '4 months', 
+        verified: true, nationalityRequirement: 'International',
+        description: 'Dive into the world of data science and analytics. Work with large datasets, create visualizations, and help drive business decisions through data insights.',
+        requirements: ['Python or R programming experience', 'Knowledge of SQL databases', 'Statistics and data analysis fundamentals', 'Experience with data visualization tools', 'Analytical mindset'],
+        benefits: ['Training in advanced analytics tools', 'Access to cloud computing resources', 'Data science certification program', 'Networking with industry experts', 'Potential full-time offer']
+      },
+      { 
+        id: 'i3', companyId: 'c2', companyName: 'DesignHub Studio', position: 'UI Design Intern', 
+        location: 'Chiang Mai', industry: 'Design', language: 'Thai', duration: '3 months', 
+        verified: true, nationalityRequirement: 'Thai',
+        description: 'Create beautiful and intuitive user interfaces for mobile and web applications. Learn from award-winning designers and work on projects for top brands.',
+        requirements: ['Proficiency in Figma or Adobe XD', 'Understanding of design principles', 'Portfolio of design work', 'Knowledge of typography and color theory', 'Attention to detail'],
+        benefits: ['Adobe Creative Suite license', 'Design workshop attendance', 'Portfolio review sessions', 'Creative workspace environment', 'Industry conference tickets']
+      },
+      { 
+        id: 'i4', companyId: 'c2', companyName: 'DesignHub Studio', position: 'UX Research Intern', 
+        location: 'Bangkok', industry: 'Design', language: 'English', duration: '3 months', 
+        verified: true, nationalityRequirement: 'Any',
+        description: 'Conduct user research to understand customer needs and behaviors. Plan and execute usability studies, interviews, and surveys to inform design decisions.',
+        requirements: ['Understanding of UX research methods', 'Experience with survey tools', 'Strong communication skills', 'Analytical thinking', 'Psychology or related field background preferred'],
+        benefits: ['UX research tool access', 'Training in advanced research methods', 'Mentorship from senior researchers', 'Research publication opportunities', 'User testing lab access']
+      },
+      { 
+        id: 'i5', companyId: 'c3', companyName: 'MarketMinds Ltd.', position: 'Content Intern', 
+        location: 'Bangkok', industry: 'Marketing', language: 'English', duration: '2 months', 
+        verified: true, nationalityRequirement: 'Any',
+        description: 'Create engaging content for digital marketing campaigns across social media, blogs, and email marketing. Learn content strategy and SEO optimization.',
+        requirements: ['Excellent writing skills in English', 'Social media platform knowledge', 'Basic understanding of SEO', 'Creative thinking', 'Content management system experience'],
+        benefits: ['Content creation tools access', 'SEO and analytics training', 'Social media marketing certification', 'Flexible remote work options', 'Content portfolio development']
+      },
+      { 
+        id: 'i6', companyId: 'c4', companyName: 'FinNext', position: 'Finance Analyst Intern', 
+        location: 'Bangkok', industry: 'Finance', language: 'Thai', duration: '3 months', 
+        verified: false, nationalityRequirement: 'Thai',
+        description: 'Support financial analysis and reporting for fintech products. Learn about financial modeling, risk assessment, and regulatory compliance in the fintech industry.',
+        requirements: ['Finance or accounting background', 'Excel proficiency', 'Understanding of financial statements', 'Analytical skills', 'Thai language fluency'],
+        benefits: ['Financial modeling training', 'Industry certification support', 'Mentorship from finance professionals', 'Fintech industry exposure', 'Networking opportunities']
+      },
+      { 
+        id: 'i7', companyId: 'c5', companyName: 'SeaView Resorts', position: 'Operations Intern', 
+        location: 'Phuket', industry: 'Hospitality', language: 'English', duration: '3 months', 
+        verified: true, nationalityRequirement: 'Any',
+        description: 'Gain hands-on experience in resort operations including guest services, event management, and facility coordination. Perfect for hospitality management students.',
+        requirements: ['Customer service experience', 'Strong communication skills', 'Ability to work in fast-paced environment', 'Team collaboration skills', 'Hospitality or tourism background preferred'],
+        benefits: ['Accommodation provided', 'Meals included', 'Tourism industry certification', 'International work experience', 'Potential career opportunities']
+      },
+      { 
+        id: 'i8', companyId: 'c3', companyName: 'MarketMinds Ltd.', position: 'Growth Intern', 
+        location: 'Bangkok', industry: 'Marketing', language: 'Thai', duration: '4 months', 
+        verified: true, nationalityRequirement: 'Thai',
+        description: 'Focus on growth hacking strategies and user acquisition. Work with marketing automation tools, analyze conversion funnels, and optimize customer acquisition costs.',
+        requirements: ['Digital marketing knowledge', 'Data analysis skills', 'A/B testing experience', 'Growth hacking mindset', 'Thai language proficiency'],
+        benefits: ['Growth marketing certification', 'Marketing automation tools training', 'Performance bonus opportunities', 'Startup environment experience', 'Direct mentorship from founders']
+      },
     ];
     const articles = [
       { id: 'a1', title: 'Resume Writing Essentials', category: 'Career', description: 'Build a standout resume for internships.', duration: '1h' },
@@ -341,12 +415,50 @@
   function openApplyModal(it){
     STATE.selectedInternship = it;
     const dlg = document.getElementById('applyModal');
-    const summary = document.getElementById('applySummary');
     if (!dlg) return;
-    summary.textContent = `${it.position} at ${it.companyName} (${it.location})`;
+    
+    // Populate job header
+    setText('jobTitle', it.position);
+    setText('jobCompany', it.companyName);
+    
+    // Populate job description
+    setText('jobDescription', it.description || 'No description available.');
+    
+    // Populate requirements
+    const reqList = document.getElementById('jobRequirements');
+    reqList.innerHTML = '';
+    if (it.requirements && it.requirements.length > 0) {
+      it.requirements.forEach(req => {
+        const li = el('li', {}, req);
+        reqList.appendChild(li);
+      });
+    } else {
+      reqList.innerHTML = '<li>No specific requirements listed.</li>';
+    }
+    
+    // Populate benefits
+    const benList = document.getElementById('jobBenefits');
+    benList.innerHTML = '';
+    if (it.benefits && it.benefits.length > 0) {
+      it.benefits.forEach(benefit => {
+        const li = el('li', {}, benefit);
+        benList.appendChild(li);
+      });
+    } else {
+      benList.innerHTML = '<li>Benefits to be discussed.</li>';
+    }
+    
+    // Populate job info grid
+    setText('jobDuration', it.duration);
+    setText('jobLocation', it.location);
+    setText('jobIndustry', it.industry);
+    setText('jobLanguage', it.language);
+    
     dlg.showModal();
-    const form = document.getElementById('applyForm');
-    form.onsubmit = (e) => {
+    
+    // Handle form submission
+    const confirmBtn = document.getElementById('confirmApply');
+    confirmBtn.onclick = (e) => {
       e.preventDefault();
       addApplication({ id: it.id, status: 'pending', ts: Date.now(), companyId: it.companyId, position: it.position });
       Toast.show('success', 'Application submitted ✅');
