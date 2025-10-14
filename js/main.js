@@ -177,6 +177,12 @@
      'admin.enrollmentsTab': 'Course Enrollments',
      'admin.applicationsTitle': 'Internship Applications',
      'admin.enrollmentsTitle': 'Course Enrollments',
+     'user.applicationsTab': 'My Applications',
+     'user.enrollmentsTab': 'My Enrollments',
+     'user.applicationsTitle': 'My Internship Applications',
+     'user.enrollmentsTitle': 'My Course Enrollments',
+     'user.searchApplications': 'Search my applications...',
+     'user.searchEnrollments': 'Search my enrollments...',
      'admin.allStatuses': 'All Statuses',
      'admin.pending': 'Pending',
      'admin.accepted': 'Accepted',
@@ -381,6 +387,12 @@
      'admin.enrollmentsTab': 'การลงทะเบียนคอร์ส',
      'admin.applicationsTitle': 'ใบสมัครฝึกงาน',
      'admin.enrollmentsTitle': 'การลงทะเบียนคอร์ส',
+     'user.applicationsTab': 'ใบสมัครของฉัน',
+     'user.enrollmentsTab': 'การลงทะเบียนของฉัน',
+     'user.applicationsTitle': 'ใบสมัครฝึกงานของฉัน',
+     'user.enrollmentsTitle': 'การลงทะเบียนคอร์สของฉัน',
+     'user.searchApplications': 'ค้นหาใบสมัครของฉัน...',
+     'user.searchEnrollments': 'ค้นหาการลงทะเบียนของฉัน...',
      'admin.allStatuses': 'สถานะทั้งหมด',
      'admin.pending': 'รอดำเนินการ',
      'admin.accepted': 'ได้รับการยอมรับ',
@@ -1474,6 +1486,32 @@
        appliedDate: '2024-01-05',
        status: 'accepted',
        coverLetter: 'With strong skills in Python, R, and machine learning, I am eager to apply my knowledge to real-world data challenges at your company.'
+     },
+     {
+       id: 'app006',
+       applicantName: 'Jennie Kim',
+       applicantEmail: 'jennie@gmail.com',
+       applicantPhone: '+66 92 345 6789',
+       applicantUniversity: 'Chulalongkorn University',
+       applicantMajor: 'International Business',
+       position: 'Marketing Intern',
+       company: 'Global Marketing Solutions',
+       appliedDate: '2024-01-22',
+       status: 'pending',
+       coverLetter: 'I am passionate about international marketing and eager to contribute to your global campaigns. My multilingual skills and cultural awareness make me a strong candidate.'
+     },
+     {
+       id: 'app007',
+       applicantName: 'Jennie Kim',
+       applicantEmail: 'jennie@gmail.com',
+       applicantPhone: '+66 92 345 6789',
+       applicantUniversity: 'Chulalongkorn University',
+       applicantMajor: 'International Business',
+       position: 'Business Development Intern',
+       company: 'Tech Innovations Ltd',
+       appliedDate: '2024-01-18',
+       status: 'accepted',
+       coverLetter: 'With my background in international business and passion for technology, I am excited to help expand your business into new markets.'
      }
    ],
    enrollments: [
@@ -1554,12 +1592,38 @@
        progress: 100,
        status: 'completed',
        motivation: 'With increasing cyber threats, I want to understand security principles to protect my company\'s digital assets.'
+     },
+     {
+       id: 'enr007',
+       studentName: 'Jennie Kim',
+       studentEmail: 'jennie@gmail.com',
+       studentPhone: '+66 92 345 6789',
+       courseName: 'International Business Strategy',
+       courseCategory: 'Business',
+       courseDuration: '10 weeks',
+       enrolledDate: '2024-01-25',
+       progress: 60,
+       status: 'active',
+       motivation: 'I want to deepen my understanding of global business strategies to advance my career in international markets.'
+     },
+     {
+       id: 'enr008',
+       studentName: 'Jennie Kim',
+       studentEmail: 'jennie@gmail.com',
+       studentPhone: '+66 92 345 6789',
+       courseName: 'Digital Marketing Analytics',
+       courseCategory: 'Marketing',
+       courseDuration: '8 weeks',
+       enrolledDate: '2024-01-15',
+       progress: 100,
+       status: 'completed',
+       motivation: 'Understanding data-driven marketing is essential for creating effective international campaigns.'
      }
    ]
  };
 
  function initAdminPage() {
-   if (document.body.dataset.page !== 'admin') return;
+   if (document.body.dataset.page !== 'admin' && document.body.dataset.page !== 'sections') return;
 
    // Initialize tab functionality
    const tabButtons = document.querySelectorAll('.tab-btn');
@@ -1627,20 +1691,25 @@
    const tbody = document.getElementById('applicationsTableBody');
    if (!tbody) return;
 
-   const applications = filteredData || ADMIN_DATA.applications;
+   // Get current user's email
+   const currentUser = getJSON('currentUser');
+   const userEmail = currentUser ? currentUser.email : 'jennie@gmail.com';
+   
+   // Filter applications to show only current user's applications
+   let applications = filteredData || ADMIN_DATA.applications;
+   applications = applications.filter(app => app.applicantEmail === userEmail);
+   
    tbody.innerHTML = '';
 
    applications.forEach(app => {
        const row = el('tr');
        row.innerHTML = `
-       <td>${app.applicantName}</td>
        <td>${app.position}</td>
        <td>${app.company}</td>
        <td>${formatDate(app.appliedDate)}</td>
        <td><span class="status-badge ${app.status}">${app.status}</span></td>
        <td>
-         <button class="action-btn" onclick="viewApplicationDetails('${app.id}')">View</button>
-         <button class="action-btn" onclick="updateApplicationStatus('${app.id}')">Update</button>
+         <button class="action-btn" onclick="viewApplicationDetails('${app.id}')">View Details</button>
        </td>
      `;
      tbody.appendChild(row);
@@ -1651,13 +1720,19 @@
    const tbody = document.getElementById('enrollmentsTableBody');
    if (!tbody) return;
 
-   const enrollments = filteredData || ADMIN_DATA.enrollments;
+   // Get current user's email
+   const currentUser = getJSON('currentUser');
+   const userEmail = currentUser ? currentUser.email : 'jennie@gmail.com';
+   
+   // Filter enrollments to show only current user's enrollments
+   let enrollments = filteredData || ADMIN_DATA.enrollments;
+   enrollments = enrollments.filter(enrollment => enrollment.studentEmail === userEmail);
+   
    tbody.innerHTML = '';
 
    enrollments.forEach(enrollment => {
        const row = el('tr');
        row.innerHTML = `
-       <td>${enrollment.studentName}</td>
        <td>${enrollment.courseName}</td>
        <td>${enrollment.courseCategory}</td>
        <td>${formatDate(enrollment.enrolledDate)}</td>
@@ -1669,8 +1744,7 @@
        </td>
        <td><span class="status-badge ${enrollment.status}">${enrollment.status}</span></td>
        <td>
-         <button class="action-btn" onclick="viewEnrollmentDetails('${enrollment.id}')">View</button>
-         <button class="action-btn" onclick="updateEnrollmentStatus('${enrollment.id}')">Update</button>
+         <button class="action-btn" onclick="viewEnrollmentDetails('${enrollment.id}')">View Details</button>
        </td>
      `;
      tbody.appendChild(row);
@@ -1681,7 +1755,10 @@
    const statusFilter = document.getElementById('applicationStatusFilter')?.value || 'all';
    const searchTerm = document.getElementById('applicationSearch')?.value.toLowerCase() || '';
 
-   let filtered = ADMIN_DATA.applications;
+   // Get current user's email and filter applications
+   const currentUser = getJSON('currentUser');
+   const userEmail = currentUser ? currentUser.email : 'jennie@gmail.com';
+   let filtered = ADMIN_DATA.applications.filter(app => app.applicantEmail === userEmail);
 
    if (statusFilter !== 'all') {
      filtered = filtered.filter(app => app.status === statusFilter);
@@ -1689,7 +1766,6 @@
 
    if (searchTerm) {
      filtered = filtered.filter(app => 
-       app.applicantName.toLowerCase().includes(searchTerm) ||
        app.position.toLowerCase().includes(searchTerm) ||
        app.company.toLowerCase().includes(searchTerm)
      );
@@ -1702,7 +1778,10 @@
    const statusFilter = document.getElementById('enrollmentStatusFilter')?.value || 'all';
    const searchTerm = document.getElementById('enrollmentSearch')?.value.toLowerCase() || '';
 
-   let filtered = ADMIN_DATA.enrollments;
+   // Get current user's email and filter enrollments
+   const currentUser = getJSON('currentUser');
+   const userEmail = currentUser ? currentUser.email : 'jennie@gmail.com';
+   let filtered = ADMIN_DATA.enrollments.filter(enr => enr.studentEmail === userEmail);
 
    if (statusFilter !== 'all') {
      filtered = filtered.filter(enr => enr.status === statusFilter);
@@ -1710,7 +1789,6 @@
 
    if (searchTerm) {
      filtered = filtered.filter(enr => 
-       enr.studentName.toLowerCase().includes(searchTerm) ||
        enr.courseName.toLowerCase().includes(searchTerm) ||
        enr.courseCategory.toLowerCase().includes(searchTerm)
      );

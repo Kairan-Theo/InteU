@@ -1016,7 +1016,20 @@ body[data-page="register"] .row.space-between .muted { font-size: 14px; }
 
 /* Dark Mode for Admin Dashboard */
 body.dark .stat-card {
-  border-color: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #e5e7eb;
+}
+
+body.dark .stat-content h3 {
+  color: #e5e7eb;
+}
+
+body.dark .stat-content p {
+  color: #9ca3af;
 }
 
 body.dark .tab-buttons {
@@ -1037,12 +1050,25 @@ body.dark .admin-table tbody tr:hover {
 }
 
 body.dark .table-container {
-  border-color: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 body.dark .filters select,
 body.dark .filters input {
-  border-color: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #e5e7eb;
+}
+
+body.dark .filters input::placeholder {
+  color: rgba(229, 231, 235, 0.7);
 }
 
 body.dark .action-btn {

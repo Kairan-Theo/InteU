@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - IntEU</title>
+    <title>My Dashboard - InteU</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
@@ -74,15 +74,15 @@
       <!-- Tab Navigation -->
       <section class="admin-tabs">
         <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="applications" data-i18n="admin.applicationsTab">Internship Applications</button>
-          <button class="tab-btn" data-tab="enrollments" data-i18n="admin.enrollmentsTab">Course Enrollments</button>
+          <button class="tab-btn active" data-tab="applications" data-i18n="user.applicationsTab">My Applications</button>
+          <button class="tab-btn" data-tab="enrollments" data-i18n="user.enrollmentsTab">My Enrollments</button>
         </div>
       </section>
 
       <!-- Applications Tab -->
       <section id="applicationsTab" class="tab-content active">
         <div class="section-header">
-          <h2 data-i18n="admin.applicationsTitle">Internship Applications</h2>
+          <h2 data-i18n="user.applicationsTitle">My Internship Applications</h2>
           <div class="filters">
             <select id="applicationStatusFilter">
               <option value="all" data-i18n="admin.allStatuses">All Statuses</option>
@@ -90,14 +90,13 @@
               <option value="accepted" data-i18n="admin.accepted">Accepted</option>
               <option value="rejected" data-i18n="admin.rejected">Rejected</option>
             </select>
-            <input type="text" id="applicationSearch" placeholder="Search applications..." data-i18n-placeholder="admin.searchApplications">
+            <input type="text" id="applicationSearch" placeholder="Search my applications..." data-i18n-placeholder="user.searchApplications">
           </div>
         </div>
         <div class="table-container">
           <table id="applicationsTable" class="admin-table">
             <thead>
               <tr>
-                <th data-i18n="admin.applicant">Applicant</th>
                 <th data-i18n="admin.position">Position</th>
                 <th data-i18n="admin.company">Company</th>
                 <th data-i18n="admin.appliedDate">Applied Date</th>
@@ -115,7 +114,7 @@
       <!-- Enrollments Tab -->
       <section id="enrollmentsTab" class="tab-content">
         <div class="section-header">
-          <h2 data-i18n="admin.enrollmentsTitle">Course Enrollments</h2>
+          <h2 data-i18n="user.enrollmentsTitle">My Course Enrollments</h2>
           <div class="filters">
             <select id="enrollmentStatusFilter">
               <option value="all" data-i18n="admin.allStatuses">All Statuses</option>
@@ -123,14 +122,13 @@
               <option value="completed" data-i18n="admin.completed">Completed</option>
               <option value="dropped" data-i18n="admin.dropped">Dropped</option>
             </select>
-            <input type="text" id="enrollmentSearch" placeholder="Search enrollments..." data-i18n-placeholder="admin.searchEnrollments">
+            <input type="text" id="enrollmentSearch" placeholder="Search my enrollments..." data-i18n-placeholder="user.searchEnrollments">
           </div>
         </div>
         <div class="table-container">
           <table id="enrollmentsTable" class="admin-table">
             <thead>
               <tr>
-                <th data-i18n="admin.student">Student</th>
                 <th data-i18n="admin.course">Course</th>
                 <th data-i18n="admin.category">Category</th>
                 <th data-i18n="admin.enrolledDate">Enrolled Date</th>
