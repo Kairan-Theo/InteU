@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - IntEU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </head>
+  <body data-page="sections">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html"><span class="logo-mark"><img src="images/image1.jpg" alt="InteU logo" /></span> InteU</a>
+        <nav class="nav">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="sections.html" class="active" data-i18n="nav.sections">Sections</a>
+        </nav>
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+          <a href="login.html" class="btn small primary" data-i18n="nav.login">Login</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="sub-hero">
+      <div class="container">
+        <h1 data-i18n="admin.title">Dashboard</h1>
+        <p data-i18n="admin.subtitle">Manage applications and course enrollments</p>
+      </div>
+    </section>
+
+    <main class="container">
+      <!-- Dashboard Stats -->
+      <section class="dashboard-stats">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📋</div>
+            <div class="stat-content">
+              <h3 id="totalApplications">0</h3>
+              <p data-i18n="admin.totalApplications">Total Applications</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-content">
+              <h3 id="totalEnrollments">0</h3>
+              <p data-i18n="admin.totalEnrollments">Course Enrollments</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏳</div>
+            <div class="stat-content">
+              <h3 id="pendingApplications">0</h3>
+              <p data-i18n="admin.pendingApplications">Pending Applications</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-content">
+              <h3 id="activeEnrollments">0</h3>
+              <p data-i18n="admin.activeEnrollments">Active Enrollments</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab Navigation -->
+      <section class="admin-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="applications" data-i18n="admin.applicationsTab">Internship Applications</button>
+          <button class="tab-btn" data-tab="enrollments" data-i18n="admin.enrollmentsTab">Course Enrollments</button>
+        </div>
+      </section>
+
+      <!-- Applications Tab -->
+      <section id="applicationsTab" class="tab-content active">
+        <div class="section-header">
+          <h2 data-i18n="admin.applicationsTitle">Internship Applications</h2>
+          <div class="filters">
+            <select id="applicationStatusFilter">
+              <option value="all" data-i18n="admin.allStatuses">All Statuses</option>
+              <option value="pending" data-i18n="admin.pending">Pending</option>
+              <option value="accepted" data-i18n="admin.accepted">Accepted</option>
+              <option value="rejected" data-i18n="admin.rejected">Rejected</option>
+            </select>
+            <input type="text" id="applicationSearch" placeholder="Search applications..." data-i18n-placeholder="admin.searchApplications">
+          </div>
+        </div>
+        <div class="table-container">
+          <table id="applicationsTable" class="admin-table">
+            <thead>
+              <tr>
+                <th data-i18n="admin.applicant">Applicant</th>
+                <th data-i18n="admin.position">Position</th>
+                <th data-i18n="admin.company">Company</th>
+                <th data-i18n="admin.appliedDate">Applied Date</th>
+                <th data-i18n="admin.status">Status</th>
+                <th data-i18n="admin.actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applicationsTableBody">
+              <!-- Applications will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Enrollments Tab -->
+      <section id="enrollmentsTab" class="tab-content">
+        <div class="section-header">
+          <h2 data-i18n="admin.enrollmentsTitle">Course Enrollments</h2>
+          <div class="filters">
+            <select id="enrollmentStatusFilter">
+              <option value="all" data-i18n="admin.allStatuses">All Statuses</option>
+              <option value="active" data-i18n="admin.active">Active</option>
+              <option value="completed" data-i18n="admin.completed">Completed</option>
+              <option value="dropped" data-i18n="admin.dropped">Dropped</option>
+            </select>
+            <input type="text" id="enrollmentSearch" placeholder="Search enrollments..." data-i18n-placeholder="admin.searchEnrollments">
+          </div>
+        </div>
+        <div class="table-container">
+          <table id="enrollmentsTable" class="admin-table">
+            <thead>
+              <tr>
+                <th data-i18n="admin.student">Student</th>
+                <th data-i18n="admin.course">Course</th>
+                <th data-i18n="admin.category">Category</th>
+                <th data-i18n="admin.enrolledDate">Enrolled Date</th>
+                <th data-i18n="admin.progress">Progress</th>
+                <th data-i18n="admin.status">Status</th>
+                <th data-i18n="admin.actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="enrollmentsTableBody">
+              <!-- Enrollments will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Application Details Modal -->
+    <dialog id="applicationDetailsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="admin.applicationDetails">Application Details</h3>
+          <button class="modal-close" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="application-details">
+            <div class="detail-section">
+              <h4 data-i18n="admin.applicantInfo">Applicant Information</h4>
+              <p><strong data-i18n="admin.name">Name:</strong> <span id="detailApplicantName"></span></p>
+              <p><strong data-i18n="admin.email">Email:</strong> <span id="detailApplicantEmail"></span></p>
+              <p><strong data-i18n="admin.phone">Phone:</strong> <span id="detailApplicantPhone"></span></p>
+              <p><strong data-i18n="admin.university">University:</strong> <span id="detailApplicantUniversity"></span></p>
+              <p><strong data-i18n="admin.major">Major:</strong> <span id="detailApplicantMajor"></span></p>
+            </div>
+            <div class="detail-section">
+              <h4 data-i18n="admin.positionInfo">Position Information</h4>
+              <p><strong data-i18n="admin.position">Position:</strong> <span id="detailPosition"></span></p>
+              <p><strong data-i18n="admin.company">Company:</strong> <span id="detailCompany"></span></p>
+              <p><strong data-i18n="admin.appliedDate">Applied Date:</strong> <span id="detailAppliedDate"></span></p>
+            </div>
+            <div class="detail-section">
+              <h4 data-i18n="admin.coverLetter">Cover Letter</h4>
+              <p id="detailCoverLetter"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close data-i18n="admin.close">Close</button>
+          <button id="updateStatusBtn" class="btn primary" data-i18n="admin.updateStatus">Update Status</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Enrollment Details Modal -->
+    <dialog id="enrollmentDetailsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="admin.enrollmentDetails">Enrollment Details</h3>
+          <button class="modal-close" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="enrollment-details">
+            <div class="detail-section">
+              <h4 data-i18n="admin.studentInfo">Student Information</h4>
+              <p><strong data-i18n="admin.name">Name:</strong> <span id="detailStudentName"></span></p>
+              <p><strong data-i18n="admin.email">Email:</strong> <span id="detailStudentEmail"></span></p>
+              <p><strong data-i18n="admin.phone">Phone:</strong> <span id="detailStudentPhone"></span></p>
+            </div>
+            <div class="detail-section">
+              <h4 data-i18n="admin.courseInfo">Course Information</h4>
+              <p><strong data-i18n="admin.course">Course:</strong> <span id="detailCourseName"></span></p>
+              <p><strong data-i18n="admin.category">Category:</strong> <span id="detailCourseCategory"></span></p>
+              <p><strong data-i18n="admin.duration">Duration:</strong> <span id="detailCourseDuration"></span></p>
+              <p><strong data-i18n="admin.enrolledDate">Enrolled Date:</strong> <span id="detailEnrolledDate"></span></p>
+            </div>
+            <div class="detail-section">
+              <h4 data-i18n="admin.motivation">Motivation</h4>
+              <p id="detailMotivation"></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close data-i18n="admin.close">Close</button>
+          <button id="updateEnrollmentStatusBtn" class="btn primary" data-i18n="admin.updateStatus">Update Status</button>
+        </div>
+      </div>
+    </dialog>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/notifications.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

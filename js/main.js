@@ -14,6 +14,8 @@
      'nav.home': 'Home',
      'nav.companies': 'Companies',
      'nav.articles': 'Articles',
+     'nav.sections': 'Sections',
+     'nav.admin': 'Admin',
      'nav.login': 'Login',
      'nav.logout': 'Logout',
      'nav.profile': 'Profile',
@@ -117,11 +119,60 @@
      'enrollmentConfirmation.course': 'Course',
      'enrollmentConfirmation.duration': 'Duration',
      'enrollmentConfirmation.ok': 'Ok',
+     // Admin dashboard translations
+     'admin.title': 'Dashboard',
+     'admin.subtitle': 'Manage applications and course enrollments',
+     'admin.totalApplications': 'Total Applications',
+     'admin.totalEnrollments': 'Course Enrollments',
+     'admin.pendingApplications': 'Pending Applications',
+     'admin.activeEnrollments': 'Active Enrollments',
+     'admin.applicationsTab': 'Internship Applications',
+     'admin.enrollmentsTab': 'Course Enrollments',
+     'admin.applicationsTitle': 'Internship Applications',
+     'admin.enrollmentsTitle': 'Course Enrollments',
+     'admin.allStatuses': 'All Statuses',
+     'admin.pending': 'Pending',
+     'admin.accepted': 'Accepted',
+     'admin.rejected': 'Rejected',
+     'admin.active': 'Active',
+     'admin.completed': 'Completed',
+     'admin.dropped': 'Dropped',
+     'admin.searchApplications': 'Search applications...',
+     'admin.searchEnrollments': 'Search enrollments...',
+     'admin.applicant': 'Applicant',
+     'admin.position': 'Position',
+     'admin.company': 'Company',
+     'admin.appliedDate': 'Applied Date',
+     'admin.status': 'Status',
+     'admin.actions': 'Actions',
+     'admin.student': 'Student',
+     'admin.course': 'Course',
+     'admin.category': 'Category',
+     'admin.enrolledDate': 'Enrolled Date',
+     'admin.progress': 'Progress',
+     'admin.applicationDetails': 'Application Details',
+     'admin.enrollmentDetails': 'Enrollment Details',
+     'admin.applicantInfo': 'Applicant Information',
+     'admin.studentInfo': 'Student Information',
+     'admin.positionInfo': 'Position Information',
+     'admin.courseInfo': 'Course Information',
+     'admin.name': 'Name',
+     'admin.email': 'Email',
+     'admin.phone': 'Phone',
+     'admin.university': 'University',
+     'admin.major': 'Major',
+     'admin.duration': 'Duration',
+     'admin.coverLetter': 'Cover Letter',
+     'admin.motivation': 'Motivation',
+     'admin.close': 'Close',
+     'admin.updateStatus': 'Update Status'
    },
    th: {
      'nav.home': 'หน้าหลัก',
      'nav.companies': 'บริษัท',
      'nav.articles': 'บทความ',
+     'nav.sections': 'ส่วนต่างๆ',
+     'nav.admin': 'ผู้ดูแลระบบ',
      'nav.login': 'เข้าสู่ระบบ',
      'nav.logout': 'ออกจากระบบ',
      'nav.profile': 'โปรไฟล์',
@@ -225,6 +276,53 @@
      'enrollmentConfirmation.course': 'คอร์ส',
      'enrollmentConfirmation.duration': 'ระยะเวลา',
      'enrollmentConfirmation.ok': 'ตกลง',
+     // Admin dashboard translations
+     'admin.title': 'แดชบอร์ด',
+     'admin.subtitle': 'จัดการใบสมัครและการลงทะเบียนคอร์ส',
+     'admin.totalApplications': 'ใบสมัครทั้งหมด',
+     'admin.totalEnrollments': 'การลงทะเบียนคอร์ส',
+     'admin.pendingApplications': 'ใบสมัครที่รอดำเนินการ',
+     'admin.activeEnrollments': 'การลงทะเบียนที่ใช้งานอยู่',
+     'admin.applicationsTab': 'ใบสมัครฝึกงาน',
+     'admin.enrollmentsTab': 'การลงทะเบียนคอร์ส',
+     'admin.applicationsTitle': 'ใบสมัครฝึกงาน',
+     'admin.enrollmentsTitle': 'การลงทะเบียนคอร์ส',
+     'admin.allStatuses': 'สถานะทั้งหมด',
+     'admin.pending': 'รอดำเนินการ',
+     'admin.accepted': 'ได้รับการยอมรับ',
+     'admin.rejected': 'ถูกปฏิเสธ',
+     'admin.active': 'ใช้งานอยู่',
+     'admin.completed': 'เสร็จสิ้น',
+     'admin.dropped': 'ถอนตัว',
+     'admin.searchApplications': 'ค้นหาใบสมัคร...',
+     'admin.searchEnrollments': 'ค้นหาการลงทะเบียน...',
+     'admin.applicant': 'ผู้สมัคร',
+     'admin.position': 'ตำแหน่ง',
+     'admin.company': 'บริษัท',
+     'admin.appliedDate': 'วันที่สมัคร',
+     'admin.status': 'สถานะ',
+     'admin.actions': 'การดำเนินการ',
+     'admin.student': 'นักเรียน',
+     'admin.course': 'คอร์ส',
+     'admin.category': 'หมวดหมู่',
+     'admin.enrolledDate': 'วันที่ลงทะเบียน',
+     'admin.progress': 'ความคืบหน้า',
+     'admin.applicationDetails': 'รายละเอียดใบสมัคร',
+     'admin.enrollmentDetails': 'รายละเอียดการลงทะเบียน',
+     'admin.applicantInfo': 'ข้อมูลผู้สมัคร',
+     'admin.studentInfo': 'ข้อมูลนักเรียน',
+     'admin.positionInfo': 'ข้อมูลตำแหน่ง',
+     'admin.courseInfo': 'ข้อมูลคอร์ส',
+     'admin.name': 'ชื่อ',
+     'admin.email': 'อีเมล',
+     'admin.phone': 'โทรศัพท์',
+     'admin.university': 'มหาวิทยาลัย',
+     'admin.major': 'สาขาวิชา',
+     'admin.duration': 'ระยะเวลา',
+     'admin.coverLetter': 'จดหมายสมัครงาน',
+     'admin.motivation': 'แรงจูงใจ',
+     'admin.close': 'ปิด',
+     'admin.updateStatus': 'อัปเดตสถานะ'
    }
  };
 
@@ -243,6 +341,7 @@
    if (page === 'login') initLoginPage();
    if (page === 'register') initRegisterPage();
    if (page === 'profile') initProfilePage();
+   if (page === 'sections') initAdminPage();
  });
 
 
@@ -1124,6 +1223,419 @@
    applyTranslations();
    setTimeout(() => { location.href = 'index.html'; }, 400);
  }
+
+ // Admin Dashboard Functionality
+ const ADMIN_DATA = {
+   applications: [
+     {
+       id: 'app001',
+       applicantName: 'John Smith',
+       applicantEmail: 'john.smith@email.com',
+       applicantPhone: '+66 81 234 5678',
+       applicantUniversity: 'Chulalongkorn University',
+       applicantMajor: 'Computer Science',
+       position: 'Software Developer Intern',
+       company: 'TechCorp Thailand',
+       appliedDate: '2024-01-15',
+       status: 'pending',
+       coverLetter: 'I am passionate about software development and eager to contribute to your team. My experience with React and Node.js makes me a strong candidate for this position.'
+     },
+     {
+       id: 'app002',
+       applicantName: 'Sarah Johnson',
+       applicantEmail: 'sarah.j@email.com',
+       applicantPhone: '+66 82 345 6789',
+       applicantUniversity: 'Mahidol University',
+       applicantMajor: 'Digital Marketing',
+       position: 'Marketing Intern',
+       company: 'Digital Solutions Co.',
+       appliedDate: '2024-01-12',
+       status: 'accepted',
+       coverLetter: 'With my background in digital marketing and social media management, I am excited to bring fresh ideas to your marketing team.'
+     },
+     {
+       id: 'app003',
+       applicantName: 'Michael Chen',
+       applicantEmail: 'michael.chen@email.com',
+       applicantPhone: '+66 83 456 7890',
+       applicantUniversity: 'Thammasat University',
+       applicantMajor: 'Business Administration',
+       position: 'Business Analyst Intern',
+       company: 'Global Consulting',
+       appliedDate: '2024-01-10',
+       status: 'rejected',
+       coverLetter: 'My analytical skills and business acumen would be valuable assets to your consulting team. I have experience with data analysis and strategic planning.'
+     },
+     {
+       id: 'app004',
+       applicantName: 'Emma Wilson',
+       applicantEmail: 'emma.wilson@email.com',
+       applicantPhone: '+66 84 567 8901',
+       applicantUniversity: 'King Mongkut\'s University',
+       applicantMajor: 'Graphic Design',
+       position: 'UI/UX Designer Intern',
+       company: 'Creative Agency',
+       appliedDate: '2024-01-08',
+       status: 'pending',
+       coverLetter: 'As a creative individual with a passion for user experience design, I am excited to contribute to your design team and learn from industry professionals.'
+     },
+     {
+       id: 'app005',
+       applicantName: 'David Lee',
+       applicantEmail: 'david.lee@email.com',
+       applicantPhone: '+66 85 678 9012',
+       applicantUniversity: 'Kasetsart University',
+       applicantMajor: 'Data Science',
+       position: 'Data Analyst Intern',
+       company: 'Analytics Pro',
+       appliedDate: '2024-01-05',
+       status: 'accepted',
+       coverLetter: 'With strong skills in Python, R, and machine learning, I am eager to apply my knowledge to real-world data challenges at your company.'
+     }
+   ],
+   enrollments: [
+     {
+       id: 'enr001',
+       studentName: 'Alice Brown',
+       studentEmail: 'alice.brown@email.com',
+       studentPhone: '+66 86 789 0123',
+       courseName: 'Advanced JavaScript Development',
+       courseCategory: 'Programming',
+       courseDuration: '8 weeks',
+       enrolledDate: '2024-01-20',
+       progress: 75,
+       status: 'active',
+       motivation: 'I want to advance my JavaScript skills to become a full-stack developer and work on more complex projects.'
+     },
+     {
+       id: 'enr002',
+       studentName: 'Robert Taylor',
+       studentEmail: 'robert.taylor@email.com',
+       studentPhone: '+66 87 890 1234',
+       courseName: 'Digital Marketing Fundamentals',
+       courseCategory: 'Marketing',
+       courseDuration: '6 weeks',
+       enrolledDate: '2024-01-18',
+       progress: 100,
+       status: 'completed',
+       motivation: 'I need to understand digital marketing strategies to help grow my startup and reach more customers online.'
+     },
+     {
+       id: 'enr003',
+       studentName: 'Lisa Garcia',
+       studentEmail: 'lisa.garcia@email.com',
+       studentPhone: '+66 88 901 2345',
+       courseName: 'Data Science with Python',
+       courseCategory: 'Data Science',
+       courseDuration: '12 weeks',
+       enrolledDate: '2024-01-15',
+       progress: 45,
+       status: 'active',
+       motivation: 'Data science is the future, and I want to transition my career from traditional analytics to machine learning and AI.'
+     },
+     {
+       id: 'enr004',
+       studentName: 'James Martinez',
+       studentEmail: 'james.martinez@email.com',
+       studentPhone: '+66 89 012 3456',
+       courseName: 'UI/UX Design Principles',
+       courseCategory: 'Design',
+       courseDuration: '10 weeks',
+       enrolledDate: '2024-01-12',
+       progress: 20,
+       status: 'dropped',
+       motivation: 'I wanted to learn design principles to improve my web development skills, but found the course too challenging.'
+     },
+     {
+       id: 'enr005',
+       studentName: 'Maria Rodriguez',
+       studentEmail: 'maria.rodriguez@email.com',
+       studentPhone: '+66 90 123 4567',
+       courseName: 'Project Management Essentials',
+       courseCategory: 'Business',
+       courseDuration: '8 weeks',
+       enrolledDate: '2024-01-10',
+       progress: 90,
+       status: 'active',
+       motivation: 'As a team lead, I need formal project management training to better organize and deliver projects on time.'
+     },
+     {
+       id: 'enr006',
+       studentName: 'Kevin Wong',
+       studentEmail: 'kevin.wong@email.com',
+       studentPhone: '+66 91 234 5678',
+       courseName: 'Cybersecurity Fundamentals',
+       courseCategory: 'Security',
+       courseDuration: '6 weeks',
+       enrolledDate: '2024-01-08',
+       progress: 100,
+       status: 'completed',
+       motivation: 'With increasing cyber threats, I want to understand security principles to protect my company\'s digital assets.'
+     }
+   ]
+ };
+
+ function initAdminPage() {
+   if (document.body.dataset.page !== 'admin') return;
+
+   // Initialize tab functionality
+   const tabButtons = document.querySelectorAll('.tab-btn');
+   const tabContents = document.querySelectorAll('.tab-content');
+
+   tabButtons.forEach(btn => {
+     btn.addEventListener('click', () => {
+       const targetTab = btn.dataset.tab;
+       
+       // Update active tab button
+       tabButtons.forEach(b => b.classList.remove('active'));
+       btn.classList.add('active');
+       
+       // Update active tab content
+       tabContents.forEach(content => {
+         content.classList.remove('active');
+         if (content.id === targetTab + 'Tab') {
+           content.classList.add('active');
+         }
+       });
+     });
+   });
+
+   // Initialize filters
+   const applicationStatusFilter = document.getElementById('applicationStatusFilter');
+   const applicationSearch = document.getElementById('applicationSearch');
+   const enrollmentStatusFilter = document.getElementById('enrollmentStatusFilter');
+   const enrollmentSearch = document.getElementById('enrollmentSearch');
+
+   if (applicationStatusFilter) {
+     applicationStatusFilter.addEventListener('change', filterApplications);
+   }
+   if (applicationSearch) {
+     applicationSearch.addEventListener('input', filterApplications);
+   }
+   if (enrollmentStatusFilter) {
+     enrollmentStatusFilter.addEventListener('change', filterEnrollments);
+   }
+   if (enrollmentSearch) {
+     enrollmentSearch.addEventListener('input', filterEnrollments);
+   }
+
+   // Initialize modal functionality
+   initAdminModals();
+
+   // Load initial data
+   updateDashboardStats();
+   renderApplicationsTable();
+   renderEnrollmentsTable();
+ }
+
+ function updateDashboardStats() {
+   const totalApplications = ADMIN_DATA.applications.length;
+   const totalEnrollments = ADMIN_DATA.enrollments.length;
+   const pendingApplications = ADMIN_DATA.applications.filter(app => app.status === 'pending').length;
+   const activeEnrollments = ADMIN_DATA.enrollments.filter(enr => enr.status === 'active').length;
+
+   setText('totalApplications', totalApplications);
+   setText('totalEnrollments', totalEnrollments);
+   setText('pendingApplications', pendingApplications);
+   setText('activeEnrollments', activeEnrollments);
+ }
+
+ function renderApplicationsTable(filteredData = null) {
+   const tbody = document.getElementById('applicationsTableBody');
+   if (!tbody) return;
+
+   const applications = filteredData || ADMIN_DATA.applications;
+   tbody.innerHTML = '';
+
+   applications.forEach(app => {
+       const row = el('tr');
+       row.innerHTML = `
+       <td>${app.applicantName}</td>
+       <td>${app.position}</td>
+       <td>${app.company}</td>
+       <td>${formatDate(app.appliedDate)}</td>
+       <td><span class="status-badge ${app.status}">${app.status}</span></td>
+       <td>
+         <button class="action-btn" onclick="viewApplicationDetails('${app.id}')">View</button>
+         <button class="action-btn" onclick="updateApplicationStatus('${app.id}')">Update</button>
+       </td>
+     `;
+     tbody.appendChild(row);
+   });
+ }
+
+ function renderEnrollmentsTable(filteredData = null) {
+   const tbody = document.getElementById('enrollmentsTableBody');
+   if (!tbody) return;
+
+   const enrollments = filteredData || ADMIN_DATA.enrollments;
+   tbody.innerHTML = '';
+
+   enrollments.forEach(enrollment => {
+       const row = el('tr');
+       row.innerHTML = `
+       <td>${enrollment.studentName}</td>
+       <td>${enrollment.courseName}</td>
+       <td>${enrollment.courseCategory}</td>
+       <td>${formatDate(enrollment.enrolledDate)}</td>
+       <td>
+         <div class="progress-bar">
+           <div class="progress-fill" style="width: ${enrollment.progress}%"></div>
+         </div>
+         ${enrollment.progress}%
+       </td>
+       <td><span class="status-badge ${enrollment.status}">${enrollment.status}</span></td>
+       <td>
+         <button class="action-btn" onclick="viewEnrollmentDetails('${enrollment.id}')">View</button>
+         <button class="action-btn" onclick="updateEnrollmentStatus('${enrollment.id}')">Update</button>
+       </td>
+     `;
+     tbody.appendChild(row);
+   });
+ }
+
+ function filterApplications() {
+   const statusFilter = document.getElementById('applicationStatusFilter')?.value || 'all';
+   const searchTerm = document.getElementById('applicationSearch')?.value.toLowerCase() || '';
+
+   let filtered = ADMIN_DATA.applications;
+
+   if (statusFilter !== 'all') {
+     filtered = filtered.filter(app => app.status === statusFilter);
+   }
+
+   if (searchTerm) {
+     filtered = filtered.filter(app => 
+       app.applicantName.toLowerCase().includes(searchTerm) ||
+       app.position.toLowerCase().includes(searchTerm) ||
+       app.company.toLowerCase().includes(searchTerm)
+     );
+   }
+
+   renderApplicationsTable(filtered);
+ }
+
+ function filterEnrollments() {
+   const statusFilter = document.getElementById('enrollmentStatusFilter')?.value || 'all';
+   const searchTerm = document.getElementById('enrollmentSearch')?.value.toLowerCase() || '';
+
+   let filtered = ADMIN_DATA.enrollments;
+
+   if (statusFilter !== 'all') {
+     filtered = filtered.filter(enr => enr.status === statusFilter);
+   }
+
+   if (searchTerm) {
+     filtered = filtered.filter(enr => 
+       enr.studentName.toLowerCase().includes(searchTerm) ||
+       enr.courseName.toLowerCase().includes(searchTerm) ||
+       enr.courseCategory.toLowerCase().includes(searchTerm)
+     );
+   }
+
+   renderEnrollmentsTable(filtered);
+ }
+
+ function viewApplicationDetails(appId) {
+   const app = ADMIN_DATA.applications.find(a => a.id === appId);
+   if (!app) return;
+
+   setText('detailApplicantName', app.applicantName);
+   setText('detailApplicantEmail', app.applicantEmail);
+   setText('detailApplicantPhone', app.applicantPhone);
+   setText('detailApplicantUniversity', app.applicantUniversity);
+   setText('detailApplicantMajor', app.applicantMajor);
+   setText('detailPosition', app.position);
+   setText('detailCompany', app.company);
+   setText('detailAppliedDate', formatDate(app.appliedDate));
+   setText('detailCoverLetter', app.coverLetter);
+
+   const modal = document.getElementById('applicationDetailsModal');
+   if (modal) {
+     modal.showModal();
+   }
+ }
+
+ function viewEnrollmentDetails(enrId) {
+   const enr = ADMIN_DATA.enrollments.find(e => e.id === enrId);
+   if (!enr) return;
+
+   setText('detailStudentName', enr.studentName);
+   setText('detailStudentEmail', enr.studentEmail);
+   setText('detailStudentPhone', enr.studentPhone);
+   setText('detailCourseName', enr.courseName);
+   setText('detailCourseCategory', enr.courseCategory);
+   setText('detailCourseDuration', enr.courseDuration);
+   setText('detailEnrolledDate', formatDate(enr.enrolledDate));
+   setText('detailMotivation', enr.motivation);
+
+   const modal = document.getElementById('enrollmentDetailsModal');
+   if (modal) {
+     modal.showModal();
+   }
+ }
+
+ function updateApplicationStatus(appId) {
+   const app = ADMIN_DATA.applications.find(a => a.id === appId);
+   if (!app) return;
+
+   const newStatus = prompt(`Update status for ${app.applicantName}:\n\nCurrent: ${app.status}\n\nEnter new status (pending/accepted/rejected):`, app.status);
+   
+   if (newStatus && ['pending', 'accepted', 'rejected'].includes(newStatus.toLowerCase())) {
+     app.status = newStatus.toLowerCase();
+     updateDashboardStats();
+     filterApplications(); // Refresh the table with current filters
+     Toast.show('success', `Application status updated to ${newStatus}`);
+   }
+ }
+
+ function updateEnrollmentStatus(enrId) {
+   const enr = ADMIN_DATA.enrollments.find(e => e.id === enrId);
+   if (!enr) return;
+
+   const newStatus = prompt(`Update status for ${enr.studentName}:\n\nCurrent: ${enr.status}\n\nEnter new status (active/completed/dropped):`, enr.status);
+   
+   if (newStatus && ['active', 'completed', 'dropped'].includes(newStatus.toLowerCase())) {
+     enr.status = newStatus.toLowerCase();
+     updateDashboardStats();
+     filterEnrollments(); // Refresh the table with current filters
+     Toast.show('success', `Enrollment status updated to ${newStatus}`);
+   }
+ }
+
+ function initAdminModals() {
+   const modals = document.querySelectorAll('.modal');
+   modals.forEach(modal => {
+     const closeButtons = modal.querySelectorAll('[data-close]');
+     closeButtons.forEach(btn => {
+       btn.addEventListener('click', () => {
+         modal.close();
+       });
+     });
+
+     // Close on backdrop click
+     modal.addEventListener('click', (e) => {
+       if (e.target === modal) {
+         modal.close();
+       }
+     });
+   });
+ }
+
+ function formatDate(dateString) {
+   const date = new Date(dateString);
+   return date.toLocaleDateString('en-US', {
+     year: 'numeric',
+     month: 'short',
+     day: 'numeric'
+   });
+ }
+
+ // Make functions globally available for onclick handlers
+ window.viewApplicationDetails = viewApplicationDetails;
+ window.viewEnrollmentDetails = viewEnrollmentDetails;
+ window.updateApplicationStatus = updateApplicationStatus;
+ window.updateEnrollmentStatus = updateEnrollmentStatus;
 
 })();
 
