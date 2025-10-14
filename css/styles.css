@@ -143,6 +143,73 @@ main { flex: 1 0 auto; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
 .modal-content label { display: grid; gap: 6px; margin-bottom: 8px; }
 .modal-content input, .modal-content select { height: 40px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 0 10px; background: transparent; color: var(--text); }
+.modal-content textarea { border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 10px; background: transparent; color: var(--text); resize: vertical; font-family: inherit; }
+.modal-content input[type="file"] { height: auto; padding: 8px 10px; }
+
+/* Submission Modal Styling */
+#submissionModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+#submissionModal .modal-content {
+  min-width: 400px;
+  max-width: 600px;
+  width: 85vw;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+#submissionModal .modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+#submissionModal .form-group {
+  margin-bottom: 16px;
+}
+
+#submissionModal .form-group input,
+#submissionModal .form-group textarea,
+#submissionModal .form-group select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments for submission modal */
+@media (max-width: 768px) {
+  #submissionModal .modal-content {
+    min-width: 320px;
+    width: 95vw;
+    max-height: 90vh;
+  }
+  
+  #submissionModal .modal-body {
+    max-height: 70vh;
+  }
+}
+
+/* Confirmation Modal Styling */
+#confirmationModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+#confirmationModal .modal-content {
+  min-width: 350px;
+  max-width: 500px;
+  width: 80vw;
+}
+
+.confirmation-content { text-align: center; padding: 20px 0; }
+.success-icon { font-size: 48px; color: #10b981; margin-bottom: 16px; }
+.confirmation-content p { margin: 12px 0; line-height: 1.5; }
 
 /* Enhanced Apply Modal */
 #applyModal .modal-content { min-width: 500px; max-width: 600px; max-height: 80vh; overflow-y: auto; }

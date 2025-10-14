@@ -309,6 +309,74 @@
             </div>
         </dialog>
 
+        <!-- Submission Form Modal -->
+        <dialog id="submissionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-i18n="submission.title">Application Form</h3>
+                    <button class="icon-btn" aria-label="Close" data-close>
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <form id="submissionForm">
+                        <div class="form-group">
+                            <label for="fullName" data-i18n="submission.fullname">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-i18n="submission.email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" data-i18n="submission.phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="university" data-i18n="submission.university">University</label>
+                            <input type="text" id="university" name="university">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="major" data-i18n="submission.major">Major/Field of Study</label>
+                            <input type="text" id="major" name="major">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="coverLetter" data-i18n="submission.coverletter">Cover Letter *</label>
+                            <textarea id="coverLetter" name="coverLetter" rows="4" required placeholder="Tell us why you're interested in this position..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="resume" data-i18n="submission.resume">Resume</label>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn" data-close data-i18n="submission.cancel">Cancel</button>
+                    <button id="submitApplicationBtn" class="btn primary" data-i18n="submission.submit">Submit Application</button>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- Confirmation Modal -->
+        <dialog id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <div class="confirmation-content">
+                    <div class="success-icon">✓</div>
+                    <h3 data-i18n="confirmation.title">Application Submitted!</h3>
+                    <p data-i18n="confirmation.message">Your application has been successfully submitted. We will review it and get back to you soon.</p>
+                    <button class="btn primary" onclick="document.getElementById('confirmationModal').close()" data-i18n="confirmation.close">Close</button>
+                </div>
+            </div>
+        </dialog>
+
     <script src="js/notifications.js"></script>
     <script src="js/search.js"></script>
     <script src="js/main.js"></script>

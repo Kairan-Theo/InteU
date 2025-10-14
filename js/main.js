@@ -65,6 +65,21 @@
      'apply.cancel': 'Cancel',
      'apply.confirm': 'Confirm Application',
      'apply.submit': 'Confirm Application',
+     // Submission form translations
+     'submission.title': 'Application Form',
+     'submission.fullname': 'Full Name',
+     'submission.email': 'Email Address',
+     'submission.phone': 'Phone Number',
+     'submission.university': 'University',
+     'submission.major': 'Major/Field of Study',
+     'submission.coverletter': 'Cover Letter',
+     'submission.resume': 'Resume',
+     'submission.cancel': 'Cancel',
+     'submission.submit': 'Submit Application',
+     // Confirmation modal translations
+     'confirmation.title': 'Application Submitted!',
+      'confirmation.message': 'Your application has been successfully submitted. We will review it and get back to you soon.',
+      'confirmation.close': 'Ok',
      // Login modal detailed descriptions
      'login.description': 'Welcome back! Sign in to access your account.',
      'login.remember': 'Remember me',
@@ -136,6 +151,21 @@
      'apply.cancel': 'ยกเลิก',
      'apply.confirm': 'ยืนยันการสมัคร',
      'apply.submit': 'ยืนยันการสมัคร',
+     // Submission form translations
+     'submission.title': 'แบบฟอร์มสมัครงาน',
+     'submission.fullname': 'ชื่อ-นามสกุล',
+     'submission.email': 'อีเมล',
+     'submission.phone': 'เบอร์โทรศัพท์',
+     'submission.university': 'มหาวิทยาลัย',
+     'submission.major': 'สาขาวิชา',
+     'submission.coverletter': 'จดหมายสมัครงาน',
+     'submission.resume': 'เรซูเม่',
+     'submission.cancel': 'ยกเลิก',
+     'submission.submit': 'ส่งใบสมัคร',
+     // Confirmation modal translations
+     'confirmation.title': 'ส่งใบสมัครเรียบร้อย!',
+      'confirmation.message': 'ใบสมัครของคุณได้รับการส่งเรียบร้อยแล้ว เราจะตรวจสอบและติดต่อกลับในเร็วๆ นี้',
+      'confirmation.close': 'ตกลง',
      // Login modal detailed descriptions
      'login.description': 'ยินดีต้อนรับกลับมา! เข้าสู่ระบบเพื่อเข้าถึงบัญชีของคุณ',
      'login.remember': 'จดจำการเข้าสู่ระบบ',
@@ -560,15 +590,21 @@
    
    dlg.showModal();
    
+   // Handle cancel button
+   const cancelBtn = dlg.querySelector('[data-close]');
+   if (cancelBtn) {
+     cancelBtn.onclick = () => {
+       dlg.close();
+     };
+   }
+   
    // Handle form submission
    const confirmBtn = document.getElementById('applyConfirmBtn');
    if (confirmBtn) {
      confirmBtn.onclick = (e) => {
        e.preventDefault();
-       addApplication({ id: it.id, status: 'pending', ts: Date.now(), companyId: it.companyId, position: it.position });
-       Toast.show('success', 'Application submitted ✅');
-       dlg.close();
-       updateStatusSummary();
+       dlg.close(); // Close the apply modal
+       openSubmissionForm(it); // Open the submission form
      };
    }
  }
@@ -581,6 +617,99 @@
    setText('statusPending', counts.pending);
    setText('statusAccepted', counts.accepted);
    setText('statusRejected', counts.rejected);
+ }
+
+ function openSubmissionForm(internship) {
+   const submissionModal = document.getElementById('submissionModal');
+   if (!submissionModal) return;
+   
+   // Store the internship data for later use
+   STATE.selectedInternship = internship;
+   
+   submissionModal.showModal();
+   
+   // Handle submission form submit
+   const submitBtn = document.getElementById('submitApplicationBtn');
+   if (submitBtn) {
+     submitBtn.onclick = (e) => {
+       e.preventDefault();
+       handleFormSubmission();
+     };
+   }
+   
+   // Handle cancel button
+   const cancelBtn = submissionModal.querySelector('[data-close]');
+   if (cancelBtn) {
+     cancelBtn.onclick = () => {
+       submissionModal.close();
+     };
+   }
+ }
+
+ function handleFormSubmission() {
+   const form = document.getElementById('submissionForm');
+   const formData = new FormData(form);
+   
+   // Validate required fields
+   const requiredFields = ['fullName', 'email', 'phone', 'coverLetter'];
+   let isValid = true;
+   
+   for (const field of requiredFields) {
+     const value = formData.get(field);
+     if (!value || value.trim() === '') {
+       isValid = false;
+       break;
+     }
+   }
+   
+   if (!isValid) {
+     Toast.show('warn', 'Please fill in all required fields');
+     return;
+   }
+   
+   // Simulate form submission
+   const submissionData = {
+     internship: STATE.selectedInternship,
+     applicant: {
+       fullName: formData.get('fullName'),
+       email: formData.get('email'),
+       phone: formData.get('phone'),
+       university: formData.get('university'),
+       major: formData.get('major'),
+       coverLetter: formData.get('coverLetter'),
+       resume: formData.get('resume')?.name || null
+     },
+     submittedAt: new Date().toISOString()
+   };
+   
+   // Add to applications
+   addApplication({ 
+     id: STATE.selectedInternship.id, 
+     status: 'pending', 
+     ts: Date.now(), 
+     companyId: STATE.selectedInternship.companyId, 
+     position: STATE.selectedInternship.position,
+     submissionData: submissionData
+   });
+   
+   // Close submission form and show confirmation
+   document.getElementById('submissionModal').close();
+   showConfirmationModal();
+   updateStatusSummary();
+ }
+
+ function showConfirmationModal() {
+   const confirmationModal = document.getElementById('confirmationModal');
+   if (!confirmationModal) return;
+   
+   confirmationModal.showModal();
+   
+   // Auto-close after 5 seconds or when user clicks close
+   setTimeout(() => {
+     if (confirmationModal.open) {
+       confirmationModal.close();
+     }
+   }, 5000);
  }
 
 
