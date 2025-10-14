@@ -360,6 +360,10 @@ body.dark[data-page="login"] form label span {
   pointer-events: none;
   transition: transform 0.2s ease, top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
 }
+/* Dark mode: make Register link more prominent */
+body.dark[data-page="login"] p.muted a { font-size: 16px; }
+/* Light mode: make Register link more prominent */
+body[data-page="login"] p.muted a { font-size: 16px; }
 body.dark[data-page="login"] form input {
   padding-top: 18px;
 }
