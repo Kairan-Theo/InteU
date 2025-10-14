@@ -161,6 +161,34 @@ body.dark .site-header .icon-btn, body.dark .site-header .actions button { color
 /* Make language toggle look like nav links */
 .site-header #toggleLang.btn.small { background: transparent; color: var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; }
 .site-header #toggleLang.btn.small:hover { background: rgba(75, 123, 229, 0.15); }
+
+/* Dark mode: glass effect for search bar */
+body.dark .search-bar {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+body.dark .search-bar input, body.dark .search-bar select {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+}
+body.dark .search-bar input::placeholder { color: rgba(229, 231, 235, 0.7); }
+
+/* Dark mode: glass effect for recent searches chips */
+body.dark .recent-searches h3 { color: #e5e7eb; }
+body.dark .chips { gap: 10px; }
+body.dark .chip {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 22px rgba(31, 38, 135, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e5e7eb;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+body.dark .chip:hover { background: rgba(255, 255, 255, 0.18); }
 /* Dark mode footer: match header/navigation style */
 body.dark .site-footer {
   background: rgba(31,41,55,0.75);
@@ -169,3 +197,29 @@ body.dark .site-footer {
   backdrop-filter: saturate(180%) blur(8px);
 }
 body.dark .site-footer a { color: #e5e7eb; }
+/* Glass frame for company cards in dark mode */
+body.dark .card.company {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e5e7eb;
+}
+/* Dark mode: glass effect for company modal */
+body.dark #companyModal .modal-content {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #e5e7eb;
+}
+body.dark #companyModal .modal-header h3 { color: #e5e7eb; }
+body.dark #companyModal .icon-btn { color: #e5e7eb; }
+body.dark #companyModal .modal-content input,
+body.dark #companyModal .modal-content select {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+}
+body.dark #companyModal .modal-content input::placeholder { color: rgba(229, 231, 235, 0.7); }
