@@ -65,6 +65,21 @@
      'apply.cancel': 'Cancel',
      'apply.confirm': 'Confirm Application',
      'apply.submit': 'Confirm Application',
+     // Login modal detailed descriptions
+     'login.description': 'Welcome back! Sign in to access your account.',
+     'login.remember': 'Remember me',
+     'login.register.prompt': "Don't have an account?",
+     'login.register.link': 'Sign up here',
+     // Register modal detailed descriptions
+     'register.description': 'Create your account to find internship opportunities.',
+     'register.documents.title': 'Documents (Optional)',
+     'register.terms': 'I agree to the Terms of Service and Privacy Policy',
+     'register.newsletter': 'Send me updates about new opportunities',
+     'register.login.prompt': 'Already have an account?',
+     'register.login.link': 'Sign in here',
+     // Apply modal detailed descriptions
+     'apply.description.text': 'Review the job details and submit your application.',
+     'apply.status.verified': 'Verified Company',
    },
    th: {
      'nav.home': 'หน้าหลัก',
@@ -121,6 +136,21 @@
      'apply.cancel': 'ยกเลิก',
      'apply.confirm': 'ยืนยันการสมัคร',
      'apply.submit': 'ยืนยันการสมัคร',
+     // Login modal detailed descriptions
+     'login.description': 'ยินดีต้อนรับกลับมา! เข้าสู่ระบบเพื่อเข้าถึงบัญชีของคุณ',
+     'login.remember': 'จดจำการเข้าสู่ระบบ',
+     'login.register.prompt': 'ยังไม่มีบัญชี?',
+     'login.register.link': 'สมัครสมาชิกที่นี่',
+     // Register modal detailed descriptions
+     'register.description': 'สร้างบัญชีของคุณเพื่อค้นหาโอกาสฝึกงาน',
+     'register.documents.title': 'เอกสาร (ไม่บังคับ)',
+     'register.terms': 'ฉันยอมรับข้อกำหนดการใช้บริการและนโยบายความเป็นส่วนตัว',
+     'register.newsletter': 'ส่งข้อมูลอัปเดตเกี่ยวกับโอกาสใหม่ให้ฉัน',
+     'register.login.prompt': 'มีบัญชีอยู่แล้ว?',
+     'register.login.link': 'เข้าสู่ระบบที่นี่',
+     // Apply modal detailed descriptions
+     'apply.description.text': 'ตรวจสอบรายละเอียดงานและส่งใบสมัครของคุณ',
+     'apply.status.verified': 'บริษัทที่ผ่านการตรวจสอบ',
    }
  };
 

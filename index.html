@@ -136,17 +136,38 @@
           <h3 data-i18n="login.title">Login</h3>
           <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
         </header>
+        
+        <div class="modal-description">
+          <p data-i18n="login.description">Welcome back! Sign in to access your account.</p>
+        </div>
+        
         <label>
           <span data-i18n="login.email">Email</span>
-          <input type="email" id="loginEmail" required />
+          <input type="email" id="loginEmail" required placeholder="Enter your email address" />
         </label>
+        
         <label>
           <span data-i18n="login.password">Password</span>
-          <input type="password" id="loginPassword" required />
+          <input type="password" id="loginPassword" required placeholder="Enter your password" />
         </label>
+        
+        <div class="login-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="rememberMe" />
+            <span data-i18n="login.remember">Remember me</span>
+          </label>
+        </div>
+        
         <div class="modal-actions">
           <button type="submit" class="btn primary" data-i18n="login.submit">Login</button>
           <button type="button" class="btn link" id="forgotPassword" data-i18n="login.forgot">Forgot Password?</button>
+        </div>
+        
+        <div class="modal-footer">
+          <p class="register-prompt">
+            <span data-i18n="login.no_account">Don't have an account?</span>
+            <button type="button" class="btn link" id="showRegister" data-i18n="login.register_link">Create one now</button>
+          </p>
         </div>
       </form>
     </dialog>
@@ -157,6 +178,11 @@
           <h3 data-i18n="register.title">Register</h3>
           <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
         </header>
+        
+        <div class="modal-description">
+          <p data-i18n="register.description">Create your account to find internship opportunities.</p>
+        </div>
+        
         <label>
           <span data-i18n="register.role">Role</span>
           <select id="registerRole" required>
@@ -165,28 +191,57 @@
             <option value="admin">Admin</option>
           </select>
         </label>
+        
         <label>
           <span data-i18n="register.name">Full Name</span>
-          <input type="text" id="registerName" required />
+          <input type="text" id="registerName" required placeholder="Enter your full name" />
         </label>
+        
         <label>
-          <span>Email</span>
-          <input type="email" id="registerEmail" required />
+          <span data-i18n="register.email">Email</span>
+          <input type="email" id="registerEmail" required placeholder="Enter your email address" />
         </label>
+        
         <label>
           <span data-i18n="register.password">Password</span>
-          <input type="password" id="registerPassword" required />
+          <input type="password" id="registerPassword" required placeholder="Create a strong password" />
         </label>
-        <label>
-          <span data-i18n="register.resume">Resume (simulated)</span>
-          <input type="file" id="registerResume" accept=".pdf,.doc,.docx" />
-        </label>
-        <label>
-          <span data-i18n="register.transcript">Transcript (simulated)</span>
-          <input type="file" id="registerTranscript" accept=".pdf,.doc,.docx" />
-        </label>
+        
+        <div class="file-upload-section">
+          <h4 data-i18n="register.documents_title">Documents (Optional)</h4>
+          
+          <label>
+            <span data-i18n="register.resume">Resume</span>
+            <input type="file" id="registerResume" accept=".pdf,.doc,.docx" />
+          </label>
+          
+          <label>
+            <span data-i18n="register.transcript">Academic Transcript</span>
+            <input type="file" id="registerTranscript" accept=".pdf,.doc,.docx" />
+          </label>
+        </div>
+        
+        <div class="terms-section">
+          <label class="checkbox-label">
+            <input type="checkbox" id="agreeTerms" required />
+            <span data-i18n="register.terms">I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a></span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="agreeNewsletter" />
+            <span data-i18n="register.newsletter">Send me updates about new opportunities</span>
+          </label>
+        </div>
+        
         <div class="modal-actions">
           <button type="submit" class="btn primary" data-i18n="register.submit">Create Account</button>
+          <button type="button" class="btn secondary" data-close data-i18n="register.cancel">Cancel</button>
+        </div>
+        
+        <div class="modal-footer">
+          <p class="login-prompt">
+            <span data-i18n="register.have_account">Already have an account?</span>
+            <button type="button" class="btn link" id="showLogin" data-i18n="register.login_link">Sign in here</button>
+          </p>
         </div>
       </form>
     </dialog>
@@ -199,50 +254,57 @@
                     <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
                 </div>
                 <div class="modal-body">
+                    <div class="modal-description">
+                        <p data-i18n="apply.modal_description">Review the job details and apply if you meet the requirements.</p>
+                    </div>
+                    
                     <div class="job-header">
-                        <h4 id="jobTitle"></h4>
-                        <p id="jobCompany"></p>
+                        <h4 id="applyJobTitle"></h4>
+                        <p id="applyJobCompany"></p>
+                        <div class="application-status">
+                            <span class="status-badge verified" data-i18n="apply.verified_company">✓ Verified Company</span>
+                        </div>
                     </div>
                     
                     <div class="job-details">
                         <div class="detail-section">
                             <h5 data-i18n="apply.description">Job Description</h5>
-                            <p id="jobDescription"></p>
+                            <p id="applyJobDescription"></p>
                         </div>
                         
                         <div class="detail-section">
                             <h5 data-i18n="apply.requirements">Requirements</h5>
-                            <ul id="jobRequirements"></ul>
+                            <p id="applyJobRequirements"></p>
                         </div>
                         
                         <div class="detail-section">
                             <h5 data-i18n="apply.benefits">Benefits</h5>
-                            <ul id="jobBenefits"></ul>
+                            <p id="applyJobBenefits"></p>
                         </div>
                         
                         <div class="job-info-grid">
                             <div class="info-item">
                                 <span class="info-label" data-i18n="apply.duration">Duration</span>
-                                <span id="jobDuration"></span>
+                                <span id="applyJobDuration"></span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label" data-i18n="apply.location">Location</span>
-                                <span id="jobLocation"></span>
+                                <span id="applyJobLocation"></span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label" data-i18n="apply.industry">Industry</span>
-                                <span id="jobIndustry"></span>
+                                <span id="applyJobIndustry"></span>
                             </div>
                             <div class="info-item">
                                 <span class="info-label" data-i18n="apply.language">Language</span>
-                                <span id="jobLanguage"></span>
+                                <span id="applyJobLanguage"></span>
                             </div>
                         </div>
                     </div>
                     
                     <div class="modal-actions">
-                        <button class="btn-secondary" data-close data-i18n="apply.cancel">Cancel</button>
-                        <button id="confirmApply" class="btn-primary" data-i18n="apply.confirm">Confirm Application</button>
+                        <button class="btn secondary" data-close data-i18n="apply.cancel">Cancel</button>
+                        <button id="applyConfirmBtn" class="btn primary" data-i18n="apply.confirm">Confirm Application</button>
                     </div>
                 </div>
             </div>
