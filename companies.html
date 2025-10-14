@@ -62,6 +62,138 @@
       </div>
     </dialog>
 
+    <!-- Apply Modal -->
+    <dialog id="applyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="apply.title">Apply for Internship</h3>
+                <button class="icon-btn" aria-label="Close" data-close><i class="fa fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-description">
+                    <p data-i18n="apply.modal_description">Review the job details and apply if you meet the requirements.</p>
+                </div>
+                
+                <div class="job-header">
+                    <h4 id="applyJobTitle"></h4>
+                    <p id="applyJobCompany"></p>
+                    <div class="application-status">
+                        <span class="status-badge verified" data-i18n="apply.verified_company">✓ Verified Company</span>
+                    </div>
+                </div>
+                
+                <div class="job-details">
+                    <div class="detail-section">
+                        <h5 data-i18n="apply.description">Job Description</h5>
+                        <p id="applyJobDescription"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h5 data-i18n="apply.requirements">Requirements</h5>
+                        <p id="applyJobRequirements"></p>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h5 data-i18n="apply.benefits">Benefits</h5>
+                        <p id="applyJobBenefits"></p>
+                    </div>
+                    
+                    <div class="job-info-grid">
+                        <div class="info-item">
+                            <span class="info-label" data-i18n="apply.duration">Duration</span>
+                            <span id="applyJobDuration"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label" data-i18n="apply.location">Location</span>
+                            <span id="applyJobLocation"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label" data-i18n="apply.industry">Industry</span>
+                            <span id="applyJobIndustry"></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label" data-i18n="apply.language">Language</span>
+                            <span id="applyJobLanguage"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn" data-close data-i18n="apply.cancel">Cancel</button>
+                    <button id="applyConfirmBtn" class="btn primary" data-i18n="apply.confirm">Confirm Application</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Submission Form Modal -->
+    <dialog id="submissionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-i18n="submission.title">Application Form</h3>
+                <button class="icon-btn" aria-label="Close" data-close>
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="submissionForm">
+                    <div class="form-group">
+                        <label for="fullName" data-i18n="submission.fullname">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" data-i18n="submission.email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" data-i18n="submission.phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="university" data-i18n="submission.university">University</label>
+                        <input type="text" id="university" name="university">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="major" data-i18n="submission.major">Major/Field of Study</label>
+                        <input type="text" id="major" name="major">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="coverLetter" data-i18n="submission.coverletter">Cover Letter *</label>
+                        <textarea id="coverLetter" name="coverLetter" rows="4" required placeholder="Tell us why you're interested in this position..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resume" data-i18n="submission.resume">Resume</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn" data-close data-i18n="submission.cancel">Cancel</button>
+                <button id="submitApplicationBtn" class="btn primary" data-i18n="submission.submit">Submit Application</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Confirmation Modal -->
+    <dialog id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="confirmation-content">
+                <div class="success-icon">✓</div>
+                <h3 data-i18n="confirmation.title">Application Submitted!</h3>
+                <p data-i18n="confirmation.message">Your application has been successfully submitted. We will review it and get back to you soon.</p>
+                <button class="btn primary" onclick="document.getElementById('confirmationModal').close()" data-i18n="confirmation.close">Ok</button>
+            </div>
+        </div>
+    </dialog>
+
     <footer class="site-footer">
       <div class="container footer-grid">
         <div>
