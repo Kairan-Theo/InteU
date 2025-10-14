@@ -71,6 +71,91 @@
       </div>
     </footer>
 
+    <!-- Course Details Modal -->
+    <dialog id="courseModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="courseModalTitle" data-i18n="course.details">Course Details</h3>
+          <button class="modal-close" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="course-info">
+            <div class="course-meta">
+              <span id="courseCategory" class="badge"></span>
+              <span id="courseDuration" class="duration"></span>
+            </div>
+            <p id="courseDescription" class="course-description"></p>
+            <div class="course-details">
+              <h4 data-i18n="course.whatYouLearn">What You'll Learn</h4>
+              <ul id="courseLearningPoints">
+                <li data-i18n="course.practical">Practical skills for real-world application</li>
+                <li data-i18n="course.industry">Industry best practices and standards</li>
+                <li data-i18n="course.hands">Hands-on exercises and projects</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close data-i18n="course.cancel">Cancel</button>
+          <button id="enrollCourseBtn" class="btn primary" data-i18n="course.enroll">Enroll Now</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Course Enrollment Form Modal -->
+    <dialog id="enrollmentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="enrollment.title">Course Enrollment</h3>
+          <button class="modal-close" data-close aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="enrollmentForm">
+            <div class="form-group">
+              <label for="studentName" data-i18n="enrollment.name">Full Name</label>
+              <input type="text" id="studentName" name="studentName" required>
+            </div>
+            <div class="form-group">
+              <label for="studentEmail" data-i18n="enrollment.email">Email Address</label>
+              <input type="email" id="studentEmail" name="studentEmail" required>
+            </div>
+            <div class="form-group">
+              <label for="studentPhone" data-i18n="enrollment.phone">Phone Number</label>
+              <input type="tel" id="studentPhone" name="studentPhone">
+            </div>
+            <div class="form-group">
+              <label for="motivation" data-i18n="enrollment.motivation">Why are you interested in this course?</label>
+              <textarea id="motivation" name="motivation" rows="3" placeholder="Tell us about your learning goals..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-actions">
+          <button class="btn" data-close data-i18n="enrollment.cancel">Cancel</button>
+          <button id="submitEnrollmentBtn" class="btn primary" data-i18n="enrollment.submit">Submit Enrollment</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Course Enrollment Confirmation Modal -->
+    <dialog id="enrollmentConfirmationModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-i18n="enrollmentConfirmation.title">Enrollment Successful!</h3>
+        </div>
+        <div class="modal-body">
+          <div class="success-icon">🎓</div>
+          <p data-i18n="enrollmentConfirmation.message">You have successfully enrolled in the course. Check your email for further instructions.</p>
+          <div class="enrollment-details">
+            <p><strong data-i18n="enrollmentConfirmation.course">Course:</strong> <span id="confirmedCourseName"></span></p>
+            <p><strong data-i18n="enrollmentConfirmation.duration">Duration:</strong> <span id="confirmedCourseDuration"></span></p>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn primary" onclick="document.getElementById('enrollmentConfirmationModal').close()" data-i18n="enrollmentConfirmation.ok">Ok</button>
+        </div>
+      </div>
+    </dialog>
+
     <script src="js/notifications.js"></script>
     <script src="js/search.js"></script>
     <script src="js/main.js"></script>

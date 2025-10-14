@@ -95,6 +95,28 @@
      // Apply modal detailed descriptions
      'apply.description.text': 'Review the job details and submit your application.',
      'apply.status.verified': 'Verified Company',
+     // Course modal translations
+     'course.details': 'Course Details',
+     'course.cancel': 'Cancel',
+     'course.enroll': 'Enroll Now',
+     'course.whatYouLearn': 'What You\'ll Learn',
+     'course.practical': 'Practical skills for real-world application',
+     'course.industry': 'Industry best practices and standards',
+     'course.hands': 'Hands-on exercises and projects',
+     // Enrollment modal translations
+     'enrollment.title': 'Course Enrollment',
+     'enrollment.name': 'Full Name',
+     'enrollment.email': 'Email Address',
+     'enrollment.phone': 'Phone Number',
+     'enrollment.motivation': 'Why are you interested in this course?',
+     'enrollment.cancel': 'Cancel',
+     'enrollment.submit': 'Submit Enrollment',
+     // Enrollment confirmation translations
+     'enrollmentConfirmation.title': 'Enrollment Successful!',
+     'enrollmentConfirmation.message': 'You have successfully enrolled in the course. Check your email for further instructions.',
+     'enrollmentConfirmation.course': 'Course',
+     'enrollmentConfirmation.duration': 'Duration',
+     'enrollmentConfirmation.ok': 'Ok',
    },
    th: {
      'nav.home': 'หน้าหลัก',
@@ -181,6 +203,28 @@
      // Apply modal detailed descriptions
      'apply.description.text': 'ตรวจสอบรายละเอียดงานและส่งใบสมัครของคุณ',
      'apply.status.verified': 'บริษัทที่ผ่านการตรวจสอบ',
+     // Course modal translations
+     'course.details': 'รายละเอียดคอร์ส',
+     'course.cancel': 'ยกเลิก',
+     'course.enroll': 'ลงทะเบียนเลย',
+     'course.whatYouLearn': 'สิ่งที่คุณจะได้เรียนรู้',
+     'course.practical': 'ทักษะปฏิบัติสำหรับการใช้งานจริง',
+     'course.industry': 'แนวปฏิบัติที่ดีและมาตรฐานอุตสาหกรรม',
+     'course.hands': 'แบบฝึกหัดและโครงการปฏิบัติ',
+     // Enrollment modal translations
+     'enrollment.title': 'ลงทะเบียนคอร์ส',
+     'enrollment.name': 'ชื่อ-นามสกุล',
+     'enrollment.email': 'อีเมล',
+     'enrollment.phone': 'เบอร์โทรศัพท์',
+     'enrollment.motivation': 'เหตุผลที่สนใจคอร์สนี้?',
+     'enrollment.cancel': 'ยกเลิก',
+     'enrollment.submit': 'ส่งการลงทะเบียน',
+     // Enrollment confirmation translations
+     'enrollmentConfirmation.title': 'ลงทะเบียนสำเร็จ!',
+     'enrollmentConfirmation.message': 'คุณได้ลงทะเบียนคอร์สเรียบร้อยแล้ว ตรวจสอบอีเมลของคุณสำหรับคำแนะนำเพิ่มเติม',
+     'enrollmentConfirmation.course': 'คอร์ส',
+     'enrollmentConfirmation.duration': 'ระยะเวลา',
+     'enrollmentConfirmation.ok': 'ตกลง',
    }
  };
 
@@ -895,13 +939,96 @@
    const desc = el('p', {}, a.description);
    const actions = el('div', { class: 'card-actions' });
    const btn = el('button', { class: 'btn secondary' }, 'Enroll');
-   btn.addEventListener('click', () => { Toast.show('success', 'Enrolled 🎓'); });
+   btn.addEventListener('click', () => { openCourseModal(a); });
    actions.appendChild(btn);
    card.appendChild(title);
    card.appendChild(meta);
    card.appendChild(desc);
    card.appendChild(actions);
    return card;
+ }
+
+ // Course Modal Functions
+ function openCourseModal(course) {
+   const dlg = document.getElementById('courseModal');
+   if (!dlg) return;
+
+   // Populate course details
+   document.getElementById('courseModalTitle').textContent = course.title;
+   document.getElementById('courseCategory').textContent = course.category;
+   document.getElementById('courseDuration').textContent = course.duration;
+   document.getElementById('courseDescription').textContent = course.description;
+
+   // Store course data for enrollment
+   dlg.courseData = course;
+
+   // Wire up modal functionality
+   wireModal(dlg);
+
+   // Set up enroll button
+   const enrollBtn = document.getElementById('enrollCourseBtn');
+   enrollBtn.onclick = () => {
+     dlg.close();
+     openEnrollmentModal(course);
+   };
+
+   // Set up cancel button
+   const cancelBtn = dlg.querySelector('[data-close]');
+   if (cancelBtn) {
+     cancelBtn.onclick = () => dlg.close();
+   }
+
+   dlg.showModal();
+ }
+
+ function openEnrollmentModal(course) {
+   const dlg = document.getElementById('enrollmentModal');
+   if (!dlg) return;
+
+   // Store course data
+   dlg.courseData = course;
+
+   // Wire up modal functionality
+   wireModal(dlg);
+
+   // Set up form submission
+   const submitBtn = document.getElementById('submitEnrollmentBtn');
+   submitBtn.onclick = () => {
+     const form = document.getElementById('enrollmentForm');
+     const formData = new FormData(form);
+     
+     // Basic validation
+     const name = formData.get('studentName');
+     const email = formData.get('studentEmail');
+     
+     if (!name || !email) {
+       Toast.show('warn', 'Please fill in required fields');
+       return;
+     }
+
+     // Close enrollment modal and show confirmation
+     dlg.close();
+     showEnrollmentConfirmation(course);
+   };
+
+   // Set up cancel button
+   const cancelBtn = dlg.querySelector('[data-close]');
+   if (cancelBtn) {
+     cancelBtn.onclick = () => dlg.close();
+   }
+
+   dlg.showModal();
+ }
+
+ function showEnrollmentConfirmation(course) {
+   const dlg = document.getElementById('enrollmentConfirmationModal');
+   if (!dlg) return;
+
+   // Populate confirmation details
+   document.getElementById('confirmedCourseName').textContent = course.title;
+   document.getElementById('confirmedCourseDuration').textContent = course.duration;
+
+   dlg.showModal();
  }
 
 
