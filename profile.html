@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InteU — Register</title>
+    <title>InteU — Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
-  <body data-page="register">
+  <body data-page="profile">
     <header class="site-header" aria-label="Main Navigation">
       <div class="container header-inner">
         <a class="logo" href="index.html"><span class="logo-mark"><img src="images/image1.jpg" alt="InteU logo" /></span> InteU</a>
@@ -27,45 +27,25 @@
       </div>
     </header>
 
-    <main class="container narrow">
-      <section class="card">
-        <h1 class="card-title" data-i18n="register.title">Register</h1>
-        <form id="registerPageForm" novalidate>
-          <label>
-            <span data-i18n="register.role">Role</span>
-            <select id="registerPageRole" required>
-              <option value="student" selected>Student</option>
-              <option value="employer">Employer</option>
-              <option value="admin">Admin</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="register.name">Full Name</span>
-            <input type="text" id="registerPageName" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" id="registerPageEmail" required />
-          </label>
-          <label>
-            <span data-i18n="register.password">Password</span>
-            <input type="password" id="registerPagePassword" required />
-          </label>
-          <div class="row">
-            <label class="half">
-              <span data-i18n="register.resume">Resume (simulated)</span>
-              <input type="file" id="registerPageResume" accept=".pdf,.doc,.docx" />
-            </label>
-            <label class="half">
-              <span data-i18n="register.transcript">Transcript (simulated)</span>
-              <input type="file" id="registerPageTranscript" accept=".pdf,.doc,.docx" />
-            </label>
-          </div>
-          <div class="row space-between">
-            <button type="submit" class="btn primary" data-i18n="register.submit">Create Account</button>
-            <span class="muted"><a href="login.html" data-i18n="login.title">Login</a></span>
-          </div>
-        </form>
+    <main class="container">
+      <section class="card profile-card">
+        <span class="pro">PRO</span>
+        <img class="round" src="images/user.png" alt="user" />
+        <h3 id="profileName">-</h3>
+        <h6 id="profileRole">student</h6>
+        <p><span id="profileEmail">-</span></p>
+        <div class="buttons">
+          <button class="btn small primary" id="editProfileBtn">Edit</button>
+          <button class="btn small link" onclick="history.back()">Back</button>
+        </div>
+        <div class="skills">
+          <h6>Skills</h6>
+          <ul id="profileSkills">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
       </section>
     </main>
 

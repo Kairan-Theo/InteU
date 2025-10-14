@@ -12,6 +12,12 @@
       'nav.companies': 'Companies',
       'nav.articles': 'Articles',
       'nav.login': 'Login',
+      'nav.logout': 'Logout',
+      'nav.profile': 'Profile',
+      'profile.title': 'Profile',
+      'profile.email': 'Email',
+      'profile.name': 'Name',
+      'profile.role': 'Role',
       'hero.title': 'Find Verified Internships That Match Your Future.',
       'hero.sub': 'Trusted opportunities from verified companies in Thailand.',
       'search.btn': 'Search',
@@ -53,6 +59,12 @@
       'nav.companies': 'บริษัท',
       'nav.articles': 'บทความ',
       'nav.login': 'เข้าสู่ระบบ',
+      'nav.logout': 'ออกจากระบบ',
+      'nav.profile': 'โปรไฟล์',
+      'profile.title': 'โปรไฟล์',
+      'profile.email': 'อีเมล',
+      'profile.name': 'ชื่อ',
+      'profile.role': 'บทบาท',
       'hero.title': 'ค้นหาฝึกงานที่ผ่านการตรวจสอบ เพื่ออนาคตของคุณ',
       'hero.sub': 'โอกาสจากบริษัทที่ได้รับการยืนยันในประเทศไทย',
       'search.btn': 'ค้นหา',
@@ -103,6 +115,7 @@
     if (page === 'articles') initArticlesPage();
     if (page === 'login') initLoginPage();
     if (page === 'register') initRegisterPage();
+    if (page === 'profile') initProfilePage();
   });
 
   function buildData(){
@@ -169,8 +182,54 @@
     const dict = TRANSLATIONS[STATE.lang] || TRANSLATIONS.en;
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const key = el.getAttribute('data-i18n');
-      if (dict[key]) el.textContent = dict[key];
+      let text = dict[key];
+      // If logged in, replace navbar login label with logout
+      if (key === 'nav.login' && STATE.user) text = dict['nav.logout'] || 'Logout';
+      if (text) el.textContent = text;
     });
+    // Build or toggle user menu when logged in
+    setupUserMenu(dict);
+  }
+
+  function setupUserMenu(dict){
+    const actions = document.querySelector('.actions');
+    const navLoginLink = document.querySelector('.actions a[data-i18n="nav.login"]');
+    if (!actions) return;
+    let menu = actions.querySelector('.user-menu');
+    if (STATE.user) {
+      if (navLoginLink) navLoginLink.style.display = 'none';
+      if (!menu) {
+        menu = document.createElement('div');
+        menu.className = 'user-menu';
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'icon-btn user-menu-btn';
+        btn.setAttribute('aria-label', 'User menu');
+        btn.innerHTML = '<img src="images/user.png" alt="User" />';
+        const dd = document.createElement('div');
+        dd.className = 'menu';
+        dd.innerHTML = `
+          <a href="profile.html" class="menu-item" data-i18n="nav.profile">${dict['nav.profile']||'Profile'}</a>
+          <button type="button" class="menu-item" data-action="logout" data-i18n="nav.logout">${dict['nav.logout']||'Logout'}</button>
+        `;
+        menu.appendChild(btn);
+        menu.appendChild(dd);
+        actions.appendChild(menu);
+        btn.addEventListener('click', () => { dd.classList.toggle('open'); });
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target)) dd.classList.remove('open');
+        });
+        dd.querySelector('[data-action="logout"]').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+      } else {
+        // Update labels if language switches
+        menu.querySelector('[data-i18n="nav.profile"]').textContent = dict['nav.profile'] || 'Profile';
+        menu.querySelector('[data-i18n="nav.logout"]').textContent = dict['nav.logout'] || 'Logout';
+        menu.style.display = '';
+      }
+    } else {
+      if (navLoginLink) navLoginLink.style.display = '';
+      if (menu) menu.style.display = 'none';
+    }
   }
 
   // Home Page
@@ -431,6 +490,7 @@
       e.preventDefault();
       if (!email.value || !pass.value) return Toast.show('warn', 'Please fill in required fields');
       setJSON('currentUser', { email: email.value });
+      STATE.user = getJSON('currentUser');
       Toast.show('success', 'Logged in');
       setTimeout(() => { location.href = 'index.html'; }, 600);
     });
@@ -452,6 +512,25 @@
       Toast.show('success', 'Account created');
       setTimeout(() => { location.href = 'index.html'; }, 600);
     });
+  }
+
+  // Profile Page
+  function initProfilePage(){
+    const title = document.querySelector('.card-title');
+    const emailEl = document.getElementById('profileEmail');
+    const nameEl = document.getElementById('profileName');
+    const roleEl = document.getElementById('profileRole');
+    const user = getJSON('currentUser');
+    const prof = getJSON('profile') || {};
+    if (!user) {
+      Toast.show('info', 'Please login to view profile');
+      setTimeout(() => { location.href = 'login.html'; }, 800);
+      return;
+    }
+    if (title) title.textContent = (TRANSLATIONS[STATE.lang]||TRANSLATIONS.en)['profile.title'];
+    if (emailEl) emailEl.textContent = user.email || '-';
+    if (nameEl) nameEl.textContent = user.name || prof.name || '-';
+    if (roleEl) roleEl.textContent = user.role || prof.role || 'student';
   }
 
   // Helpers
@@ -477,6 +556,15 @@
     const idx = apps.findIndex(a => a.id === app.id);
     if (idx >= 0) apps[idx] = app; else apps.push(app);
     setJSON('applications', apps);
+  }
+
+  // Auth helpers
+  function logout(){
+    localStorage.removeItem('currentUser');
+    STATE.user = null;
+    Toast.show('info', 'Logged out');
+    applyTranslations();
+    setTimeout(() => { location.href = 'index.html'; }, 400);
   }
 
 })();

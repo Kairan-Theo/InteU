@@ -41,7 +41,8 @@ h1, h2, h3, h4 { font-family: 'Poppins', 'Inter', sans-serif; margin: 0 0 8px; }
 body.dark .site-header { background: rgba(31,41,55,0.75); border-bottom-color: rgba(255,255,255,0.08); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
 .logo { font-weight: 700; text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 10px; }
-.logo-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--primary), #7aa3ff); color: #fff; font-weight: 800; }
+.logo-mark { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--primary), #7aa3ff); color: #fff; font-weight: 800; overflow: hidden; }
+.logo-mark img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .nav a { color: var(--text); text-decoration: none; margin: 0 12px; padding: 8px 6px; border-radius: 8px; }
 .nav a:hover { background: rgba(75, 123, 229, 0.15); }
 .nav a.active { color: var(--primary); font-weight: 700; }
@@ -106,6 +107,13 @@ body.dark .site-header { background: rgba(31,41,55,0.75); border-bottom-color: r
 .site-footer a:hover { text-decoration: underline; }
 .site-footer .muted { color: rgba(255,255,255,0.85); }
 
+/* Sticky footer layout: keep footer at bottom when content is short */
+html, body { height: 100%; }
+body { min-height: 100vh; display: flex; flex-direction: column; }
+.site-header { flex-shrink: 0; }
+main { flex: 1 0 auto; }
+.site-footer { flex-shrink: 0; }
+
 /* Toasts */
 .toast-container { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; z-index: 200; }
 .toast { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; color: #fff; box-shadow: var(--shadow); backdrop-filter: blur(8px); }
@@ -127,6 +135,61 @@ body.dark .site-header { background: rgba(31,41,55,0.75); border-bottom-color: r
 form label { display: grid; gap: 6px; margin-bottom: 10px; }
 input, select { height: 40px; border: 1px solid rgba(0,0,0,0.1); border-radius: 10px; padding: 0 10px; background: transparent; color: var(--text); }
 input::placeholder { color: var(--muted); }
+
+/* Layout: keep footer at bottom on login page */
+body[data-page="login"] { display: flex; flex-direction: column; min-height: 100vh; }
+body[data-page="login"] main { flex: 1; }
+/* Layout: center register form and keep footer at bottom */
+body[data-page="register"] { display: flex; flex-direction: column; min-height: 100vh; }
+body[data-page="register"] main { flex: 1; display: grid; place-items: center; padding-top: 40px; padding-bottom: 24px; }
+/* Layout: center profile card and match login sizing */
+body[data-page="profile"] { display: flex; flex-direction: column; min-height: 100vh; }
+body[data-page="profile"] main { flex: 1; display: grid; place-items: center; padding-top: 40px; padding-bottom: 24px; }
+/* Profile card design */
+body[data-page="profile"] .card.profile-card {
+  /* Inherit base .card styles to get glass effect in dark mode */
+  border-radius: 14px;
+  padding: 48px;
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  text-align: center;
+}
+body[data-page="profile"] .profile-card h3 { margin: 10px 0; }
+body[data-page="profile"] .profile-card h6 { margin: 5px 0; text-transform: uppercase; color: #8f93a3; }
+body[data-page="profile"] .profile-card p { font-size: 14px; line-height: 21px; margin: 6px 0 0; }
+body[data-page="profile"] .profile-card .pro {
+  color: #231E39;
+  background-color: #FEBB0B;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 7px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+body[data-page="profile"] .profile-card .round {
+  border: 1px solid #03BFCB;
+  border-radius: 50%;
+  padding: 7px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+body[data-page="profile"] .profile-card .buttons { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+body[data-page="profile"] .profile-card .skills { background: transparent; text-align: left; padding: 15px; margin-top: 30px; }
+body[data-page="profile"] .profile-card .skills h6 { margin: 0 0 10px; color: #b3b8cd; }
+body[data-page="profile"] .profile-card .skills ul { list-style: none; margin: 0; padding: 0; }
+body[data-page="profile"] .profile-card .skills ul li {
+  border: 1px solid #2D2747;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 7px 7px 0;
+  padding: 7px;
+}
+/* Dark mode: rely on global .card glass effect */
 
 /* Loading */
 .loading { display: grid; place-items: center; gap: 8px; margin-top: 10px; }
@@ -161,6 +224,27 @@ body.dark .site-header .icon-btn, body.dark .site-header .actions button { color
 /* Make language toggle look like nav links */
 .site-header #toggleLang.btn.small { background: transparent; color: var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; }
 .site-header #toggleLang.btn.small:hover { background: rgba(75, 123, 229, 0.15); }
+
+/* Actions: Login button styling */
+.actions { display: flex; align-items: center; gap: 10px; }
+.actions .btn.small.primary { background: var(--primary); color: #fff; border-radius: 8px; padding: 0 12px; height: 28px; font-size: 12px; transition: background 0.2s ease, transform 0.2s ease; }
+.actions .btn.small.primary:hover { background: #365fc7; transform: translateY(-2px); }
+body.dark .actions .btn.small.primary { background: var(--primary); color: #fff; }
+/* User menu dropdown in navbar */
+.user-menu { position: relative; }
+.user-menu-btn { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 0; vertical-align: middle; }
+.user-menu-btn img { width: 20px; height: 20px; display: block; filter: none; }
+.user-menu .menu { position: absolute; right: 0; top: calc(100% + 8px); background: var(--card); border: 1px solid rgba(0,0,0,0.08); box-shadow: var(--shadow); border-radius: 10px; padding: 6px; min-width: 160px; display: none; }
+.user-menu .menu.open { display: block; }
+.user-menu .menu-item { display: block; width: 100%; padding: 8px 10px; border-radius: 8px; color: var(--text); text-align: left; background: transparent; border: none; cursor: pointer; text-decoration: none; }
+.user-menu .menu-item:hover { background: rgba(75,123,229,0.12); }
+body.dark .user-menu .menu { background: rgba(31,41,55,0.85); border-color: rgba(255,255,255,0.12); }
+body.dark .user-menu .menu-item { color: #e5e7eb; }
+/* Improve dark mode visibility for user icon and dropdown */
+body.dark .user-menu-btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); }
+body.dark .user-menu-btn:hover { background: rgba(255,255,255,0.18); }
+body.dark .user-menu-btn img { filter: invert(1) brightness(1.1) contrast(1.1); }
+body.dark .user-menu .menu { box-shadow: 0 10px 28px rgba(0,0,0,0.45); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 
 /* Dark mode: glass effect for search bar */
 body.dark .search-bar {
@@ -206,6 +290,24 @@ body.dark .card.company {
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #e5e7eb;
 }
+/* Dark mode: glass effect for all cards */
+body.dark .card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #e5e7eb;
+}
+/* Dark mode: glass effect for status cards */
+body.dark .status-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 28px rgba(31, 38, 135, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #e5e7eb;
+}
 /* Dark mode: glass effect for company modal */
 body.dark #companyModal .modal-content {
   background: rgba(255, 255, 255, 0.12);
@@ -223,3 +325,106 @@ body.dark #companyModal .modal-content select {
   color: #e5e7eb;
 }
 body.dark #companyModal .modal-content input::placeholder { color: rgba(229, 231, 235, 0.7); }
+/* Dark mode: glass effect for all modals */
+body.dark .modal-content {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #e5e7eb;
+}
+body.dark .modal-header h3 { color: #e5e7eb; }
+body.dark .modal .icon-btn { color: #e5e7eb; }
+body.dark .modal-content input,
+body.dark .modal-content select {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+}
+body.dark .modal-content input::placeholder { color: rgba(229, 231, 235, 0.7); }
+/* Dark mode: glass login form with floating labels */
+body.dark[data-page="login"] .card {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 10px 36px rgba(31, 38, 135, 0.36);
+}
+body.dark[data-page="login"] form label { position: relative; }
+body.dark[data-page="login"] form label span {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  font-size: 14px;
+  color: rgba(229, 231, 235, 0.85);
+  pointer-events: none;
+  transition: transform 0.2s ease, top 0.2s ease, font-size 0.2s ease, color 0.2s ease;
+}
+body.dark[data-page="login"] form input {
+  padding-top: 18px;
+}
+/* Float label on focus or when input is valid */
+body.dark[data-page="login"] form label:focus-within span,
+body.dark[data-page="login"] form label:has(input:valid) span {
+  top: -8px;
+  font-size: 12px;
+  color: var(--accent);
+}
+/* Input focus styling */
+body.dark[data-page="login"] input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(250, 112, 154, 0.25);
+}
+/* Gradient primary button for login */
+body.dark[data-page="login"] .btn.primary {
+  background: linear-gradient(135deg, #fa709a, #784ba8);
+  box-shadow: 0 6px 18px rgba(31, 38, 135, 0.36);
+}
+/* Login form sizing: make the card fit nicely */
+body[data-page="login"] .card {
+  max-width: 720px;
+  width: 100%;
+  margin: 32px auto;
+  padding: 48px;
+  min-height: 420px;
+}
+body[data-page="login"] form input,
+body[data-page="login"] form select {
+  width: 100%;
+  height: 52px;
+  font-size: 17px;
+}
+/* Login button: match navbar login (size and color) */
+body[data-page="login"] .btn.primary {
+  background: var(--primary);
+  color: #fff;
+  height: 28px;
+  font-size: 12px;
+  padding: 0 12px;
+  border-radius: 8px;
+}
+body[data-page="login"] .btn.primary:hover {
+  background: #365fc7;
+  transform: translateY(-2px);
+}
+body.dark[data-page="login"] .btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+/* Register link: make it prominent blue */
+body[data-page="login"] .muted a {
+  color: var(--primary);
+  font-weight: 600;
+}
+body[data-page="login"] .muted a:hover { text-decoration: underline; }
+/* Login form bottom: restore slightly larger compact spacing and set blue color */
+body[data-page="login"] .row.space-between { margin-bottom: 8px; }
+body[data-page="login"] p.muted { margin: 6px 0 0; font-size: 14px; color: var(--primary); }
+/* Register form bottom: match compact spacing */
+body[data-page="register"] .row.space-between { margin-bottom: 6px; }
+body[data-page="register"] .row.space-between .muted { font-size: 14px; }
+/* Reduce space below the form footer text */
+@media (max-width: 480px) {
+  body[data-page="login"] .card { margin: 20px; }
+}
