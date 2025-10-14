@@ -107,11 +107,11 @@
 
   function buildData(){
     const companies = [
-      { id: 'c1', name: 'TechFusion Co.', logo: 'https://via.placeholder.com/64', description: 'AI and cloud services', verified: true, positions: ['Frontend Intern', 'Data Intern'] },
-      { id: 'c2', name: 'DesignHub Studio', logo: 'https://via.placeholder.com/64', description: 'Digital product design', verified: true, positions: ['UX Research Intern', 'UI Design Intern'] },
-      { id: 'c3', name: 'MarketMinds Ltd.', logo: 'https://via.placeholder.com/64', description: 'Marketing analytics', verified: true, positions: ['Growth Intern', 'Content Intern'] },
-      { id: 'c4', name: 'FinNext', logo: 'https://via.placeholder.com/64', description: 'Fintech solutions', verified: false, positions: ['Finance Analyst Intern'] },
-      { id: 'c5', name: 'SeaView Resorts', logo: 'https://via.placeholder.com/64', description: 'Hospitality & leisure', verified: true, positions: ['Operations Intern'] },
+      { id: 'c1', name: 'TechFusion Co.', logo: 'images/tf.png', description: 'AI and cloud services', verified: true, positions: ['Frontend Intern', 'Data Intern'] },
+      { id: 'c2', name: 'DesignHub Studio', logo: 'images/dh.jpg', description: 'Digital product design', verified: true, positions: ['UX Research Intern', 'UI Design Intern'] },
+      { id: 'c3', name: 'MarketMinds Ltd.', logo: 'images/mk.png', description: 'Marketing analytics', verified: true, positions: ['Growth Intern', 'Content Intern'] },
+      { id: 'c4', name: 'FinNext', logo: 'images/fn.jpg', description: 'Fintech solutions', verified: false, positions: ['Finance Analyst Intern'] },
+      { id: 'c5', name: 'SeaView Resorts', logo: 'images/swv.png', description: 'Hospitality & leisure', verified: true, positions: ['Operations Intern'] },
     ];
     const internships = [
       { id: 'i1', companyId: 'c1', companyName: 'TechFusion Co.', position: 'Frontend Intern', location: 'Bangkok', industry: 'Technology', language: 'English', duration: '3 months', verified: true, nationalityRequirement: 'Any' },
