@@ -148,3 +148,16 @@ input::placeholder { color: var(--muted); }
   .cards-grid { grid-template-columns: 1fr; }
   .status-grid, .footer-grid { grid-template-columns: 1fr; }
 }
+/* Compact dark-mode toggle switch for header */
+#dark-mode { position: absolute; opacity: 0; width: 0; height: 0; }
+.theme-switch { position: relative; width: 44px; height: 22px; border-radius: 999px; display: inline-block; cursor: pointer; background: rgba(0,0,0,0.20); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.30); }
+.theme-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+#dark-mode:checked + .theme-switch { background: rgba(255,255,255,0.35); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.70); }
+#dark-mode:checked + .theme-switch::after { transform: translateX(22px); background: var(--accent); }
+
+/* Ensure header icon buttons stay visible on dark header */
+body.dark .site-header .icon-btn, body.dark .site-header .actions button { color: #fff; }
+
+/* Make language toggle look like nav links */
+.site-header #toggleLang.btn.small { background: transparent; color: var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; }
+.site-header #toggleLang.btn.small:hover { background: rgba(75, 123, 229, 0.15); }

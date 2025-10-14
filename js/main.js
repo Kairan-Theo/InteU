@@ -136,6 +136,8 @@
 
   function initTheme(){
     if (STATE.theme === 'dark') document.body.classList.add('dark');
+    const chk = document.getElementById('dark-mode');
+    if (chk) chk.checked = STATE.theme === 'dark';
   }
 
   function wireHeaderActions(){
@@ -143,6 +145,12 @@
     if (themeBtn) themeBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
       STATE.theme = document.body.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', STATE.theme);
+    });
+    const themeChk = document.getElementById('dark-mode');
+    if (themeChk) themeChk.addEventListener('change', () => {
+      document.body.classList.toggle('dark', themeChk.checked);
+      STATE.theme = themeChk.checked ? 'dark' : 'light';
       localStorage.setItem('theme', STATE.theme);
     });
     const langBtn = document.getElementById('toggleLang');
