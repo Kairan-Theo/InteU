@@ -706,11 +706,32 @@
        btn.className = 'icon-btn user-menu-btn';
        btn.setAttribute('aria-label', 'User menu');
        btn.innerHTML = '<img src="images/user.png" alt="User" />';
+       
+       // Set specific user information for dropdown
+       const userName = 'Jennie Kim';
+       const userEmail = 'jennie@gmail.com';
+       
        const dd = document.createElement('div');
        dd.className = 'menu';
        dd.innerHTML = `
-         <a href="profile.html" class="menu-item" data-i18n="nav.profile">${dict['nav.profile']||'Profile'}</a>
-         <button type="button" class="menu-item" data-action="logout" data-i18n="nav.logout">${dict['nav.logout']||'Logout'}</button>
+         <div class="user-info">
+           <div class="user-avatar">
+             <img src="images/user.png" alt="User Avatar" />
+           </div>
+           <div class="user-details">
+             <div class="user-name">${userName}</div>
+             <div class="user-email">${userEmail}</div>
+           </div>
+         </div>
+         <div class="menu-divider"></div>
+         <a href="profile.html" class="menu-item" data-i18n="nav.profile">
+           <span class="menu-icon"><img src="images/user (1).png" alt="Profile" /></span>
+           ${dict['nav.profile']||'Profile'}
+         </a>
+         <button type="button" class="menu-item" data-action="logout" data-i18n="nav.logout">
+           <span class="menu-icon"><img src="images/power-off.png" alt="Logout" /></span>
+           ${dict['nav.logout']||'Logout'}
+         </button>
        `;
        menu.appendChild(btn);
        menu.appendChild(dd);
@@ -721,9 +742,18 @@
        });
        dd.querySelector('[data-action="logout"]').addEventListener('click', (e) => { e.preventDefault(); logout(); });
      } else {
-       // Update labels if language switches
-       menu.querySelector('[data-i18n="nav.profile"]').textContent = dict['nav.profile'] || 'Profile';
-       menu.querySelector('[data-i18n="nav.logout"]').textContent = dict['nav.logout'] || 'Logout';
+       // Update labels if language switches and refresh user info
+       const userName = STATE.user.name || 'User';
+       const userEmail = STATE.user.email || 'user@example.com';
+       const formattedName = userName.replace(/\s+/g, '-').toLowerCase();
+       
+       const userNameEl = menu.querySelector('.user-name');
+       const userEmailEl = menu.querySelector('.user-email');
+       if (userNameEl) userNameEl.textContent = `@${formattedName}`;
+       if (userEmailEl) userEmailEl.textContent = userEmail;
+       
+       menu.querySelector('[data-i18n="nav.profile"]').innerHTML = `<span class="menu-icon">👤</span>${dict['nav.profile'] || 'Profile'}`;
+       menu.querySelector('[data-i18n="nav.logout"]').innerHTML = `<span class="menu-icon">🚪</span>${dict['nav.logout'] || 'Logout'}`;
        menu.style.display = '';
      }
    } else {
@@ -1334,9 +1364,9 @@
      return;
    }
    if (title) title.textContent = (TRANSLATIONS[STATE.lang]||TRANSLATIONS.en)['profile.title'];
-   if (emailEl) emailEl.textContent = user.email || '-';
-   if (nameEl) nameEl.textContent = user.name || prof.name || '-';
-   if (roleEl) roleEl.textContent = user.role || prof.role || 'student';
+   if (emailEl) emailEl.textContent = 'jennie@gmail.com';
+   if (nameEl) nameEl.textContent = 'Jennie Kim';
+   if (roleEl) roleEl.textContent = 'Student';
  }
 
 
