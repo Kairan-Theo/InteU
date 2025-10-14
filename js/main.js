@@ -174,7 +174,6 @@
     const nat = document.getElementById('searchNationality');
     const ver = document.getElementById('filterVerified');
     const btn = document.getElementById('searchBtn');
-    const loading = document.getElementById('loading');
     const chipsEl = document.getElementById('recentSearches');
 
     renderRecommended();
@@ -182,9 +181,7 @@
     updateStatusSummary();
 
     const doSearch = (payload) => {
-      loading.hidden = false;
       setTimeout(() => {
-        loading.hidden = true;
         const list = filterInternships(payload);
         renderInternships(list);
         SearchUtils.saveSearch(payload);

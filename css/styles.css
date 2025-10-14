@@ -99,11 +99,12 @@ body.dark .site-header { background: rgba(31,41,55,0.75); border-bottom-color: r
 .status-label.rejected { color: var(--danger); }
 
 /* Footer */
-.site-footer { margin-top: 40px; padding: 24px 0; border-top: 1px solid rgba(0,0,0,0.06); }
+.site-footer { margin-top: 40px; padding: 24px 0; background: var(--primary); color: #fff; border-top: none; }
 .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
-.site-footer a { color: var(--text); text-decoration: none; }
+.site-footer a { color: #fff; text-decoration: none; }
 .site-footer a:hover { text-decoration: underline; }
+.site-footer .muted { color: rgba(255,255,255,0.85); }
 
 /* Toasts */
 .toast-container { position: fixed; right: 16px; bottom: 16px; display: grid; gap: 8px; z-index: 200; }
