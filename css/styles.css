@@ -49,6 +49,19 @@ body.dark .site-header { background: rgba(31,41,55,0.75); border-bottom-color: r
 .actions { display: flex; gap: 10px; }
 .actions .btn.small, .actions button { height: 32px; }
 .icon-btn, .actions button { background: transparent; border: none; color: var(--text); cursor: pointer; font-size: 16px; }
+.modal .icon-btn { 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 8px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: background-color 0.2s ease;
+  margin-left: auto;
+}
+.modal .icon-btn:hover { 
+  background: rgba(0, 0, 0, 0.1); 
+}
 
 /* Hero */
 .hero { padding: 56px 0 24px; background: linear-gradient(180deg, rgba(75,123,229,0.10), transparent); }
@@ -389,6 +402,30 @@ body.dark .modal-content {
 }
 body.dark .modal-header h3 { color: #e5e7eb; }
 body.dark .modal .icon-btn { color: #e5e7eb; }
+body.dark .modal .icon-btn:hover { 
+  background: rgba(255, 255, 255, 0.1); 
+}
+
+/* Minimal cancel button - no container styling */
+.modal-actions .btn[data-close] {
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  height: auto;
+  font-weight: normal;
+  color: var(--text);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-actions .btn[data-close]:hover {
+  text-decoration: none;
+}
+
+body.dark .modal-actions .btn[data-close] {
+  color: #e5e7eb;
+}
 body.dark .modal-content input,
 body.dark .modal-content select {
   border-color: rgba(255, 255, 255, 0.25);
