@@ -161,3 +161,11 @@ body.dark .site-header .icon-btn, body.dark .site-header .actions button { color
 /* Make language toggle look like nav links */
 .site-header #toggleLang.btn.small { background: transparent; color: var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid transparent; }
 .site-header #toggleLang.btn.small:hover { background: rgba(75, 123, 229, 0.15); }
+/* Dark mode footer: match header/navigation style */
+body.dark .site-footer {
+  background: rgba(31,41,55,0.75);
+  color: #e5e7eb;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: saturate(180%) blur(8px);
+}
+body.dark .site-footer a { color: #e5e7eb; }
