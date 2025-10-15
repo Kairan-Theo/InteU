@@ -23,6 +23,14 @@
      'profile.email': 'Email',
      'profile.name': 'Name',
      'profile.role': 'Role',
+     'profile.edit.title': 'Edit Profile',
+     'profile.edit.image': 'Profile Image',
+     'profile.edit.name': 'Full Name',
+     'profile.edit.email': 'Email',
+     'profile.edit.role': 'Role',
+     'profile.edit.skills': 'Skills (comma-separated)',
+     'profile.edit.save': 'Save Changes',
+     'profile.edit.cancel': 'Cancel',
      'hero.title': 'Find Verified Internships That Match Your Future.',
      'hero.sub': 'Trusted opportunities from verified companies in Thailand.',
      'search.btn': 'Search',
@@ -233,6 +241,14 @@
      'profile.email': 'อีเมล',
      'profile.name': 'ชื่อ',
      'profile.role': 'บทบาท',
+     'profile.edit.title': 'แก้ไขโปรไฟล์',
+     'profile.edit.image': 'รูปโปรไฟล์',
+     'profile.edit.name': 'ชื่อเต็ม',
+     'profile.edit.email': 'อีเมล',
+     'profile.edit.role': 'บทบาท',
+     'profile.edit.skills': 'ทักษะ (คั่นด้วยจุลภาค)',
+     'profile.edit.save': 'บันทึกการเปลี่ยนแปลง',
+     'profile.edit.cancel': 'ยกเลิก',
      'hero.title': 'ค้นหาฝึกงานที่ผ่านการตรวจสอบ เพื่ออนาคตของคุณ',
      'hero.sub': 'โอกาสจากบริษัทที่ได้รับการยืนยันในประเทศไทย',
      'search.btn': 'ค้นหา',
@@ -1379,6 +1395,112 @@
    if (emailEl) emailEl.textContent = 'jennie@gmail.com';
    if (nameEl) nameEl.textContent = 'Jennie Kim';
    if (roleEl) roleEl.textContent = 'Student';
+   
+   // Initialize edit profile functionality
+   initEditProfile();
+ }
+
+ // Edit Profile Modal functionality
+ function initEditProfile() {
+   const editBtn = document.getElementById('editProfileBtn');
+   const modal = document.getElementById('editProfileModal');
+   const form = document.getElementById('editProfileForm');
+   
+   if (!editBtn || !modal || !form) return;
+   
+   // Show modal when edit button is clicked
+   editBtn.addEventListener('click', () => {
+     // Populate form with current values
+     populateEditForm();
+     modal.showModal();
+   });
+   
+   // Handle form submission
+   form.addEventListener('submit', (e) => {
+     e.preventDefault();
+     saveProfileChanges();
+   });
+   
+   // Handle profile image preview
+   const imageInput = document.getElementById('editProfileImage');
+   const imagePreview = document.getElementById('currentProfileImage');
+   
+   if (imageInput && imagePreview) {
+     imageInput.addEventListener('change', (e) => {
+       const file = e.target.files[0];
+       if (file) {
+         const reader = new FileReader();
+         reader.onload = (e) => {
+           imagePreview.src = e.target.result;
+         };
+         reader.readAsDataURL(file);
+       }
+     });
+   }
+ }
+
+ function populateEditForm() {
+   // Get current profile data
+   const nameEl = document.getElementById('profileName');
+   const emailEl = document.getElementById('profileEmail');
+   const roleEl = document.getElementById('profileRole');
+   const skillsEl = document.getElementById('profileSkills');
+   
+   // Populate form fields
+   document.getElementById('editProfileName').value = nameEl ? nameEl.textContent : 'Jennie Kim';
+   document.getElementById('editProfileEmail').value = emailEl ? emailEl.textContent : 'jennie@gmail.com';
+   document.getElementById('editProfileRole').value = roleEl ? roleEl.textContent : 'Student';
+   
+   // Get skills from the skills list
+   const skillsList = skillsEl ? skillsEl.querySelectorAll('li') : [];
+   const skills = Array.from(skillsList).map(li => li.textContent).join(', ');
+   document.getElementById('editProfileSkills').value = skills || 'HTML, CSS, JavaScript';
+ }
+
+ function saveProfileChanges() {
+   const form = document.getElementById('editProfileForm');
+   const formData = new FormData(form);
+   
+   // Get form values
+   const name = formData.get('name');
+   const email = formData.get('email');
+   const role = formData.get('role');
+   const skills = formData.get('skills');
+   
+   // Basic validation
+   if (!name || !email || !role) {
+     Toast.show('warn', 'Please fill in all required fields');
+     return;
+   }
+   
+   // Update profile display
+   const nameEl = document.getElementById('profileName');
+   const emailEl = document.getElementById('profileEmail');
+   const roleEl = document.getElementById('profileRole');
+   const skillsEl = document.getElementById('profileSkills');
+   
+   if (nameEl) nameEl.textContent = name;
+   if (emailEl) emailEl.textContent = email;
+   if (roleEl) roleEl.textContent = role;
+   
+   // Update skills list
+   if (skillsEl && skills) {
+     const skillsArray = skills.split(',').map(skill => skill.trim()).filter(skill => skill);
+     skillsEl.innerHTML = '';
+     skillsArray.forEach(skill => {
+       const li = document.createElement('li');
+       li.textContent = skill;
+       skillsEl.appendChild(li);
+     });
+   }
+   
+   // Save to localStorage (simulate saving to backend)
+   const profileData = { name, email, role, skills };
+   localStorage.setItem('profile', JSON.stringify(profileData));
+   
+   // Close modal and show success message
+   document.getElementById('editProfileModal').close();
+   Toast.show('success', 'Profile updated successfully!');
  }
 
 

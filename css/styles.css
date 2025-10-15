@@ -324,6 +324,76 @@ body[data-page="profile"] .profile-card .skills ul li {
 }
 /* Dark mode: rely on global .card glass effect */
 
+/* Edit Profile Modal Styles */
+#editProfileModal .profile-image-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+#editProfileModal .profile-image-section img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+}
+
+#editProfileModal .profile-image-section input[type="file"] {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+}
+
+#editProfileModal select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+}
+
+#editProfileModal textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Dark mode styles for edit profile modal */
+body.dark #editProfileModal .profile-image-section {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark #editProfileModal .profile-image-section input[type="file"] {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #e5e7eb;
+}
+
+body.dark #editProfileModal select,
+body.dark #editProfileModal textarea {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #e5e7eb;
+}
+
+body.dark #editProfileModal select option {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
 /* Loading */
 .loading { display: grid; place-items: center; gap: 8px; margin-top: 10px; }
 .spinner { width: 22px; height: 22px; border-radius: 50%; border: 3px solid rgba(0,0,0,0.1); border-top-color: var(--primary); animation: spin 1s linear infinite; }
