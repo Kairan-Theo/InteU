@@ -593,10 +593,36 @@ body.dark .search-bar {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 body.dark .search-bar input, body.dark .search-bar select {
+  background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.25);
   color: #e5e7eb;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.2);
+  transition: all 0.3s ease;
+}
+
+body.dark .search-bar input:focus, body.dark .search-bar select:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 6px 24px rgba(31, 38, 135, 0.3);
+  outline: none;
+}
+
+body.dark .search-bar input:hover, body.dark .search-bar select:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 body.dark .search-bar input::placeholder { color: rgba(229, 231, 235, 0.7); }
+
+/* Glass effect for select dropdown options */
+body.dark .search-bar select option {
+  background: rgba(31, 41, 55, 0.95);
+  color: #e5e7eb;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+}
 
 /* Dark mode: glass effect for recent searches chips */
 body.dark .recent-searches h3 { color: #e5e7eb; }
