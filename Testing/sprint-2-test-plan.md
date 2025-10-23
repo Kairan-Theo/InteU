@@ -7,13 +7,13 @@
 
 ---
 
-## 🧭 Purpose
+## Purpose
 This document defines the testing approach for Sprint 2 to ensure all newly implemented and updated features on both the **Company (Employer)** and **Admin** sides meet functional and quality standards.  
 It will guide testing efforts and serve as evidence during the Sprint 2 Demo.
 
 ---
 
-## 🧩 Features Covered
+## Features Covered
 
 ### Company Side (Employer Portal)
 1. Company Registration Form  
@@ -36,7 +36,7 @@ It will guide testing efforts and serve as evidence during the Sprint 2 Demo.
 
 ---
 
-## 🧪 Test Environment
+## Test Environment
 
 | Category | Details |
 |-----------|----------|
@@ -48,7 +48,7 @@ It will guide testing efforts and serve as evidence during the Sprint 2 Demo.
 
 ---
 
-## ✅ Test Scenarios & Cases
+## Test Scenarios & Cases
 
 ### 1. Company Registration Form
 
@@ -116,7 +116,7 @@ It will guide testing efforts and serve as evidence during the Sprint 2 Demo.
 
 ---
 
-## 🧮 Admin Side Test Cases
+## Admin Side Test Cases
 
 ### 1. Admin Dashboard
 
@@ -191,7 +191,7 @@ It will guide testing efforts and serve as evidence during the Sprint 2 Demo.
 
 ---
 
-## 🧾 Test Summary (to be completed after execution)
+## Test Summary (to be completed after execution)
 
 | Metric | Count |
 |--------|--------|
