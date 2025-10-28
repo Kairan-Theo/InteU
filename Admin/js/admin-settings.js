@@ -5,38 +5,38 @@ const adminsData = [
     {
         id: 1,
         name: 'John Smith',
-        email: 'john.smith@interneu.com',
+        email: 'john.smith@inteu.com',
         role: 'Super Admin',
         status: 'Active',
         lastLogin: '2024-01-15 09:30:00',
-        avatar: 'https://via.placeholder.com/40'
+        avatar: '../images/john-doe.png'
     },
     {
         id: 2,
         name: 'Sarah Johnson',
-        email: 'sarah.johnson@interneu.com',
+        email: 'sarah.johnson@inteu.com',
         role: 'Admin',
         status: 'Active',
         lastLogin: '2024-01-15 08:15:00',
-        avatar: 'https://via.placeholder.com/40'
+        avatar: '../images/jane-doe.png'
     },
     {
         id: 3,
         name: 'Mike Wilson',
-        email: 'mike.wilson@interneu.com',
+        email: 'mike.wilson@inteu.com',
         role: 'Moderator',
         status: 'Active',
         lastLogin: '2024-01-14 16:45:00',
-        avatar: 'https://via.placeholder.com/40'
+        avatar: '../images/john-doe.png'
     },
     {
         id: 4,
         name: 'Emma Davis',
-        email: 'emma.davis@interneu.com',
+        email: 'emma.davis@inteu.com',
         role: 'Admin',
         status: 'Inactive',
         lastLogin: '2024-01-10 14:20:00',
-        avatar: 'https://via.placeholder.com/40'
+        avatar: '../images/jane-doe.png'
     }
 ];
 
@@ -256,7 +256,7 @@ function testEmailConnection() {
 function editEmailTemplate(templateType) {
     // In a real application, this would open a rich text editor
     const templates = {
-        'welcome': 'Welcome to InternEU Platform! Your account has been created successfully.',
+        'welcome': 'Welcome to InteU Platform! Your account has been created successfully.',
         'password-reset': 'Click the link below to reset your password.',
         'application': 'You have received a new internship application.',
         'company-approval': 'Your company registration has been approved.'
