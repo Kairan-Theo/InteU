@@ -6,8 +6,95 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeDashboard();
         initializeCharts();
         setupEventListeners();
+        initializeTheme();
+        initializeUIEffects();
     }, 100);
 });
+
+// Theme initialization and toggle functionality
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('admin-theme') || 'light';
+    document.body.setAttribute('data-theme', savedTheme);
+    
+    // Add theme toggle button to header if it doesn't exist
+    if (!document.getElementById('theme-toggle')) {
+        const headerActions = document.querySelector('.header-actions');
+        if (headerActions) {
+            const themeToggle = document.createElement('button');
+            themeToggle.id = 'theme-toggle';
+            themeToggle.className = 'btn-icon theme-toggle';
+            themeToggle.innerHTML = savedTheme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            headerActions.prepend(themeToggle);
+        }
+    }
+}
+
+// Toggle between light and dark theme
+function toggleTheme() {
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('admin-theme', newTheme);
+    
+    // Update toggle icon
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.innerHTML = newTheme === 'dark' ? 
+            '<i class="fas fa-sun"></i>' : 
+            '<i class="fas fa-moon"></i>';
+    }
+}
+
+// Initialize UI effects and animations
+function initializeUIEffects() {
+    // Add ripple effect to buttons
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', createRippleEffect);
+    });
+    
+    // Add smooth scrolling to page
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Create ripple effect on button click
+function createRippleEffect(e) {
+    const button = e.currentTarget;
+    const ripple = document.createElement('span');
+    const rect = button.getBoundingClientRect();
+    
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.className = 'ripple';
+    
+    button.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
 
 // Dashboard initialization
 function initializeDashboard() {
