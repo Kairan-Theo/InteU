@@ -1,11 +1,40 @@
 // Manage Users JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     initializeUsersPage();
+    initializeAnimations();
 });
 
 let currentUsers = [];
 let currentPage = 1;
 const usersPerPage = 10;
+let filteredUsers = [];
+
+// Initialize animations and visual effects
+function initializeAnimations() {
+    // Add fade-in animation to table rows
+    const tableRows = document.querySelectorAll('#users-tbody tr');
+    tableRows.forEach((row, index) => {
+        row.style.animation = `fadeIn 0.3s ease forwards ${index * 0.05}s`;
+        row.style.opacity = '0';
+    });
+    
+    // Add pulse animation to notification badge
+    const notificationBadge = document.querySelector('.notification-badge');
+    if (notificationBadge) {
+        notificationBadge.classList.add('pulse-animation');
+    }
+    
+    // Add hover effects to action buttons
+    const actionButtons = document.querySelectorAll('.action-btn');
+    actionButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.classList.add('scale-effect');
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.classList.remove('scale-effect');
+        });
+    });
+}
 
 // Initialize users page
 function initializeUsersPage() {
