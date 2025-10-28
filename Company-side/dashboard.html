@@ -9,201 +9,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
     <style>
-        .company-nav {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 25px;
-        box-shadow: var(--shadow);
-        padding: 8px 16px;
-        margin-bottom: 24px;
-        max-width: 100%;           /* Prevent overflow */
-        min-width: 100%;           /* Force full width */
-        box-sizing: border-box;    /* Keeps width consistent */
-      }
-
-      .company-nav-links {
-        display: flex;
-        justify-content: space-between;   /* Space between main nav and logout */
-        align-items: center;
-        gap: 6px;
-        flex-wrap: wrap;
-        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
-        margin: 0 auto;            /* Center the whole group */
-      }
-      .nav-main-links {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .nav-logout {
-        margin-left: auto;
-      }
-      .company-nav-link {
-        padding: 6px 12px;
-        border-radius: 20px;
-        text-decoration: none;
-        color: var(--text);
-        transition: background-color 0.2s ease;
-        font-size: 14px;
-      }
-      .company-nav-link:hover {
-        background: rgba(75, 123, 229, 0.1);
-        text-decoration: none;
-        color: var(--text);
-      }
-      .company-nav-link.active {
-        background: var(--primary);
-        color: white;
-      }
-      .dashboard-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
-        margin-bottom: 32px;
-      }
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin-bottom: 32px;
-      }
-      .stat-card {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
-        padding: 24px;
-        text-align: center;
-        transition: transform 0.2s ease;
-      }
-      .stat-card:hover {
-        transform: translateY(-2px);
-      }
-      .stat-number {
-        font-size: 36px;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 8px;
-      }
-      .stat-label {
-        color: var(--muted);
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-      .stat-change {
-        font-size: 12px;
-        margin-top: 4px;
-      }
-      .stat-change.positive {
-        color: #28a745;
-      }
-      .stat-change.negative {
-        color: #dc3545;
-      }
-
-      .recent-activity {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
-        padding: 24px;
-      }
-      .activity-item {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.06);
-      }
-      .activity-item:last-child {
-        border-bottom: none;
-      }
-      .activity-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-      }
-      .activity-icon.new-applicant {
-        background: rgba(40, 167, 69, 0.1);
-        color: #28a745;
-      }
-      .activity-icon.message {
-        background: rgba(75, 123, 229, 0.1);
-        color: var(--primary);
-      }
-      .activity-icon.internship {
-        background: rgba(255, 193, 7, 0.1);
-        color: #ffc107;
-      }
-      .activity-content {
-        flex: 1;
-      }
-      .activity-title {
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
-      .activity-description {
-        color: var(--muted);
-        font-size: 14px;
-      }
-      .activity-time {
-        color: var(--muted);
-        font-size: 12px;
-      }
-      .chart-container {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
-        padding: 24px;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--muted);
-      }
-      .welcome-banner {
-        background: linear-gradient(135deg, var(--primary), #5a7fd8);
-        color: white;
-        border-radius: 14px;
-        padding: 32px;
-        margin-bottom: 32px;
-        text-align: center;
-      }
-      .welcome-title {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .welcome-subtitle {
-        opacity: 0.9;
-        font-size: 16px;
-      }
+      .company-nav { background: var(--card); border: 1px solid rgba(0,0,0,0.06); border-radius: 25px; box-shadow: var(--shadow); padding: 8px 16px; margin-bottom: 24px; max-width: 100%; min-width: 100%; box-sizing: border-box; }
+      .company-nav-links { display: flex; justify-content: space-between; align-items: center; gap: 6px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; }
+      .nav-main-links { display: flex; gap: 6px; flex-wrap: wrap; }
+      .nav-logout { margin-left: auto; }
+      .company-nav-link { padding: 6px 12px; border-radius: 20px; text-decoration: none; color: var(--text); transition: background-color 0.2s ease; font-size: 14px; }
+      .company-nav-link:hover { background: rgba(75,123,229,0.1); text-decoration: none; color: var(--text); }
+      .company-nav-link.active { background: var(--primary); color: white; }
+      .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 32px; }
+      .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+      .stat-card { background: var(--card); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; text-align: center; transition: transform 0.2s ease; }
+      .stat-card:hover { transform: translateY(-2px); }
+      .stat-number { font-size: 36px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+      .stat-label { color: var(--muted); font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+      .stat-change { font-size: 12px; margin-top: 4px; }
+      .stat-change.positive { color: #28a745; }
+      .stat-change.negative { color: #dc3545; }
+      .recent-activity { background: var(--card); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; }
+      .activity-item { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+      .activity-item:last-child { border-bottom: none; }
+      .activity-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+      .activity-icon.new-applicant { background: rgba(40,167,69,0.1); color: #28a745; }
+      .activity-icon.message { background: rgba(75,123,229,0.1); color: var(--primary); }
+      .activity-icon.internship { background: rgba(255,193,7,0.1); color: #ffc107; }
+      .activity-content { flex: 1; }
+      .activity-title { font-weight: 600; margin-bottom: 4px; }
+      .activity-description { color: var(--muted); font-size: 14px; }
+      .activity-time { color: var(--muted); font-size: 12px; }
+      .chart-container { background: var(--card); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; box-shadow: var(--shadow); padding: 24px; height: 300px; display: flex; align-items: center; justify-content: center; color: var(--muted); }
+      .welcome-banner { background: linear-gradient(135deg, var(--primary), #5a7fd8); color: white; border-radius: 14px; padding: 32px; margin-bottom: 32px; text-align: center; }
+      .welcome-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+      .welcome-subtitle { opacity: 0.9; font-size: 16px; }
     </style>
   </head>
-  
-  <body data-page="dashboard">
-  <header class="site-header" aria-label="Company Portal Navigation">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <span class="logo-mark">🏢</span> 
-        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
-      </a>
 
-      <div class="actions">
-        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
-        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+  <body data-page="dashboard">
+    <header class="site-header" aria-label="Company Portal Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark">🏢</span>
+          InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+        </a>
+
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
     <main class="container">
-      <!-- Company Navigation -->
       <nav class="company-nav">
         <div class="company-nav-links">
           <div class="nav-main-links">
@@ -214,48 +69,42 @@
             <a href="messages.html" class="company-nav-link">Messages</a>
             <a href="profile.html" class="company-nav-link">Company Profile</a>
           </div>
-          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
+          <a href="#" id="logoutLink" class="company-nav-link nav-logout">Logout</a>
         </div>
       </nav>
 
-      <!-- Welcome Banner -->
       <div class="welcome-banner">
-        <div class="welcome-title">Welcome back, TechCorp Inc.!</div>
+        <div class="welcome-title" id="welcomeTitle">Welcome back!</div>
         <div class="welcome-subtitle">Here's what's happening with your internship programs</div>
       </div>
 
-      <!-- Statistics Overview -->
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-number">3</div>
+          <div class="stat-number" id="sActive">0</div>
           <div class="stat-label">Active Internships</div>
           <div class="stat-change positive">+1 this week</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">47</div>
+          <div class="stat-number" id="sNewApps">0</div>
           <div class="stat-label">New Applicants</div>
           <div class="stat-change positive">+12 today</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">156</div>
+          <div class="stat-number" id="sViews">156</div>
           <div class="stat-label">Total Views</div>
           <div class="stat-change positive">+23% this month</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">8</div>
+          <div class="stat-number" id="sMsgs">8</div>
           <div class="stat-label">Messages</div>
           <div class="stat-change">3 unread</div>
         </div>
       </div>
 
-
-
-      <!-- Dashboard Grid -->
       <div class="dashboard-grid">
-        <!-- Recent Activity -->
         <section class="recent-activity">
           <h3 style="margin-bottom: 20px;">Recent Activity</h3>
-          
+
           <div class="activity-item">
             <div class="activity-icon new-applicant">👤</div>
             <div class="activity-content">
@@ -306,7 +155,6 @@
           </div>
         </section>
 
-        <!-- Analytics Chart Placeholder -->
         <section class="chart-container">
           <div style="text-align: center;">
             <h3 style="margin-bottom: 16px;">Application Analytics</h3>
@@ -316,11 +164,10 @@
         </section>
       </div>
 
-      <!-- Current Internships Overview -->
       <section class="card">
         <h3 class="card-title">Your Active Internships</h3>
         <p class="muted" style="margin-bottom: 24px;">Quick overview of your current internship postings</p>
-        
+
         <div style="display: grid; gap: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px;">
             <div>
@@ -385,40 +232,84 @@
       </div>
     </footer>
 
-    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
-
-    <script src="js/main.js"></script>
     <script>
+      const THEME_KEY = 'theme';
+      const AUTH_KEY = 'inteu_company_auth';
+      const PROFILES_KEY = 'inteu_company_profiles';
+
+      function applyTheme(t){ document.body.classList.toggle('dark', t === 'dark'); const tg=document.getElementById('dark-mode'); if (tg) tg.checked = t==='dark'; }
+      function getStoredTheme(){ return localStorage.getItem(THEME_KEY) || 'light'; }
+      function setStoredTheme(t){ localStorage.setItem(THEME_KEY, t); }
+
+      function getAuthedEmail(){ try { return JSON.parse(localStorage.getItem(AUTH_KEY)||'null')?.email || null; } catch { return null; } }
+      function readProfiles(){ try { return JSON.parse(localStorage.getItem(PROFILES_KEY)||'{}'); } catch { return {}; } }
+      function migrateLegacyIfAny(){
+        try {
+          const legacy = JSON.parse(localStorage.getItem('inteu_company_profile') || 'null');
+          if (legacy && legacy.businessEmail) {
+            const map = readProfiles();
+            map[legacy.businessEmail.toLowerCase()] = legacy;
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(map));
+            localStorage.removeItem('inteu_company_profile');
+          }
+        } catch {}
+        try {
+          const oldAcc = JSON.parse(localStorage.getItem('companyAccount') || 'null');
+          if (oldAcc && oldAcc.businessEmail) {
+            const map = readProfiles();
+            const email = String(oldAcc.businessEmail).toLowerCase();
+            map[email] = {
+              companyName: oldAcc.companyName || 'Company',
+              industry: oldAcc.industry || '',
+              companySize: oldAcc.companySize || '',
+              foundedYear: oldAcc.foundedYear || '',
+              companyDescription: oldAcc.description || '',
+              businessEmail: email,
+              phoneNumber: oldAcc.phoneNumber || '',
+              website: oldAcc.website || '',
+              linkedin: oldAcc.socials?.linkedin || '',
+              address: oldAcc.address || '',
+              managerName: oldAcc.account?.managerName || '',
+              managerTitle: oldAcc.account?.managerTitle || '',
+              stats: { activeInternships: oldAcc.stats?.active ?? 0, totalApplications: oldAcc.stats?.apps ?? 0, hired: oldAcc.stats?.hired ?? 0 },
+              settings: { timezone: oldAcc.account?.timezone || 'UTC+7', language: oldAcc.account?.language || 'en', dateFormat: oldAcc.account?.dateFormat || 'YYYY-MM-DD' },
+              logoDataUrl: oldAcc.logoDataUrl || ''
+            };
+            localStorage.setItem(PROFILES_KEY, JSON.stringify(map));
+            localStorage.removeItem('companyAccount');
+          }
+        } catch {}
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
-        // Simulate real-time updates
-        function updateStats() {
-          // This would typically fetch real data from an API
-          console.log('Updating dashboard stats...');
-        }
+        applyTheme(getStoredTheme());
+        const themeToggle = document.getElementById('dark-mode');
+        if (themeToggle) themeToggle.addEventListener('change', (e)=>{ const t=e.target.checked?'dark':'light'; applyTheme(t); setStoredTheme(t); });
 
-        // Update stats every 30 seconds
-        setInterval(updateStats, 30000);
+        const authEmail = getAuthedEmail();
+        if (!authEmail) { window.location.replace('auth/login.html'); return; }
 
-        // Logout functionality
-        // Logout functionality handled by the logout link in header
+        migrateLegacyIfAny();
 
-        // Add click tracking for analytics
-        document.querySelectorAll('.action-card').forEach(card => {
-          card.addEventListener('click', function() {
-            const action = this.querySelector('.action-title').textContent;
-            console.log(`Dashboard action clicked: ${action}`);
-          });
+        const map = readProfiles();
+        const acc = map[authEmail];
+        const name = acc?.companyName || 'Company';
+
+        document.getElementById('welcomeTitle').textContent = `Welcome back, ${name}!`;
+        document.getElementById('sActive').textContent = acc?.stats?.activeInternships ?? acc?.stats?.active ?? 0;
+        document.getElementById('sNewApps').textContent = acc?.stats?.newApplicants ?? 47; // demo fallback
+
+        const logoutLink = document.getElementById('logoutLink');
+        if (logoutLink) logoutLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          localStorage.removeItem(AUTH_KEY);
+          window.location.href = 'index.html';
         });
 
-        // Add hover effects for stat cards
+        // Sweet little hover effect retained
         document.querySelectorAll('.stat-card').forEach(card => {
-          card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px)';
-          });
-          
-          card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(-2px)';
-          });
+          card.addEventListener('mouseenter', function(){ this.style.transform = 'translateY(-4px)'; });
+          card.addEventListener('mouseleave', function(){ this.style.transform = 'translateY(-2px)'; });
         });
       });
     </script>

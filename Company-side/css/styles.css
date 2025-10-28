@@ -439,7 +439,6 @@ body.dark .actions .btn.small.primary { background: var(--primary); color: #fff;
 .user-menu-btn:hover { transform: scale(1.05); }
 .user-menu-btn img { width: 20px; height: 20px; display: block; filter: none; }
 .user-menu .menu { position: absolute; right: 0; top: calc(100% + 8px); background: var(--card); border: 1px solid rgba(0,0,0,0.08); box-shadow: var(--shadow); border-radius: 12px; padding: 0; min-width: 220px; display: none; overflow: hidden; }
-.user-menu .menu.open { display: block; animation: slideDown 0.2s ease-out; }
 
 /* User info section in dropdown */
 .user-info { 
@@ -1149,8 +1148,6 @@ body.dark .table-container {
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.32);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 body.dark .filters select,
