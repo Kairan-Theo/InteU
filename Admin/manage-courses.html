@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Courses - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
+                    <li><a href="manage-companies.html"><i class="fas fa-building"></i> Manage Companies</a></li>
+                    <li><a href="manage-internships.html"><i class="fas fa-briefcase"></i> Manage Internships</a></li>
+                    <li><a href="manage-courses.html" class="active"><i class="fas fa-graduation-cap"></i> Manage Courses</a></li>
+                    <li><a href="manage-articles.html"><i class="fas fa-newspaper"></i> Manage Articles</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Manage Courses</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search courses..." id="course-search">
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="openAddCourseModal()">
+                            <i class="fas fa-plus"></i> Add Course
+                        </button>
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </div>
+                        <div class="admin-profile">
+                            <img src="https://via.placeholder.com/40" alt="Admin">
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-body">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-courses">24</h3>
+                            <p>Total Courses</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="published-courses">18</h3>
+                            <p>Published</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="draft-courses">4</h3>
+                            <p>Drafts</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-enrollments">1,250</h3>
+                            <p>Total Enrollments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Actions -->
+                <div class="content-filters">
+                    <div class="filter-group">
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="published">Published</option>
+                            <option value="draft">Draft</option>
+                            <option value="archived">Archived</option>
+                        </select>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="programming">Programming</option>
+                            <option value="design">Design</option>
+                            <option value="business">Business</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="data-science">Data Science</option>
+                        </select>
+                        <select id="level-filter">
+                            <option value="">All Levels</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                        <input type="date" id="date-filter" placeholder="Created Date">
+                    </div>
+                    <div class="bulk-actions">
+                        <select id="bulk-action">
+                            <option value="">Bulk Actions</option>
+                            <option value="publish">Publish Selected</option>
+                            <option value="draft">Move to Draft</option>
+                            <option value="archive">Archive Selected</option>
+                            <option value="delete">Delete Selected</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="applyBulkAction()">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Courses Table -->
+                <div class="table-container">
+                    <table class="data-table" id="courses-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>ID</th>
+                                <th>Course</th>
+                                <th>Category</th>
+                                <th>Level</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Enrollments</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courses-tbody">
+                            <!-- Courses will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn btn-secondary" id="prev-page">Previous</button>
+                    <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">3</span></span>
+                    <button class="btn btn-secondary" id="next-page">Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Course Modal -->
+    <div class="modal" id="course-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Course</h3>
+                <button class="modal-close" onclick="closeCourseModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="course-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-title">Course Title</label>
+                            <input type="text" id="course-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-category">Category</label>
+                            <select id="course-category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="programming">Programming</option>
+                                <option value="design">Design</option>
+                                <option value="business">Business</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="data-science">Data Science</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-level">Level</label>
+                            <select id="course-level" name="level" required>
+                                <option value="">Select Level</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="advanced">Advanced</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course-duration">Duration (hours)</label>
+                            <input type="number" id="course-duration" name="duration" min="1" max="200" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-price">Price ($)</label>
+                            <input type="number" id="course-price" name="price" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="course-instructor">Instructor</label>
+                            <input type="text" id="course-instructor" name="instructor" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-description">Description</label>
+                        <textarea id="course-description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-objectives">Learning Objectives</label>
+                        <textarea id="course-objectives" name="objectives" rows="3" placeholder="Enter each objective on a new line"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-prerequisites">Prerequisites</label>
+                        <textarea id="course-prerequisites" name="prerequisites" rows="2"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-thumbnail">Thumbnail URL</label>
+                            <input type="url" id="course-thumbnail" name="thumbnail">
+                        </div>
+                        <div class="form-group">
+                            <label for="course-status">Status</label>
+                            <select id="course-status" name="status" required>
+                                <option value="draft">Draft</option>
+                                <option value="published">Published</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="course-tags">Tags (comma-separated)</label>
+                        <input type="text" id="course-tags" name="tags" placeholder="e.g., javascript, web development, frontend">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeCourseModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" form="course-form">Save Course</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Details Modal -->
+    <div class="modal" id="course-details-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Course Details</h3>
+                <button class="modal-close" onclick="closeCourseDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="course-details-content">
+                <!-- Course details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeCourseDetailsModal()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="editCourseFromDetails()">Edit Course</button>
+                <button type="button" class="btn btn-success" onclick="publishCourseFromDetails()">Publish</button>
+                <button type="button" class="btn btn-warning" onclick="archiveCourseFromDetails()">Archive</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-main.js"></script>
+    <script src="js/manage-courses.js"></script>
+</body>
+</html>
