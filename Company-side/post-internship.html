@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Post New Internship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .company-nav {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        max-width: 100%;           /* Prevent overflow */
+        min-width: 100%;           /* Force full width */
+        box-sizing: border-box;    /* Keeps width consistent */
+      }
+
+      .company-nav-links {
+        display: flex;
+        justify-content: space-between;   /* Space between main nav and logout */
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
+        margin: 0 auto;            /* Center the whole group */
+      }
+      .nav-main-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .nav-logout {
+        margin-left: auto;
+      }
+      .company-nav-link {
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: var(--text);
+        transition: background-color 0.2s ease;
+        font-size: 14px;
+      }
+      .company-nav-link:hover {
+        background: rgba(75, 123, 229, 0.1);
+        text-decoration: none;
+        color: var(--text);
+        justify-content: center;
+      }
+      .company-nav-link.active {
+        background: var(--primary);
+        color: white;
+      }
+      .form-section {
+        margin-bottom: 32px;
+      }
+      .form-section h3 {
+        color: var(--primary);
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(75, 123, 229, 0.1);
+      }
+      .skills-input {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .skill-tag {
+        background: var(--primary);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 16px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .skill-tag .remove {
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .preview-card {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        margin-top: 24px;
+      }
+      .preview-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .preview-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .preview-company {
+        color: var(--primary);
+        font-weight: 600;
+      }
+      .preview-meta {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .preview-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body data-page="dashboard">
+  <header class="site-header" aria-label="Company Portal Navigation">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">🏢</span> 
+        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+      </a>
+
+      <div class="actions">
+        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+        <a href="profile.html" class="btn small">Profile</a>
+        <a href="auth/login.html" class="btn small primary">Logout</a>
+      </div>
+    </div>
+  </header>
+
+    <main class="container">
+      <!-- Company Navigation -->
+      <nav class="company-nav">
+        <div class="company-nav-links">
+          <div class="nav-main-links">
+            <a href="dashboard.html" class="company-nav-link">Dashboard</a>
+            <a href="post-internship.html" class="company-nav-link active">Post Internship</a>
+            <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+            <a href="messages.html" class="company-nav-link">Messages</a>
+            <a href="profile.html" class="company-nav-link">Company Profile</a>
+          </div>
+          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
+        </div>
+      </nav>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <!-- Form Section -->
+        <section class="card">
+          <h1 class="card-title">Post New Internship</h1>
+          <p class="muted">Create an internship opportunity to attract talented students</p>
+          
+          <form id="postInternshipForm" novalidate>
+            <!-- Basic Information -->
+            <div class="form-section">
+              <h3>Basic Information</h3>
+              
+              <label>
+                <span>Internship Title *</span>
+                <input type="text" id="internshipTitle" required placeholder="e.g., Software Engineering Intern" />
+              </label>
+
+              <div class="row">
+                <label class="half">
+                  <span>Department *</span>
+                  <select id="department" required>
+                    <option value="">Select Department</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="design">Design</option>
+                    <option value="sales">Sales</option>
+                    <option value="hr">Human Resources</option>
+                    <option value="finance">Finance</option>
+                    <option value="operations">Operations</option>
+                    <option value="research">Research & Development</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+                <label class="half">
+                  <span>Internship Type *</span>
+                  <select id="internshipType" required>
+                    <option value="">Select Type</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
+                    <option value="project-based">Project-based</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                <span>Job Description *</span>
+                <textarea id="jobDescription" required placeholder="Describe the role, responsibilities, and what the intern will learn..." rows="6"></textarea>
+              </label>
+            </div>
+
+            <!-- Duration and Schedule -->
+            <div class="form-section">
+              <h3>Duration & Schedule</h3>
+              
+              <div class="row">
+                <label class="half">
+                  <span>Duration *</span>
+                  <select id="duration" required>
+                    <option value="">Select Duration</option>
+                    <option value="1-month">1 Month</option>
+                    <option value="2-months">2 Months</option>
+                    <option value="3-months">3 Months</option>
+                    <option value="6-months">6 Months</option>
+                    <option value="12-months">12 Months</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </label>
+                <label class="half">
+                  <span>Start Date *</span>
+                  <input type="date" id="startDate" required />
+                </label>
+              </div>
+
+              <div class="row">
+                <label class="half">
+                  <span>Work Schedule *</span>
+                  <select id="workSchedule" required>
+                    <option value="">Select Schedule</option>
+                    <option value="monday-friday">Monday - Friday</option>
+                    <option value="flexible-weekdays">Flexible Weekdays</option>
+                    <option value="weekend-included">Including Weekends</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </label>
+                <label class="half">
+                  <span>Hours per Week *</span>
+                  <select id="hoursPerWeek" required>
+                    <option value="">Select Hours</option>
+                    <option value="10-20">10-20 hours</option>
+                    <option value="20-30">20-30 hours</option>
+                    <option value="30-40">30-40 hours</option>
+                    <option value="40+">40+ hours</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-section">
+              <h3>Location</h3>
+              
+              <div class="row">
+                <label class="half">
+                  <span>Work Mode *</span>
+                  <select id="workMode" required>
+                    <option value="">Select Work Mode</option>
+                    <option value="remote">Remote</option>
+                    <option value="on-site">On-site</option>
+                    <option value="hybrid">Hybrid</option>
+                  </select>
+                </label>
+                <label class="half">
+                  <span>Location *</span>
+                  <input type="text" id="location" required placeholder="City, State/Province, Country" />
+                </label>
+              </div>
+
+              <label id="addressField" style="display: none;">
+                <span>Office Address</span>
+                <textarea id="officeAddress" placeholder="Full office address for on-site/hybrid positions" rows="2"></textarea>
+              </label>
+            </div>
+
+            <!-- Requirements -->
+            <div class="form-section">
+              <h3>Requirements</h3>
+              
+              <label>
+                <span>Education Level *</span>
+                <select id="educationLevel" required>
+                  <option value="">Select Education Level</option>
+                  <option value="high-school">High School</option>
+                  <option value="associate">Associate Degree</option>
+                  <option value="bachelor">Bachelor's Degree</option>
+                  <option value="master">Master's Degree</option>
+                  <option value="phd">PhD</option>
+                  <option value="any">Any Level</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Field of Study</span>
+                <input type="text" id="fieldOfStudy" placeholder="e.g., Computer Science, Marketing, Design" />
+              </label>
+
+              <label>
+                <span>Required Skills</span>
+                <div class="skills-input">
+                  <input type="text" id="skillInput" placeholder="Type a skill and press Enter" />
+                  <button type="button" id="addSkillBtn" class="btn small">Add</button>
+                </div>
+                <div class="skills-tags" id="skillsTags"></div>
+              </label>
+
+              <label>
+                <span>Additional Requirements</span>
+                <textarea id="additionalRequirements" placeholder="Any other requirements, experience, or qualifications..." rows="4"></textarea>
+              </label>
+            </div>
+
+            <!-- Compensation -->
+            <div class="form-section">
+              <h3>Compensation</h3>
+              
+              <div class="row">
+                <label class="half">
+                  <span>Stipend Type *</span>
+                  <select id="stipendType" required>
+                    <option value="">Select Stipend Type</option>
+                    <option value="paid">Paid</option>
+                    <option value="unpaid">Unpaid</option>
+                    <option value="academic-credit">Academic Credit Only</option>
+                  </select>
+                </label>
+                <label class="half" id="stipendAmountField" style="display: none;">
+                  <span>Stipend Amount</span>
+                  <input type="text" id="stipendAmount" placeholder="e.g., $1000/month, $15/hour" />
+                </label>
+              </div>
+
+              <label>
+                <span>Benefits & Perks</span>
+                <textarea id="benefits" placeholder="Describe any additional benefits, learning opportunities, mentorship, etc." rows="3"></textarea>
+              </label>
+            </div>
+
+            <!-- Application Details -->
+            <div class="form-section">
+              <h3>Application Details</h3>
+              
+              <div class="row">
+                <label class="half">
+                  <span>Application Deadline *</span>
+                  <input type="date" id="applicationDeadline" required />
+                </label>
+                <label class="half">
+                  <span>Number of Positions *</span>
+                  <select id="numberOfPositions" required>
+                    <option value="">Select Number</option>
+                    <option value="1">1 Position</option>
+                    <option value="2">2 Positions</option>
+                    <option value="3">3 Positions</option>
+                    <option value="4">4 Positions</option>
+                    <option value="5+">5+ Positions</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>
+                <span>Application Instructions</span>
+                <textarea id="applicationInstructions" placeholder="Special instructions for applicants, required documents, etc." rows="3"></textarea>
+              </label>
+            </div>
+
+            <div class="row space-between" style="margin-top: 32px;">
+              <button type="button" id="previewBtn" class="btn secondary">Preview</button>
+              <div style="display: flex; gap: 12px;">
+                <button type="button" id="saveDraftBtn" class="btn">Save as Draft</button>
+                <button type="submit" class="btn primary">Publish Internship</button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <!-- Preview Section -->
+        <section>
+          <div class="preview-card" id="previewCard">
+            <h3 style="margin-bottom: 16px; color: var(--primary);">Live Preview</h3>
+            <div id="previewContent">
+              <div class="preview-header">
+                <div>
+                  <div class="preview-title" id="previewTitle">Internship Title</div>
+                  <div class="preview-company">TechCorp Inc.</div>
+                </div>
+                <button class="btn primary small">Apply Now</button>
+              </div>
+              
+              <div class="preview-meta">
+                <div class="preview-meta-item">
+                  <span>📍</span>
+                  <span id="previewLocation">Location</span>
+                </div>
+                <div class="preview-meta-item">
+                  <span>⏰</span>
+                  <span id="previewDuration">Duration</span>
+                </div>
+                <div class="preview-meta-item">
+                  <span>💼</span>
+                  <span id="previewType">Type</span>
+                </div>
+                <div class="preview-meta-item">
+                  <span>💰</span>
+                  <span id="previewStipend">Stipend</span>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <h4>Description</h4>
+                <p id="previewDescription" class="muted">Job description will appear here...</p>
+              </div>
+
+              <div style="margin-bottom: 16px;">
+                <h4>Requirements</h4>
+                <p id="previewRequirements" class="muted">Requirements will appear here...</p>
+              </div>
+
+              <div id="previewSkillsSection" style="display: none;">
+                <h4>Required Skills</h4>
+                <div class="skills-tags" id="previewSkills"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>Help & Support</h4>
+          <ul>
+            <li><a href="#" id="contactUsLink">Contact us</a></li>
+            <li><a href="#" id="faqLink">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Privacy</h4>
+          <ul>
+            <li><a href="#" id="privacyPolicyLink">Privacy Policy</a></li>
+            <li><a href="#" id="pdpaNoticeLink">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="../js/main.js"></script>
+    <script>
+      let skills = [];
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Skills management
+        const skillInput = document.getElementById('skillInput');
+        const addSkillBtn = document.getElementById('addSkillBtn');
+        const skillsTags = document.getElementById('skillsTags');
+
+        function addSkill() {
+          const skill = skillInput.value.trim();
+          if (skill && !skills.includes(skill)) {
+            skills.push(skill);
+            updateSkillsTags();
+            updatePreview();
+            skillInput.value = '';
+          }
+        }
+
+        function removeSkill(skill) {
+          skills = skills.filter(s => s !== skill);
+          updateSkillsTags();
+          updatePreview();
+        }
+
+        function updateSkillsTags() {
+          skillsTags.innerHTML = skills.map(skill => 
+            `<span class="skill-tag">${skill} <span class="remove" onclick="removeSkill('${skill}')">&times;</span></span>`
+          ).join('');
+        }
+
+        addSkillBtn.addEventListener('click', addSkill);
+        skillInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            addSkill();
+          }
+        });
+
+        // Make removeSkill globally accessible
+        window.removeSkill = removeSkill;
+
+        // Show/hide fields based on selections
+        document.getElementById('workMode').addEventListener('change', function() {
+          const addressField = document.getElementById('addressField');
+          if (this.value === 'on-site' || this.value === 'hybrid') {
+            addressField.style.display = 'block';
+          } else {
+            addressField.style.display = 'none';
+          }
+        });
+
+        document.getElementById('stipendType').addEventListener('change', function() {
+          const stipendAmountField = document.getElementById('stipendAmountField');
+          if (this.value === 'paid') {
+            stipendAmountField.style.display = 'block';
+          } else {
+            stipendAmountField.style.display = 'none';
+          }
+        });
+
+        // Live preview updates
+        const previewFields = [
+          'internshipTitle', 'location', 'duration', 'internshipType', 
+          'jobDescription', 'additionalRequirements', 'stipendType', 'stipendAmount'
+        ];
+
+        previewFields.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+          if (field) {
+            field.addEventListener('input', updatePreview);
+            field.addEventListener('change', updatePreview);
+          }
+        });
+
+        function updatePreview() {
+          // Update title
+          const title = document.getElementById('internshipTitle').value || 'Internship Title';
+          document.getElementById('previewTitle').textContent = title;
+
+          // Update location
+          const location = document.getElementById('location').value || 'Location';
+          document.getElementById('previewLocation').textContent = location;
+
+          // Update duration
+          const duration = document.getElementById('duration').value || 'Duration';
+          document.getElementById('previewDuration').textContent = duration.replace('-', ' ');
+
+          // Update type
+          const type = document.getElementById('internshipType').value || 'Type';
+          document.getElementById('previewType').textContent = type.replace('-', ' ');
+
+          // Update stipend
+          const stipendType = document.getElementById('stipendType').value;
+          const stipendAmount = document.getElementById('stipendAmount').value;
+          let stipendText = 'Stipend';
+          if (stipendType === 'paid' && stipendAmount) {
+            stipendText = stipendAmount;
+          } else if (stipendType === 'unpaid') {
+            stipendText = 'Unpaid';
+          } else if (stipendType === 'academic-credit') {
+            stipendText = 'Academic Credit';
+          }
+          document.getElementById('previewStipend').textContent = stipendText;
+
+          // Update description
+          const description = document.getElementById('jobDescription').value || 'Job description will appear here...';
+          document.getElementById('previewDescription').textContent = description;
+
+          // Update requirements
+          const requirements = document.getElementById('additionalRequirements').value || 'Requirements will appear here...';
+          document.getElementById('previewRequirements').textContent = requirements;
+
+          // Update skills
+          const previewSkills = document.getElementById('previewSkills');
+          const previewSkillsSection = document.getElementById('previewSkillsSection');
+          if (skills.length > 0) {
+            previewSkills.innerHTML = skills.map(skill => 
+              `<span class="chip">${skill}</span>`
+            ).join('');
+            previewSkillsSection.style.display = 'block';
+          } else {
+            previewSkillsSection.style.display = 'none';
+          }
+        }
+
+        // Initial preview update
+        updatePreview();
+
+        // Form submission
+        document.getElementById('postInternshipForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Collect form data
+          const formData = {
+            title: document.getElementById('internshipTitle').value,
+            department: document.getElementById('department').value,
+            type: document.getElementById('internshipType').value,
+            description: document.getElementById('jobDescription').value,
+            duration: document.getElementById('duration').value,
+            startDate: document.getElementById('startDate').value,
+            workSchedule: document.getElementById('workSchedule').value,
+            hoursPerWeek: document.getElementById('hoursPerWeek').value,
+            workMode: document.getElementById('workMode').value,
+            location: document.getElementById('location').value,
+            officeAddress: document.getElementById('officeAddress').value,
+            educationLevel: document.getElementById('educationLevel').value,
+            fieldOfStudy: document.getElementById('fieldOfStudy').value,
+            skills: skills,
+            additionalRequirements: document.getElementById('additionalRequirements').value,
+            stipendType: document.getElementById('stipendType').value,
+            stipendAmount: document.getElementById('stipendAmount').value,
+            benefits: document.getElementById('benefits').value,
+            applicationDeadline: document.getElementById('applicationDeadline').value,
+            numberOfPositions: document.getElementById('numberOfPositions').value,
+            applicationInstructions: document.getElementById('applicationInstructions').value
+          };
+
+          // Validate required fields
+          const requiredFields = ['title', 'department', 'type', 'description', 'duration', 'startDate', 'workSchedule', 'hoursPerWeek', 'workMode', 'location', 'educationLevel', 'stipendType', 'applicationDeadline', 'numberOfPositions'];
+          
+          for (let field of requiredFields) {
+            if (!formData[field]) {
+              showToast(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field`, 'error');
+              return;
+            }
+          }
+
+          // Simulate posting internship
+          showToast('Publishing internship...', 'info');
+          
+          setTimeout(() => {
+            showToast('Internship published successfully!', 'success');
+            setTimeout(() => {
+              window.location.href = 'manage-internships.html';
+            }, 1500);
+          }, 1500);
+        });
+
+        // Save draft functionality
+        document.getElementById('saveDraftBtn').addEventListener('click', function() {
+          showToast('Draft saved successfully!', 'success');
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+          if (confirm('Are you sure you want to logout?')) {
+            showToast('Logging out...', 'info');
+            setTimeout(() => {
+              window.location.href = '../pages/auth/login.html';
+            }, 1000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

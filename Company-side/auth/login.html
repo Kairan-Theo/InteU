@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Login — InteU</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .login-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        padding: 20px;
+      }
+      .login-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        padding: 48px;
+        width: 100%;
+        max-width: 480px;
+        text-align: center;
+      }
+      .company-logo {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #4b7be5, #6c5ce7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        font-size: 32px;
+        color: white;
+      }
+      .login-title {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .login-subtitle {
+        color: var(--muted);
+        margin-bottom: 32px;
+        font-size: 16px;
+      }
+      .demo-notice {
+        background: #e3f2fd;
+        border: 1px solid #2196f3;
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      .demo-notice h4 {
+        color: #1976d2;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .demo-notice p {
+        margin: 4px 0;
+        font-size: 13px;
+        color: #1565c0;
+      }
+      .form-group {
+        margin-bottom: 24px;
+        text-align: left;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .form-group input {
+        width: 100%;
+        padding: 16px;
+        border: 2px solid #e1e5e9;
+        border-radius: 12px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary);
+      }
+      .login-btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #4b7be5, #6c5ce7);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        margin-bottom: 24px;
+      }
+      .login-btn:hover {
+        transform: translateY(-2px);
+      }
+      .login-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        margin: 24px 0;
+        color: var(--muted);
+      }
+      .divider::before,
+      .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e1e5e9;
+      }
+      .divider span {
+        padding: 0 16px;
+        font-size: 14px;
+      }
+      .register-link {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .register-link a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+      .back-link {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body data-page="company-login">
+    <a href="../index.html" class="back-link">
+      ← Back to Company Portal
+    </a>
+
+    <div class="login-container">
+      <div class="login-card">
+        <div class="company-logo">🏢</div>
+        <h1 class="login-title">Welcome Back</h1>
+        <p class="login-subtitle">Sign in to your company account to manage internships and connect with talented students.</p>
+
+        <!-- Demo Notice -->
+        <div class="demo-notice">
+          <h4>🚀 Demo Account Available</h4>
+          <p><strong>Email:</strong> demo@company.com</p>
+          <p><strong>Password:</strong> CompanyDemo123</p>
+          <p>Use these credentials to explore the company dashboard</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Company Email</label>
+            <input type="email" id="email" name="email" required placeholder="your-company@example.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required placeholder="Enter your password" />
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; font-size: 14px;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="remember" name="remember" />
+              <span>Remember me</span>
+            </label>
+            <a href="#" style="color: var(--primary); text-decoration: none;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="login-btn" id="loginBtn">
+            Sign In to Dashboard
+          </button>
+        </form>
+
+        <div class="divider">
+          <span>New to InteU?</span>
+        </div>
+
+        <div class="register-link">
+          Don't have a company account? <a href="register.html">Create one now</a>
+        </div>
+
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e1e5e9;">
+          <p style="font-size: 14px; color: var(--muted); margin: 0;">
+            Looking for the student portal? <a href="../../index.html" style="color: var(--primary);">Go to Student Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="../../js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        // Auto-fill demo credentials when demo notice is clicked
+        document.querySelector('.demo-notice').addEventListener('click', function() {
+          emailInput.value = 'demo@company.com';
+          passwordInput.value = 'CompanyDemo123';
+        });
+
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const email = emailInput.value.trim();
+          const password = passwordInput.value;
+
+          if (!email || !password) {
+            showToast('Please fill in all fields', 'error');
+            return;
+          }
+
+          // Disable button and show loading
+          loginBtn.disabled = true;
+          loginBtn.textContent = 'Signing In...';
+
+          // Simulate login process
+          setTimeout(() => {
+            if (email === 'demo@company.com' && password === 'CompanyDemo123') {
+              showToast('Login successful! Redirecting to dashboard...', 'success');
+              setTimeout(() => {
+                window.location.href = '../dashboard.html';
+              }, 1500);
+            } else {
+              // For demo purposes, accept any valid email format
+              if (email.includes('@') && password.length >= 6) {
+                showToast('Login successful! Welcome to InteU Companies!', 'success');
+                setTimeout(() => {
+                  window.location.href = '../dashboard.html';
+                }, 1500);
+              } else {
+                showToast('Invalid email or password. Please try again.', 'error');
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In to Dashboard';
+              }
+            }
+          }, 1500);
+        });
+
+        // Add enter key support
+        [emailInput, passwordInput].forEach(input => {
+          input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+              loginForm.dispatchEvent(new Event('submit'));
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

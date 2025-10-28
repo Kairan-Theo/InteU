@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Messages</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .company-nav {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        max-width: 100%;           /* Prevent overflow */
+        min-width: 100%;           /* Force full width */
+        box-sizing: border-box;    /* Keeps width consistent */
+      }
+
+      .company-nav-links {
+        display: flex;
+        justify-content: space-between;   /* Space between main nav and logout */
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
+        margin: 0 auto;            /* Center the whole group */
+      }
+      .nav-main-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .nav-logout {
+        margin-left: auto;
+      }
+      .company-nav-link {
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: var(--text);
+        transition: background-color 0.2s ease;
+        font-size: 14px;
+      }
+      .company-nav-link:hover {
+        background: rgba(75, 123, 229, 0.1);
+        text-decoration: none;
+        color: var(--text);
+      }
+      .company-nav-link.active {
+        background: var(--primary);
+        color: white;
+      }
+      .messages-container {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 24px;
+        height: 70vh;
+      }
+      .conversations-panel {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+      }
+      .conversations-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .conversations-search {
+        margin-bottom: 16px;
+      }
+      .conversations-search input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      .conversations-list {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .conversation-item {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        position: relative;
+      }
+      .conversation-item:hover {
+        background: rgba(75, 123, 229, 0.05);
+      }
+      .conversation-item.active {
+        background: rgba(75, 123, 229, 0.1);
+        border-right: 3px solid var(--primary);
+      }
+      .conversation-item.unread {
+        background: rgba(75, 123, 229, 0.02);
+      }
+      .conversation-item.unread::after {
+        content: '';
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+      .conversation-name {
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .conversation-preview {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .conversation-time {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .chat-panel {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+      }
+      .chat-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .chat-user-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .chat-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+      }
+      .chat-user-details h3 {
+        margin: 0;
+        font-size: 16px;
+        color: var(--text);
+      }
+      .chat-user-details p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .chat-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .chat-messages {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .message {
+        display: flex;
+        gap: 12px;
+        max-width: 70%;
+      }
+      .message.sent {
+        align-self: flex-end;
+        flex-direction: row-reverse;
+      }
+      .message-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 12px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .message.sent .message-avatar {
+        background: var(--primary);
+      }
+      .message-content {
+        flex: 1;
+      }
+      .message-bubble {
+        background: #f8f9fa;
+        padding: 12px 16px;
+        border-radius: 16px;
+        margin-bottom: 4px;
+      }
+      .message.sent .message-bubble {
+        background: var(--primary);
+        color: white;
+      }
+      .message-time {
+        font-size: 12px;
+        color: var(--muted);
+        text-align: right;
+      }
+      .message.sent .message-time {
+        text-align: left;
+      }
+      .chat-input {
+        padding: 20px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+      }
+      .chat-input-form {
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      .chat-input-field {
+        flex: 1;
+        min-height: 40px;
+        max-height: 120px;
+        padding: 10px 16px;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 20px;
+        resize: none;
+        font-family: inherit;
+        font-size: 14px;
+      }
+      .chat-send-btn {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: var(--primary);
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+      }
+      .chat-send-btn:hover {
+        background: #5a6fd8;
+      }
+      .chat-send-btn:disabled {
+        background: var(--muted);
+        cursor: not-allowed;
+      }
+      .empty-chat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: var(--muted);
+        text-align: center;
+      }
+      .empty-chat-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+      .typing-indicator {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        background: #f8f9fa;
+        border-radius: 16px;
+        margin-bottom: 4px;
+        max-width: fit-content;
+      }
+      .typing-dots {
+        display: flex;
+        gap: 4px;
+      }
+      .typing-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--muted);
+        border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out;
+      }
+      .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+      .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+      @keyframes typing {
+        0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+        40% { transform: scale(1); opacity: 1; }
+      }
+    </style>
+  </head>
+  <body data-page="dashboard">
+  <header class="site-header" aria-label="Company Portal Navigation">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">🏢</span> 
+        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+      </a>
+
+      <div class="actions">
+        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+        <a href="profile.html" class="btn small">Profile</a>
+        <a href="auth/login.html" class="btn small primary">Logout</a>
+      </div>
+    </div>
+  </header>
+
+    <main class="container">
+      <!-- Company Navigation -->
+      <nav class="company-nav">
+        <div class="company-nav-links">
+          <div class="nav-main-links">
+            <a href="dashboard.html" class="company-nav-link">Dashboard</a>
+            <a href="post-internship.html" class="company-nav-link">Post Internship</a>
+            <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+            <a href="messages.html" class="company-nav-link active">Messages</a>
+            <a href="profile.html" class="company-nav-link">Company Profile</a>
+          </div>
+          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
+        </div>
+      </nav>
+
+      <h1>Messages</h1>
+      <p class="muted">Communicate with applicants and manage conversations</p>
+
+      <div class="messages-container">
+        <!-- Conversations Panel -->
+        <div class="conversations-panel">
+          <div class="conversations-header">
+            <h3 style="margin: 0 0 16px 0;">Conversations</h3>
+            <div class="conversations-search">
+              <input type="text" id="conversationSearch" placeholder="Search conversations..." />
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn small secondary" id="filterAll">All</button>
+              <button class="btn small secondary" id="filterUnread">Unread</button>
+              <button class="btn small secondary" id="filterArchived">Archived</button>
+            </div>
+          </div>
+          
+          <div class="conversations-list" id="conversationsList">
+            <div class="conversation-item unread" data-user="sarah-johnson">
+              <div class="conversation-name">Sarah Johnson</div>
+              <div class="conversation-preview">Thank you for considering my application...</div>
+              <div class="conversation-time">2 hours ago</div>
+            </div>
+            
+            <div class="conversation-item" data-user="michael-chen">
+              <div class="conversation-name">Michael Chen</div>
+              <div class="conversation-preview">I'm excited about the interview opportunity...</div>
+              <div class="conversation-time">1 day ago</div>
+            </div>
+            
+            <div class="conversation-item unread" data-user="emily-rodriguez">
+              <div class="conversation-name">Emily Rodriguez</div>
+              <div class="conversation-preview">Could you provide more details about the project?</div>
+              <div class="conversation-time">3 hours ago</div>
+            </div>
+            
+            <div class="conversation-item" data-user="david-kim">
+              <div class="conversation-name">David Kim</div>
+              <div class="conversation-preview">I have submitted all the required documents...</div>
+              <div class="conversation-time">2 days ago</div>
+            </div>
+            
+            <div class="conversation-item" data-user="lisa-wang">
+              <div class="conversation-name">Lisa Wang</div>
+              <div class="conversation-preview">When can I expect to hear back about my application?</div>
+              <div class="conversation-time">3 days ago</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+          <div id="emptyChatState" class="empty-chat">
+            <div class="empty-chat-icon">💬</div>
+            <h3>Select a conversation</h3>
+            <p>Choose a conversation from the left to start messaging</p>
+          </div>
+
+          <div id="activeChatState" style="display: none; height: 100%; flex-direction: column;">
+            <div class="chat-header">
+              <div class="chat-user-info">
+                <div class="chat-avatar" id="chatAvatar">SJ</div>
+                <div class="chat-user-details">
+                  <h3 id="chatUserName">Sarah Johnson</h3>
+                  <p id="chatUserStatus">Applied for Software Engineering Intern</p>
+                </div>
+              </div>
+              <div class="chat-actions">
+                <button class="btn small secondary" onclick="viewApplicantProfile()">View Profile</button>
+                <button class="btn small secondary" onclick="archiveConversation()">Archive</button>
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+              <!-- Messages will be loaded here -->
+            </div>
+
+            <div class="chat-input">
+              <form class="chat-input-form" id="messageForm">
+                <textarea 
+                  class="chat-input-field" 
+                  id="messageInput" 
+                  placeholder="Type your message..." 
+                  rows="1"
+                ></textarea>
+                <button type="submit" class="chat-send-btn" id="sendBtn">
+                  <span>➤</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+      let currentConversation = null;
+      let isTyping = false;
+
+      // Sample conversation data
+      const conversations = {
+        'sarah-johnson': {
+          name: 'Sarah Johnson',
+          status: 'Applied for Software Engineering Intern',
+          avatar: 'SJ',
+          messages: [
+            {
+              id: 1,
+              sender: 'user',
+              content: 'Hello! I wanted to follow up on my application for the Software Engineering Intern position.',
+              timestamp: '2024-01-15T10:30:00Z'
+            },
+            {
+              id: 2,
+              sender: 'company',
+              content: 'Hi Sarah! Thank you for your application. We\'ve reviewed your resume and are impressed with your background.',
+              timestamp: '2024-01-15T11:15:00Z'
+            },
+            {
+              id: 3,
+              sender: 'user',
+              content: 'Thank you for considering my application. I\'m very excited about this opportunity and would love to discuss how I can contribute to your team.',
+              timestamp: '2024-01-15T14:20:00Z'
+            }
+          ]
+        },
+        'michael-chen': {
+          name: 'Michael Chen',
+          status: 'Interview Scheduled - Marketing Intern',
+          avatar: 'MC',
+          messages: [
+            {
+              id: 1,
+              sender: 'company',
+              content: 'Hi Michael, we\'d like to schedule an interview for the Marketing Intern position. Are you available this Thursday at 2 PM?',
+              timestamp: '2024-01-14T09:00:00Z'
+            },
+            {
+              id: 2,
+              sender: 'user',
+              content: 'Yes, I\'m available on Thursday at 2 PM. I\'m excited about the interview opportunity!',
+              timestamp: '2024-01-14T09:30:00Z'
+            },
+            {
+              id: 3,
+              sender: 'company',
+              content: 'Great! I\'ll send you the meeting details shortly. Please prepare a brief presentation about a marketing campaign you admire.',
+              timestamp: '2024-01-14T10:00:00Z'
+            }
+          ]
+        },
+        'emily-rodriguez': {
+          name: 'Emily Rodriguez',
+          status: 'Accepted - UI/UX Design Intern',
+          avatar: 'ER',
+          messages: [
+            {
+              id: 1,
+              sender: 'user',
+              content: 'Could you provide more details about the project I\'ll be working on during the internship?',
+              timestamp: '2024-01-15T13:45:00Z'
+            }
+          ]
+        }
+      };
+
+      document.addEventListener('DOMContentLoaded', function() {
+        // Conversation selection
+        const conversationItems = document.querySelectorAll('.conversation-item');
+        const emptyChatState = document.getElementById('emptyChatState');
+        const activeChatState = document.getElementById('activeChatState');
+
+        conversationItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const userId = this.dataset.user;
+            selectConversation(userId);
+            
+            // Update active state
+            conversationItems.forEach(conv => conv.classList.remove('active'));
+            this.classList.add('active');
+            this.classList.remove('unread');
+          });
+        });
+
+        function selectConversation(userId) {
+          currentConversation = userId;
+          const conversation = conversations[userId];
+          
+          if (!conversation) return;
+
+          // Hide empty state, show chat
+          emptyChatState.style.display = 'none';
+          activeChatState.style.display = 'flex';
+
+          // Update chat header
+          document.getElementById('chatAvatar').textContent = conversation.avatar;
+          document.getElementById('chatUserName').textContent = conversation.name;
+          document.getElementById('chatUserStatus').textContent = conversation.status;
+
+          // Load messages
+          loadMessages(conversation.messages);
+        }
+
+        function loadMessages(messages) {
+          const chatMessages = document.getElementById('chatMessages');
+          chatMessages.innerHTML = '';
+
+          messages.forEach(message => {
+            const messageElement = createMessageElement(message);
+            chatMessages.appendChild(messageElement);
+          });
+
+          // Scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function createMessageElement(message) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message ${message.sender === 'company' ? 'sent' : ''}`;
+
+          const avatar = message.sender === 'company' ? 'TC' : conversations[currentConversation].avatar;
+          const time = new Date(message.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+          messageDiv.innerHTML = `
+            <div class="message-avatar">${avatar}</div>
+            <div class="message-content">
+              <div class="message-bubble">${message.content}</div>
+              <div class="message-time">${time}</div>
+            </div>
+          `;
+
+          return messageDiv;
+        }
+
+        // Message sending
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        messageForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          sendMessage();
+        });
+
+        messageInput.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+
+        messageInput.addEventListener('input', function() {
+          // Auto-resize textarea
+          this.style.height = 'auto';
+          this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+
+          // Update send button state
+          sendBtn.disabled = !this.value.trim();
+        });
+
+        function sendMessage() {
+          const content = messageInput.value.trim();
+          if (!content || !currentConversation) return;
+
+          // Create message object
+          const message = {
+            id: Date.now(),
+            sender: 'company',
+            content: content,
+            timestamp: new Date().toISOString()
+          };
+
+          // Add to conversation
+          if (!conversations[currentConversation].messages) {
+            conversations[currentConversation].messages = [];
+          }
+          conversations[currentConversation].messages.push(message);
+
+          // Display message
+          const chatMessages = document.getElementById('chatMessages');
+          const messageElement = createMessageElement(message);
+          chatMessages.appendChild(messageElement);
+
+          // Clear input
+          messageInput.value = '';
+          messageInput.style.height = 'auto';
+          sendBtn.disabled = true;
+
+          // Scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+
+          // Show typing indicator (simulate response)
+          setTimeout(() => {
+            showTypingIndicator();
+            setTimeout(() => {
+              hideTypingIndicator();
+              simulateResponse();
+            }, 2000);
+          }, 500);
+
+          showToast('Message sent!', 'success');
+        }
+
+        function showTypingIndicator() {
+          if (isTyping) return;
+          isTyping = true;
+
+          const chatMessages = document.getElementById('chatMessages');
+          const typingDiv = document.createElement('div');
+          typingDiv.className = 'message';
+          typingDiv.id = 'typingIndicator';
+          
+          const avatar = conversations[currentConversation].avatar;
+          
+          typingDiv.innerHTML = `
+            <div class="message-avatar">${avatar}</div>
+            <div class="message-content">
+              <div class="typing-indicator">
+                <span style="font-size: 12px; color: var(--muted);">typing</span>
+                <div class="typing-dots">
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                  <div class="typing-dot"></div>
+                </div>
+              </div>
+            </div>
+          `;
+
+          chatMessages.appendChild(typingDiv);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+          const typingIndicator = document.getElementById('typingIndicator');
+          if (typingIndicator) {
+            typingIndicator.remove();
+          }
+          isTyping = false;
+        }
+
+        function simulateResponse() {
+          const responses = [
+            "Thank you for your message. I'll get back to you shortly.",
+            "That sounds great! I appreciate the information.",
+            "I understand. Let me know if you need anything else.",
+            "Perfect! I'll prepare accordingly.",
+            "Thank you for the clarification."
+          ];
+
+          const response = {
+            id: Date.now(),
+            sender: 'user',
+            content: responses[Math.floor(Math.random() * responses.length)],
+            timestamp: new Date().toISOString()
+          };
+
+          conversations[currentConversation].messages.push(response);
+
+          const chatMessages = document.getElementById('chatMessages');
+          const messageElement = createMessageElement(response);
+          chatMessages.appendChild(messageElement);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+
+          // Update conversation preview
+          updateConversationPreview(currentConversation, response.content);
+        }
+
+        function updateConversationPreview(userId, lastMessage) {
+          const conversationItem = document.querySelector(`[data-user="${userId}"]`);
+          if (conversationItem) {
+            const preview = conversationItem.querySelector('.conversation-preview');
+            const time = conversationItem.querySelector('.conversation-time');
+            
+            preview.textContent = lastMessage;
+            time.textContent = 'Just now';
+            conversationItem.classList.add('unread');
+          }
+        }
+
+        // Search functionality
+        const conversationSearch = document.getElementById('conversationSearch');
+        conversationSearch.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          conversationItems.forEach(item => {
+            const name = item.querySelector('.conversation-name').textContent.toLowerCase();
+            const preview = item.querySelector('.conversation-preview').textContent.toLowerCase();
+            
+            if (name.includes(searchTerm) || preview.includes(searchTerm)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+
+        // Filter functionality
+        document.getElementById('filterAll').addEventListener('click', function() {
+          conversationItems.forEach(item => item.style.display = 'block');
+          updateFilterButtons(this);
+        });
+
+        document.getElementById('filterUnread').addEventListener('click', function() {
+          conversationItems.forEach(item => {
+            if (item.classList.contains('unread')) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          updateFilterButtons(this);
+        });
+
+        document.getElementById('filterArchived').addEventListener('click', function() {
+          // For demo purposes, hide all items (no archived conversations in sample data)
+          conversationItems.forEach(item => item.style.display = 'none');
+          updateFilterButtons(this);
+        });
+
+        function updateFilterButtons(activeBtn) {
+          document.querySelectorAll('#filterAll, #filterUnread, #filterArchived').forEach(btn => {
+            btn.classList.remove('primary');
+            btn.classList.add('secondary');
+          });
+          activeBtn.classList.remove('secondary');
+          activeBtn.classList.add('primary');
+        }
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+          if (confirm('Are you sure you want to logout?')) {
+            showToast('Logging out...', 'info');
+            setTimeout(() => {
+              window.location.href = '../pages/auth/login.html';
+            }, 1000);
+          }
+        });
+      });
+
+      // Global functions for chat actions
+      function viewApplicantProfile() {
+        if (currentConversation) {
+          showToast('Opening applicant profile...', 'info');
+          setTimeout(() => {
+            window.location.href = 'view-applicants.html';
+          }, 1000);
+        }
+      }
+
+      function archiveConversation() {
+        if (currentConversation) {
+          showToast('Conversation archived', 'success');
+          // In a real app, this would archive the conversation
+        }
+      }
+    </script>
+  </body>
+</html>

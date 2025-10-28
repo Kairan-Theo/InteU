@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Companies - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
+                    <li><a href="manage-companies.html" class="active"><i class="fas fa-building"></i> Manage Companies</a></li>
+                    <li><a href="manage-internships.html"><i class="fas fa-briefcase"></i> Manage Internships</a></li>
+                    <li><a href="manage-courses.html"><i class="fas fa-graduation-cap"></i> Manage Courses</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Manage Companies</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search companies..." id="company-search">
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="openAddCompanyModal()">
+                            <i class="fas fa-plus"></i> Add Company
+                        </button>
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </div>
+                        <div class="admin-profile">
+                            <img src="https://via.placeholder.com/40" alt="Admin">
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-body">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-companies">40</h3>
+                            <p>Total Companies</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pending-companies">8</h3>
+                            <p>Pending Approval</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="approved-companies">32</h3>
+                            <p>Approved</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="active-internships">75</h3>
+                            <p>Active Internships</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Actions -->
+                <div class="content-filters">
+                    <div class="filter-group">
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                            <option value="suspended">Suspended</option>
+                        </select>
+                        <select id="industry-filter">
+                            <option value="">All Industries</option>
+                            <option value="technology">Technology</option>
+                            <option value="finance">Finance</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="education">Education</option>
+                            <option value="manufacturing">Manufacturing</option>
+                        </select>
+                        <select id="size-filter">
+                            <option value="">All Sizes</option>
+                            <option value="startup">Startup (1-10)</option>
+                            <option value="small">Small (11-50)</option>
+                            <option value="medium">Medium (51-200)</option>
+                            <option value="large">Large (200+)</option>
+                        </select>
+                    </div>
+                    <div class="bulk-actions">
+                        <select id="bulk-action">
+                            <option value="">Bulk Actions</option>
+                            <option value="approve">Approve Selected</option>
+                            <option value="reject">Reject Selected</option>
+                            <option value="suspend">Suspend Selected</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="applyBulkAction()">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Companies Table -->
+                <div class="table-container">
+                    <table class="data-table" id="companies-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>Company ID</th>
+                                <th>Company Name</th>
+                                <th>Industry</th>
+                                <th>Size</th>
+                                <th>Status</th>
+                                <th>Registration Date</th>
+                                <th>Internships</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companies-tbody">
+                            <!-- Companies will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn btn-secondary" id="prev-page">Previous</button>
+                    <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">5</span></span>
+                    <button class="btn btn-secondary" id="next-page">Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Company Modal -->
+    <div class="modal" id="company-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Company</h3>
+                <button class="modal-close" onclick="closeCompanyModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="company-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company-name">Company Name</label>
+                            <input type="text" id="company-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company-email">Email</label>
+                            <input type="email" id="company-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company-industry">Industry</label>
+                            <select id="company-industry" name="industry" required>
+                                <option value="">Select Industry</option>
+                                <option value="technology">Technology</option>
+                                <option value="finance">Finance</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="education">Education</option>
+                                <option value="manufacturing">Manufacturing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="company-size">Company Size</label>
+                            <select id="company-size" name="size" required>
+                                <option value="">Select Size</option>
+                                <option value="startup">Startup (1-10)</option>
+                                <option value="small">Small (11-50)</option>
+                                <option value="medium">Medium (51-200)</option>
+                                <option value="large">Large (200+)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company-phone">Phone</label>
+                            <input type="tel" id="company-phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="company-website">Website</label>
+                            <input type="url" id="company-website" name="website">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-address">Address</label>
+                        <textarea id="company-address" name="address" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-description">Description</label>
+                        <textarea id="company-description" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="company-status">Status</label>
+                            <select id="company-status" name="status" required>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="company-contact">Contact Person</label>
+                            <input type="text" id="company-contact" name="contact">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-notes">Admin Notes</label>
+                        <textarea id="company-notes" name="notes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeCompanyModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" form="company-form">Save Company</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Company Details Modal -->
+    <div class="modal" id="company-details-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Company Details</h3>
+                <button class="modal-close" onclick="closeCompanyDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="company-details-content">
+                <!-- Company details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeCompanyDetailsModal()">Close</button>
+                <button type="button" class="btn btn-success" onclick="approveCompanyFromDetails()">Approve</button>
+                <button type="button" class="btn btn-danger" onclick="rejectCompanyFromDetails()">Reject</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-main.js"></script>
+    <script src="js/manage-companies.js"></script>
+</body>
+</html>

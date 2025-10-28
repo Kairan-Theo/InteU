@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Company Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <style>
+      .registration-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .registration-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .company-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        color: white;
+        font-size: 32px;
+      }
+      .registration-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .registration-subtitle {
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+      .form-section {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+      .form-section h3 {
+        color: var(--primary);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(75, 123, 229, 0.1);
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 32px 0;
+      }
+      .benefit-card {
+        background: #f8f9fa;
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+      }
+      .benefit-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .benefit-title {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--text);
+      }
+      .benefit-desc {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .password-requirements {
+        background: #f8f9fa;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .requirement {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .requirement.valid {
+        color: #28a745;
+      }
+      .requirement.invalid {
+        color: #dc3545;
+      }
+      .social-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      @media (max-width: 768px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .social-links {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="company-register">
+    <header class="site-header" aria-label="Main Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="../../index.html"><span class="logo-mark"><img src="../../images/image1.jpg" alt="InteU logo" /></span> InteU</a>
+        <nav class="nav">
+          <a href="../../index.html" data-i18n="nav.home">Home</a>
+          <a href="../main/companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="../main/articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="../main/sections.html" data-i18n="nav.sections">Sections</a>
+        </nav>
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+          <a href="company-login.html" class="btn small">Company Login</a>
+          <a href="login.html" class="btn small primary">Student Login</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="registration-container">
+        <div class="registration-header">
+          <div class="company-icon">🏢</div>
+          <h1 class="registration-title">Join InteU as a Company</h1>
+          <p class="registration-subtitle">Connect with talented students and find the perfect interns for your organization. Start posting internship opportunities today.</p>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <span class="benefit-icon">🎯</span>
+            <h4 class="benefit-title">Targeted Reach</h4>
+            <p class="benefit-desc">Connect with qualified students from top universities across Thailand</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">⚡</span>
+            <h4 class="benefit-title">Easy Management</h4>
+            <p class="benefit-desc">Streamlined application process and comprehensive candidate management tools</p>
+          </div>
+          <div class="benefit-card">
+            <span class="benefit-icon">✅</span>
+            <h4 class="benefit-title">Verified Platform</h4>
+            <p class="benefit-desc">Trusted by students and companies with verified profiles and secure communication</p>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <form id="companyRegistrationForm" novalidate>
+          <div class="form-grid">
+            <!-- Company Information -->
+            <div class="form-section">
+              <h3>Company Information</h3>
+              
+              <label>
+                <span>Company Name *</span>
+                <input type="text" id="companyName" required placeholder="Your Company Name" />
+              </label>
+
+              <label>
+                <span>Industry *</span>
+                <select id="industry" required>
+                  <option value="">Select Industry</option>
+                  <option value="technology">Technology</option>
+                  <option value="finance">Finance</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="education">Education</option>
+                  <option value="retail">Retail</option>
+                  <option value="manufacturing">Manufacturing</option>
+                  <option value="consulting">Consulting</option>
+                  <option value="media">Media & Entertainment</option>
+                  <option value="nonprofit">Non-Profit</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Company Size *</span>
+                <select id="companySize" required>
+                  <option value="">Select Size</option>
+                  <option value="1-10">1-10 employees</option>
+                  <option value="11-50">11-50 employees</option>
+                  <option value="51-200">51-200 employees</option>
+                  <option value="201-500">201-500 employees</option>
+                  <option value="501-1000">501-1000 employees</option>
+                  <option value="1000+">1000+ employees</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Founded Year</span>
+                <input type="number" id="foundedYear" min="1800" max="2024" placeholder="e.g., 2015" />
+              </label>
+
+              <label>
+                <span>Company Description *</span>
+                <textarea id="companyDescription" required rows="4" placeholder="Describe your company, mission, and what makes it unique..."></textarea>
+              </label>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="form-section">
+              <h3>Contact Information</h3>
+              
+              <label>
+                <span>Business Email *</span>
+                <input type="email" id="businessEmail" required placeholder="contact@yourcompany.com" />
+              </label>
+
+              <label>
+                <span>Phone Number *</span>
+                <input type="tel" id="phoneNumber" required placeholder="+66 XX XXX XXXX" />
+              </label>
+
+              <label>
+                <span>Website</span>
+                <input type="url" id="website" placeholder="https://www.yourcompany.com" />
+              </label>
+
+              <label>
+                <span>LinkedIn Company Page</span>
+                <input type="url" id="linkedin" placeholder="https://linkedin.com/company/yourcompany" />
+              </label>
+
+              <label>
+                <span>Address *</span>
+                <textarea id="address" required rows="3" placeholder="Full business address including city and postal code..."></textarea>
+              </label>
+            </div>
+
+            <!-- Account Security -->
+            <div class="form-section">
+              <h3>Account Security</h3>
+              
+              <label>
+                <span>Account Manager Name *</span>
+                <input type="text" id="managerName" required placeholder="Full name of the person managing this account" />
+              </label>
+
+              <label>
+                <span>Manager Title</span>
+                <input type="text" id="managerTitle" placeholder="e.g., HR Manager, Talent Acquisition Lead" />
+              </label>
+
+              <label>
+                <span>Password *</span>
+                <input type="password" id="password" required />
+              </label>
+
+              <label>
+                <span>Confirm Password *</span>
+                <input type="password" id="confirmPassword" required />
+              </label>
+
+              <div class="password-requirements">
+                <div class="requirement" id="lengthReq">
+                  <span>✗</span> At least 8 characters
+                </div>
+                <div class="requirement" id="upperReq">
+                  <span>✗</span> One uppercase letter
+                </div>
+                <div class="requirement" id="lowerReq">
+                  <span>✗</span> One lowercase letter
+                </div>
+                <div class="requirement" id="numberReq">
+                  <span>✗</span> One number
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="form-section">
+              <h3>Additional Information</h3>
+              
+              <label>
+                <span>How did you hear about InteU?</span>
+                <select id="referralSource">
+                  <option value="">Select source</option>
+                  <option value="search">Search Engine</option>
+                  <option value="social">Social Media</option>
+                  <option value="referral">Referral from another company</option>
+                  <option value="university">University partnership</option>
+                  <option value="event">Event or conference</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Expected number of interns per year</span>
+                <select id="expectedInterns">
+                  <option value="">Select range</option>
+                  <option value="1-5">1-5 interns</option>
+                  <option value="6-15">6-15 interns</option>
+                  <option value="16-30">16-30 interns</option>
+                  <option value="31-50">31-50 interns</option>
+                  <option value="50+">50+ interns</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Primary internship areas (select multiple)</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="technology" />
+                    <span>Technology</span>
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="marketing" />
+                    <span>Marketing</span>
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="finance" />
+                    <span>Finance</span>
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="design" />
+                    <span>Design</span>
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="operations" />
+                    <span>Operations</span>
+                  </label>
+                  <label class="checkbox">
+                    <input type="checkbox" name="internshipAreas" value="research" />
+                    <span>Research</span>
+                  </label>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Terms and Submit -->
+          <div class="form-section full-width">
+            <label class="checkbox">
+              <input type="checkbox" id="agreeTerms" required />
+              <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a> *</span>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" id="agreeMarketing" />
+              <span>I would like to receive updates about new features and internship best practices</span>
+            </label>
+
+            <div style="display: flex; gap: 16px; justify-content: center; margin-top: 24px;">
+              <button type="button" class="btn secondary" onclick="window.location.href='company-login.html'">Back to Login</button>
+              <button type="submit" class="btn primary">Create Company Account</button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Already have account -->
+        <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.1);">
+          <p class="muted">Already have a company account?</p>
+          <a href="company-login.html" class="btn secondary">Login to Your Account</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4 data-i18n="footer.help">Help & Support</h4>
+          <ul>
+            <li><a href="#" id="contactUsLink" data-i18n="footer.contact">Contact us</a></li>
+            <li><a href="#" id="faqLink" data-i18n="footer.faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-i18n="footer.privacy">Privacy</h4>
+          <ul>
+            <li><a href="#" id="privacyPolicyLink" data-i18n="footer.privacyPolicy">Privacy Policy</a></li>
+            <li><a href="#" id="pdpaNoticeLink" data-i18n="footer.pdpaNotice">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted" data-i18n="footer.copy">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="../../js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Password validation
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+
+        function validatePassword() {
+          const password = passwordInput.value;
+          const requirements = {
+            length: password.length >= 8,
+            upper: /[A-Z]/.test(password),
+            lower: /[a-z]/.test(password),
+            number: /\d/.test(password)
+          };
+
+          updateRequirement('lengthReq', requirements.length);
+          updateRequirement('upperReq', requirements.upper);
+          updateRequirement('lowerReq', requirements.lower);
+          updateRequirement('numberReq', requirements.number);
+
+          validatePasswordMatch();
+        }
+
+        function validatePasswordMatch() {
+          const password = passwordInput.value;
+          const confirmPassword = confirmPasswordInput.value;
+          
+          if (confirmPassword && password !== confirmPassword) {
+            confirmPasswordInput.setCustomValidity('Passwords do not match');
+          } else {
+            confirmPasswordInput.setCustomValidity('');
+          }
+        }
+
+        function updateRequirement(id, isValid) {
+          const element = document.getElementById(id);
+          element.className = `requirement ${isValid ? 'valid' : 'invalid'}`;
+          element.querySelector('span').textContent = isValid ? '✓' : '✗';
+        }
+
+        // Form submission
+        document.getElementById('companyRegistrationForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validate required fields
+          const requiredFields = [
+            'companyName', 'industry', 'companySize', 'companyDescription',
+            'businessEmail', 'phoneNumber', 'address', 'managerName',
+            'password', 'confirmPassword'
+          ];
+          
+          let isValid = true;
+          for (let fieldId of requiredFields) {
+            const field = document.getElementById(fieldId);
+            if (!field.value.trim()) {
+              showToast(`Please fill in the ${fieldId.replace(/([A-Z])/g, ' $1').toLowerCase()} field`, 'error');
+              field.focus();
+              isValid = false;
+              break;
+            }
+          }
+
+          if (!isValid) return;
+
+          // Check password match
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          if (password !== confirmPassword) {
+            showToast('Passwords do not match', 'error');
+            return;
+          }
+
+          // Check terms agreement
+          if (!document.getElementById('agreeTerms').checked) {
+            showToast('Please agree to the terms and conditions', 'error');
+            return;
+          }
+
+          // Simulate registration
+          showToast('Creating your company account...', 'info');
+          
+          setTimeout(() => {
+            showToast('Company account created successfully! Welcome to InteU!', 'success');
+            setTimeout(() => {
+              window.location.href = '../../Company-side/dashboard.html';
+            }, 2000);
+          }, 2000);
+        });
+      });
+    </script>
+  </body>
+</html>

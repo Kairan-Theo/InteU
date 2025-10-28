@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU Company Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+      .company-hero {
+        background: linear-gradient(135deg, #4b7be5 0%, #6c5ce7 100%);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+      }
+      .company-hero h1 {
+        font-size: 48px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .company-hero p {
+        font-size: 20px;
+        margin-bottom: 32px;
+        opacity: 0.9;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero-actions .btn {
+        padding: 16px 32px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .features-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+      .feature-card {
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-4px);
+      }
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #4b7be5, #6c5ce7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        font-size: 32px;
+        color: white;
+      }
+      .feature-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        color: var(--text);
+      }
+      .feature-desc {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .stats-section {
+        padding: 80px 0;
+        background: white;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+      .stat-card {
+        text-align: center;
+        padding: 24px;
+      }
+      .stat-number {
+        font-size: 48px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+      .stat-label {
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .cta-section {
+        background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+      }
+      .cta-section h2 {
+        font-size: 36px;
+        margin-bottom: 16px;
+      }
+      .cta-section p {
+        font-size: 18px;
+        margin-bottom: 32px;
+        opacity: 0.9;
+      }
+      @media (max-width: 768px) {
+        .company-hero h1 {
+          font-size: 36px;
+        }
+        .hero-actions {
+          flex-direction: column;
+          align-items: center;
+        }
+        .hero-actions .btn {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="company-portal">
+    <header class="site-header" aria-label="Company Portal Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark">🏢</span> 
+          InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+        </a>
+        <nav class="nav">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#support">Support</a>
+          <a href="../index.html">Student Portal</a>
+        </nav>
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+          <a href="auth/login.html" class="btn small">Login</a>
+          <a href="auth/register.html" class="btn small primary">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="company-hero">
+        <div class="container">
+          <h1>Find Your Next Great Intern</h1>
+          <p>Connect with talented students from top universities across Thailand. Post internships, manage applications, and build your future team.</p>
+          <div class="hero-actions">
+            <a href="auth/register.html" class="btn large primary" style="background: white; color: var(--primary);">Start Hiring Today</a>
+            <a href="auth/login.html" class="btn large secondary" style="border-color: white; color: white;">Company Login</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features-section" id="features">
+        <div class="container">
+          <div style="text-align: center;">
+            <h2 style="font-size: 36px; margin-bottom: 16px;">Everything You Need to Hire Great Interns</h2>
+            <p style="font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 auto;">Streamline your internship program with our comprehensive platform designed specifically for companies.</p>
+          </div>
+          
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📝</div>
+              <h3 class="feature-title">Easy Job Posting</h3>
+              <p class="feature-desc">Create detailed internship listings with our intuitive form. Specify requirements, compensation, and application deadlines with ease.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">👥</div>
+              <h3 class="feature-title">Applicant Management</h3>
+              <p class="feature-desc">Review applications, filter candidates, and manage your hiring pipeline all in one place. Never miss a great candidate again.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">💬</div>
+              <h3 class="feature-title">Direct Communication</h3>
+              <p class="feature-desc">Message candidates directly through our platform. Schedule interviews and keep all communication organized and secure.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3 class="feature-title">Analytics Dashboard</h3>
+              <p class="feature-desc">Track your posting performance, application rates, and hiring metrics. Make data-driven decisions for your internship program.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3 class="feature-title">Targeted Reach</h3>
+              <p class="feature-desc">Your postings reach qualified students from partner universities. Connect with candidates who match your specific requirements.</p>
+            </div>
+            
+            <div class="feature-card">
+              <div class="feature-icon">🔒</div>
+              <h3 class="feature-title">Secure Platform</h3>
+              <p class="feature-desc">Enterprise-grade security protects your company data and candidate information. GDPR compliant and fully encrypted.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="container">
+          <div style="text-align: center;">
+            <h2 style="font-size: 36px; margin-bottom: 16px;">Trusted by Leading Companies</h2>
+            <p style="font-size: 18px; color: var(--muted);">Join hundreds of companies already using InteU to find exceptional interns</p>
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Active Companies</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">10K+</div>
+              <div class="stat-label">Student Applications</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">2K+</div>
+              <div class="stat-label">Successful Placements</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <h2>Ready to Find Your Next Intern?</h2>
+          <p>Join InteU today and start connecting with talented students from top universities across Thailand.</p>
+          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+            <a href="auth/register.html" class="btn large primary" style="background: white; color: var(--text);">Create Company Account</a>
+            <a href="auth/login.html" class="btn large secondary" style="border-color: white; color: white;">Login to Existing Account</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" style="background: #2d3436; color: white;">
+      <div class="container footer-grid">
+        <div>
+          <h4>Company Portal</h4>
+          <ul>
+            <li><a href="auth/register.html" style="color: #ddd;">Get Started</a></li>
+            <li><a href="auth/login.html" style="color: #ddd;">Login</a></li>
+            <li><a href="#pricing" style="color: #ddd;">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#" style="color: #ddd;">Help Center</a></li>
+            <li><a href="#" style="color: #ddd;">Contact Support</a></li>
+            <li><a href="#" style="color: #ddd;">API Documentation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#" style="color: #ddd;">Terms of Service</a></li>
+            <li><a href="#" style="color: #ddd;">Privacy Policy</a></li>
+            <li><a href="#" style="color: #ddd;">GDPR Compliance</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU Companies</h4>
+          <p style="color: #ddd; margin: 0;">Connecting great companies with exceptional student talent.</p>
+          <div style="margin-top: 16px;">
+            <a href="../index.html" style="color: #74b9ff;">← Back to Student Portal</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          observer.observe(card);
+        });
+      });
+    </script>
+  </body>
+</html>

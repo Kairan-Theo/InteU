@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports & Analytics - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
+                    <li><a href="manage-companies.html"><i class="fas fa-building"></i> Manage Companies</a></li>
+                    <li><a href="manage-internships.html"><i class="fas fa-briefcase"></i> Manage Internships</a></li>
+                    <li><a href="manage-courses.html"><i class="fas fa-graduation-cap"></i> Manage Courses</a></li>
+                    <li><a href="reports.html" class="active"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Reports & Analytics</h1>
+                </div>
+                <div class="header-right">
+                    <div class="date-range-picker">
+                        <select id="date-range">
+                            <option value="7">Last 7 days</option>
+                            <option value="30" selected>Last 30 days</option>
+                            <option value="90">Last 3 months</option>
+                            <option value="365">Last year</option>
+                            <option value="custom">Custom range</option>
+                        </select>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="exportReport()">
+                            <i class="fas fa-download"></i> Export Report
+                        </button>
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </div>
+                        <div class="admin-profile">
+                            <img src="https://via.placeholder.com/40" alt="Admin">
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-body">
+                <!-- Overview Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-users">1,247</h3>
+                            <p>Total Users</p>
+                            <span class="stat-change positive">+12% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-companies">89</h3>
+                            <p>Active Companies</p>
+                            <span class="stat-change positive">+8% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-internships">342</h3>
+                            <p>Total Internships</p>
+                            <span class="stat-change positive">+15% from last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-applications">2,156</h3>
+                            <p>Applications</p>
+                            <span class="stat-change positive">+23% from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <!-- User Registration Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>User Registrations</h3>
+                            <div class="chart-controls">
+                                <button class="btn btn-sm btn-secondary" onclick="changeChartType('userChart', 'line')">Line</button>
+                                <button class="btn btn-sm btn-secondary" onclick="changeChartType('userChart', 'bar')">Bar</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="userChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Application Status Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Application Status Distribution</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="applicationChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Company Activity Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Company Activity</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="companyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Internship Categories Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Internship Categories</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Reports Section -->
+                <div class="reports-section">
+                    <div class="section-header">
+                        <h2>Detailed Reports</h2>
+                        <div class="section-actions">
+                            <button class="btn btn-secondary" onclick="refreshReports()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="reports-grid">
+                        <!-- Top Performing Companies -->
+                        <div class="report-card">
+                            <div class="report-header">
+                                <h3>Top Performing Companies</h3>
+                                <button class="btn btn-sm btn-primary" onclick="exportTopCompanies()">Export</button>
+                            </div>
+                            <div class="report-content">
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Company</th>
+                                            <th>Internships</th>
+                                            <th>Applications</th>
+                                            <th>Success Rate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="top-companies-tbody">
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Most Popular Internships -->
+                        <div class="report-card">
+                            <div class="report-header">
+                                <h3>Most Popular Internships</h3>
+                                <button class="btn btn-sm btn-primary" onclick="exportPopularInternships()">Export</button>
+                            </div>
+                            <div class="report-content">
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Position</th>
+                                            <th>Company</th>
+                                            <th>Applications</th>
+                                            <th>Views</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="popular-internships-tbody">
+                                        <!-- Data will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- User Activity Summary -->
+                        <div class="report-card">
+                            <div class="report-header">
+                                <h3>User Activity Summary</h3>
+                                <button class="btn btn-sm btn-primary" onclick="exportUserActivity()">Export</button>
+                            </div>
+                            <div class="report-content">
+                                <div class="activity-stats">
+                                    <div class="activity-item">
+                                        <span class="activity-label">Daily Active Users</span>
+                                        <span class="activity-value">456</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-label">Weekly Active Users</span>
+                                        <span class="activity-value">1,234</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-label">Monthly Active Users</span>
+                                        <span class="activity-value">3,456</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-label">Average Session Duration</span>
+                                        <span class="activity-value">12m 34s</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-label">Bounce Rate</span>
+                                        <span class="activity-value">23.5%</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <span class="activity-label">Page Views per Session</span>
+                                        <span class="activity-value">4.2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Performance -->
+                        <div class="report-card">
+                            <div class="report-header">
+                                <h3>System Performance</h3>
+                                <button class="btn btn-sm btn-primary" onclick="exportSystemPerformance()">Export</button>
+                            </div>
+                            <div class="report-content">
+                                <div class="performance-metrics">
+                                    <div class="metric-item">
+                                        <div class="metric-label">Server Uptime</div>
+                                        <div class="metric-value">99.9%</div>
+                                        <div class="metric-status success">Excellent</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-label">Average Response Time</div>
+                                        <div class="metric-value">245ms</div>
+                                        <div class="metric-status success">Good</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-label">Error Rate</div>
+                                        <div class="metric-value">0.02%</div>
+                                        <div class="metric-status success">Excellent</div>
+                                    </div>
+                                    <div class="metric-item">
+                                        <div class="metric-label">Database Performance</div>
+                                        <div class="metric-value">98.5%</div>
+                                        <div class="metric-status success">Good</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="export-section">
+                    <div class="section-header">
+                        <h2>Export Options</h2>
+                    </div>
+                    <div class="export-options">
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-file-csv"></i>
+                            </div>
+                            <div class="export-content">
+                                <h3>CSV Export</h3>
+                                <p>Export data in CSV format for spreadsheet analysis</p>
+                                <button class="btn btn-primary" onclick="exportCSV()">Export CSV</button>
+                            </div>
+                        </div>
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="export-content">
+                                <h3>PDF Report</h3>
+                                <p>Generate comprehensive PDF report with charts and data</p>
+                                <button class="btn btn-primary" onclick="exportPDF()">Export PDF</button>
+                            </div>
+                        </div>
+                        <div class="export-card">
+                            <div class="export-icon">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <div class="export-content">
+                                <h3>Excel Export</h3>
+                                <p>Export detailed data in Excel format with multiple sheets</p>
+                                <button class="btn btn-primary" onclick="exportExcel()">Export Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom Date Range Modal -->
+    <div class="modal" id="date-range-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Custom Date Range</h3>
+                <button class="modal-close" onclick="closeDateRangeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" id="start-date" name="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">End Date</label>
+                        <input type="date" id="end-date" name="endDate">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeDateRangeModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="applyCustomDateRange()">Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-main.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

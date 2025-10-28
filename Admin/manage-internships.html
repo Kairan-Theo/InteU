@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Internships - Admin Panel</title>
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="manage-users.html"><i class="fas fa-users"></i> Manage Users</a></li>
+                    <li><a href="manage-companies.html"><i class="fas fa-building"></i> Manage Companies</a></li>
+                    <li><a href="manage-internships.html" class="active"><i class="fas fa-briefcase"></i> Manage Internships</a></li>
+                    <li><a href="manage-courses.html"><i class="fas fa-graduation-cap"></i> Manage Courses</a></li>
+                    <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                    <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Manage Internships</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search internships..." id="internship-search">
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="openAddInternshipModal()">
+                            <i class="fas fa-plus"></i> Add Internship
+                        </button>
+                        <div class="notification-icon">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">7</span>
+                        </div>
+                        <div class="admin-profile">
+                            <img src="https://via.placeholder.com/40" alt="Admin">
+                            <span>Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="content-body">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="total-internships">75</h3>
+                            <p>Total Internships</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="active-internships">58</h3>
+                            <p>Active</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pending-review">12</h3>
+                            <p>Pending Review</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="flagged-internships">5</h3>
+                            <p>Flagged</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters and Actions -->
+                <div class="content-filters">
+                    <div class="filter-group">
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending Review</option>
+                            <option value="flagged">Flagged</option>
+                            <option value="expired">Expired</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        <select id="type-filter">
+                            <option value="">All Types</option>
+                            <option value="full-time">Full-time</option>
+                            <option value="part-time">Part-time</option>
+                            <option value="remote">Remote</option>
+                            <option value="on-site">On-site</option>
+                        </select>
+                        <select id="duration-filter">
+                            <option value="">All Durations</option>
+                            <option value="1-3">1-3 months</option>
+                            <option value="3-6">3-6 months</option>
+                            <option value="6-12">6-12 months</option>
+                            <option value="12+">12+ months</option>
+                        </select>
+                        <input type="date" id="date-filter" placeholder="Posted Date">
+                    </div>
+                    <div class="bulk-actions">
+                        <select id="bulk-action">
+                            <option value="">Bulk Actions</option>
+                            <option value="approve">Approve Selected</option>
+                            <option value="flag">Flag Selected</option>
+                            <option value="expire">Mark as Expired</option>
+                            <option value="delete">Delete Selected</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="applyBulkAction()">Apply</button>
+                    </div>
+                </div>
+
+                <!-- Internships Table -->
+                <div class="table-container">
+                    <table class="data-table" id="internships-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Company</th>
+                                <th>Type</th>
+                                <th>Duration</th>
+                                <th>Status</th>
+                                <th>Posted Date</th>
+                                <th>Applications</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="internships-tbody">
+                            <!-- Internships will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn btn-secondary" id="prev-page">Previous</button>
+                    <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">8</span></span>
+                    <button class="btn btn-secondary" id="next-page">Next</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Internship Modal -->
+    <div class="modal" id="internship-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Internship</h3>
+                <button class="modal-close" onclick="closeInternshipModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="internship-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="internship-title">Title</label>
+                            <input type="text" id="internship-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="internship-company">Company</label>
+                            <select id="internship-company" name="company" required>
+                                <option value="">Select Company</option>
+                                <!-- Companies will be loaded here -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="internship-type">Type</label>
+                            <select id="internship-type" name="type" required>
+                                <option value="">Select Type</option>
+                                <option value="full-time">Full-time</option>
+                                <option value="part-time">Part-time</option>
+                                <option value="remote">Remote</option>
+                                <option value="on-site">On-site</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="internship-duration">Duration (months)</label>
+                            <input type="number" id="internship-duration" name="duration" min="1" max="24" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="internship-location">Location</label>
+                            <input type="text" id="internship-location" name="location" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="internship-salary">Salary (optional)</label>
+                            <input type="text" id="internship-salary" name="salary">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="internship-description">Description</label>
+                        <textarea id="internship-description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="internship-requirements">Requirements</label>
+                        <textarea id="internship-requirements" name="requirements" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="internship-status">Status</label>
+                            <select id="internship-status" name="status" required>
+                                <option value="active">Active</option>
+                                <option value="pending">Pending Review</option>
+                                <option value="flagged">Flagged</option>
+                                <option value="expired">Expired</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="internship-deadline">Application Deadline</label>
+                            <input type="date" id="internship-deadline" name="deadline">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="internship-notes">Admin Notes</label>
+                        <textarea id="internship-notes" name="notes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeInternshipModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" form="internship-form">Save Internship</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Internship Details Modal -->
+    <div class="modal" id="internship-details-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Internship Details</h3>
+                <button class="modal-close" onclick="closeInternshipDetailsModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="internship-details-content">
+                <!-- Internship details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeInternshipDetailsModal()">Close</button>
+                <button type="button" class="btn btn-success" onclick="approveInternshipFromDetails()">Approve</button>
+                <button type="button" class="btn btn-warning" onclick="flagInternshipFromDetails()">Flag</button>
+                <button type="button" class="btn btn-danger" onclick="expireInternshipFromDetails()">Mark Expired</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flag Reason Modal -->
+    <div class="modal" id="flag-reason-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Flag Internship</h3>
+                <button class="modal-close" onclick="closeFlagReasonModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="flag-reason-form">
+                    <div class="form-group">
+                        <label for="flag-reason">Reason for flagging:</label>
+                        <select id="flag-reason" name="reason" required>
+                            <option value="">Select Reason</option>
+                            <option value="inappropriate-content">Inappropriate Content</option>
+                            <option value="misleading-info">Misleading Information</option>
+                            <option value="duplicate-posting">Duplicate Posting</option>
+                            <option value="expired-position">Expired Position</option>
+                            <option value="spam">Spam</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="flag-notes">Additional Notes:</label>
+                        <textarea id="flag-notes" name="notes" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeFlagReasonModal()">Cancel</button>
+                <button type="submit" class="btn btn-warning" form="flag-reason-form">Flag Internship</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-main.js"></script>
+    <script src="js/manage-internships.js"></script>
+</body>
+</html>

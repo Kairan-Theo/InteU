@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Company Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .company-nav {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+        padding: 8px 16px;
+        margin-bottom: 24px;
+        max-width: 100%;           /* Prevent overflow */
+        min-width: 100%;           /* Force full width */
+        box-sizing: border-box;    /* Keeps width consistent */
+      }
+
+      .company-nav-links {
+        display: flex;
+        justify-content: space-between;   /* Space between main nav and logout */
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
+        margin: 0 auto;            /* Center the whole group */
+      }
+      .nav-main-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .nav-logout {
+        margin-left: auto;
+      }
+      .company-nav-link {
+        padding: 6px 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: var(--text);
+        transition: background-color 0.2s ease;
+        font-size: 14px;
+      }
+      .company-nav-link:hover {
+        background: rgba(75, 123, 229, 0.1);
+        text-decoration: none;
+        color: var(--text);
+      }
+      .company-nav-link.active {
+        background: var(--primary);
+        color: white;
+      }
+      .profile-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .profile-section {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+      .profile-section h3 {
+        color: var(--primary);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid rgba(75, 123, 229, 0.1);
+      }
+      .company-header {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 32px 24px;
+      }
+      .company-logo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 48px;
+        font-weight: 700;
+        margin: 0 auto 16px;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .company-logo:hover {
+        transform: scale(1.05);
+      }
+      .logo-upload {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 36px;
+        height: 36px;
+        background: white;
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        color: var(--primary);
+      }
+      .company-name {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .company-industry {
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 16px;
+      }
+      .company-stats {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        margin-top: 20px;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .stat-label {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .form-section {
+        margin-bottom: 24px;
+      }
+      .form-section:last-child {
+        margin-bottom: 0;
+      }
+      .social-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .file-upload {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+      .file-upload input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+      .file-upload-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--primary);
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .file-upload-label:hover {
+        background: #5a6fd8;
+      }
+      .password-requirements {
+        background: #f8f9fa;
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 8px;
+        padding: 16px;
+        margin-top: 8px;
+        font-size: 14px;
+      }
+      .requirement {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .requirement.valid {
+        color: #28a745;
+      }
+      .requirement.invalid {
+        color: #dc3545;
+      }
+      .tabs {
+        display: flex;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 24px;
+      }
+      .tab {
+        padding: 12px 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--muted);
+        font-size: 16px;
+        transition: all 0.2s ease;
+      }
+      .tab.active {
+        color: var(--primary);
+        border-bottom: 2px solid var(--primary);
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .notification-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .notification-item:last-child {
+        border-bottom: none;
+      }
+      .notification-info {
+        flex: 1;
+      }
+      .notification-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .notification-desc {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .toggle-switch {
+        position: relative;
+        width: 50px;
+        height: 24px;
+        background: #ccc;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      .toggle-switch.active {
+        background: var(--primary);
+      }
+      .toggle-switch::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.2s ease;
+      }
+      .toggle-switch.active::after {
+        transform: translateX(26px);
+      }
+    </style>
+  </head>
+  <body data-page="dashboard">
+  <header class="site-header" aria-label="Company Portal Navigation">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">🏢</span> 
+        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+      </a>
+
+      <div class="actions">
+        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+        <a href="profile.html" class="btn small">Profile</a>
+        <a href="auth/login.html" class="btn small primary">Logout</a>
+      </div>
+    </div>
+  </header>
+
+    <main class="container">
+      <!-- Company Navigation -->
+      <nav class="company-nav">
+        <div class="company-nav-links">
+          <div class="nav-main-links">
+            <a href="dashboard.html" class="company-nav-link">Dashboard</a>
+            <a href="post-internship.html" class="company-nav-link">Post Internship</a>
+            <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+            <a href="messages.html" class="company-nav-link">Messages</a>
+            <a href="profile.html" class="company-nav-link active">Company Profile</a>
+          </div>
+          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
+        </div>
+      </nav>
+
+      <!-- Company Header -->
+      <div class="profile-section company-header">
+        <div class="company-logo" onclick="document.getElementById('logoUpload').click()">
+          TC
+          <div class="logo-upload">📷</div>
+          <input type="file" id="logoUpload" accept="image/*" style="display: none;" />
+        </div>
+        <div class="company-name">TechCorp Inc.</div>
+        <div class="company-industry">Technology • Software Development</div>
+        <div class="company-stats">
+          <div class="stat-item">
+            <div class="stat-number">15</div>
+            <div class="stat-label">Active Internships</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">127</div>
+            <div class="stat-label">Total Applications</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">23</div>
+            <div class="stat-label">Hired Interns</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="profile-section" style="grid-column: 1 / -1;">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('company-info')">Company Information</button>
+          <button class="tab" onclick="switchTab('account-settings')">Account Settings</button>
+          <button class="tab" onclick="switchTab('notifications')">Notifications</button>
+          <button class="tab" onclick="switchTab('billing')">Billing & Plans</button>
+        </div>
+
+        <!-- Company Information Tab -->
+        <div id="company-info" class="tab-content active">
+          <div class="profile-container">
+            <div>
+              <div class="form-section">
+                <h3>Basic Information</h3>
+                <label>
+                  <span>Company Name *</span>
+                  <input type="text" id="companyName" value="TechCorp Inc." required />
+                </label>
+
+                <label>
+                  <span>Industry *</span>
+                  <select id="industry" required>
+                    <option value="">Select Industry</option>
+                    <option value="technology" selected>Technology</option>
+                    <option value="finance">Finance</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="education">Education</option>
+                    <option value="retail">Retail</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="consulting">Consulting</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Company Size *</span>
+                  <select id="companySize" required>
+                    <option value="">Select Size</option>
+                    <option value="1-10">1-10 employees</option>
+                    <option value="11-50">11-50 employees</option>
+                    <option value="51-200" selected>51-200 employees</option>
+                    <option value="201-500">201-500 employees</option>
+                    <option value="501-1000">501-1000 employees</option>
+                    <option value="1000+">1000+ employees</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Founded Year</span>
+                  <input type="number" id="foundedYear" value="2015" min="1800" max="2024" />
+                </label>
+
+                <label>
+                  <span>Company Description *</span>
+                  <textarea id="companyDescription" required rows="4" placeholder="Describe your company, mission, and what makes it unique...">TechCorp Inc. is a leading software development company specializing in innovative web and mobile applications. We're passionate about creating technology solutions that make a positive impact on businesses and communities worldwide.</textarea>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-section">
+                <h3>Contact Information</h3>
+                <label>
+                  <span>Business Email *</span>
+                  <input type="email" id="businessEmail" value="contact@techcorp.com" required />
+                </label>
+
+                <label>
+                  <span>Phone Number *</span>
+                  <input type="tel" id="phoneNumber" value="+1 (555) 123-4567" required />
+                </label>
+
+                <label>
+                  <span>Website</span>
+                  <input type="url" id="website" value="https://www.techcorp.com" placeholder="https://www.yourcompany.com" />
+                </label>
+
+                <label>
+                  <span>Address *</span>
+                  <textarea id="address" required rows="3" placeholder="Full business address...">123 Tech Street, Silicon Valley, CA 94000, United States</textarea>
+                </label>
+              </div>
+
+              <div class="form-section">
+                <h3>Social Media</h3>
+                <div class="social-links">
+                  <label>
+                    <span>LinkedIn</span>
+                    <input type="url" id="linkedin" value="https://linkedin.com/company/techcorp" placeholder="LinkedIn company page" />
+                  </label>
+
+                  <label>
+                    <span>Twitter</span>
+                    <input type="url" id="twitter" value="https://twitter.com/techcorp" placeholder="Twitter profile" />
+                  </label>
+
+                  <label>
+                    <span>Facebook</span>
+                    <input type="url" id="facebook" placeholder="Facebook page" />
+                  </label>
+
+                  <label>
+                    <span>Instagram</span>
+                    <input type="url" id="instagram" placeholder="Instagram profile" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+            <button type="button" class="btn secondary">Cancel</button>
+            <button type="button" class="btn primary" onclick="saveCompanyInfo()">Save Changes</button>
+          </div>
+        </div>
+
+        <!-- Account Settings Tab -->
+        <div id="account-settings" class="tab-content">
+          <div class="profile-container">
+            <div>
+              <div class="form-section">
+                <h3>Account Information</h3>
+                <label>
+                  <span>Account Email *</span>
+                  <input type="email" id="accountEmail" value="admin@techcorp.com" required />
+                </label>
+
+                <label>
+                  <span>Account Manager Name *</span>
+                  <input type="text" id="managerName" value="John Smith" required />
+                </label>
+
+                <label>
+                  <span>Manager Title</span>
+                  <input type="text" id="managerTitle" value="HR Director" />
+                </label>
+              </div>
+
+              <div class="form-section">
+                <h3>Change Password</h3>
+                <label>
+                  <span>Current Password *</span>
+                  <input type="password" id="currentPassword" required />
+                </label>
+
+                <label>
+                  <span>New Password *</span>
+                  <input type="password" id="newPassword" required />
+                </label>
+
+                <label>
+                  <span>Confirm New Password *</span>
+                  <input type="password" id="confirmPassword" required />
+                </label>
+
+                <div class="password-requirements">
+                  <div class="requirement" id="lengthReq">
+                    <span>✗</span> At least 8 characters
+                  </div>
+                  <div class="requirement" id="upperReq">
+                    <span>✗</span> One uppercase letter
+                  </div>
+                  <div class="requirement" id="lowerReq">
+                    <span>✗</span> One lowercase letter
+                  </div>
+                  <div class="requirement" id="numberReq">
+                    <span>✗</span> One number
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-section">
+                <h3>Account Preferences</h3>
+                <label>
+                  <span>Time Zone</span>
+                  <select id="timezone">
+                    <option value="UTC-8" selected>Pacific Time (UTC-8)</option>
+                    <option value="UTC-5">Eastern Time (UTC-5)</option>
+                    <option value="UTC-6">Central Time (UTC-6)</option>
+                    <option value="UTC-7">Mountain Time (UTC-7)</option>
+                    <option value="UTC+0">UTC</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Language</span>
+                  <select id="language">
+                    <option value="en" selected>English</option>
+                    <option value="th">ไทย (Thai)</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Date Format</span>
+                  <select id="dateFormat">
+                    <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                    <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                    <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-section">
+                <h3>Account Actions</h3>
+                <button class="btn secondary" onclick="exportData()">Export Account Data</button>
+                <button class="btn" style="background: #dc3545; margin-top: 12px;" onclick="deactivateAccount()">Deactivate Account</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+            <button type="button" class="btn secondary">Cancel</button>
+            <button type="button" class="btn primary" onclick="saveAccountSettings()">Save Changes</button>
+          </div>
+        </div>
+
+        <!-- Notifications Tab -->
+        <div id="notifications" class="tab-content">
+          <div class="form-section">
+            <h3>Email Notifications</h3>
+            
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">New Applications</div>
+                <div class="notification-desc">Get notified when someone applies to your internships</div>
+              </div>
+              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">Application Updates</div>
+                <div class="notification-desc">Updates on application status changes</div>
+              </div>
+              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">Messages</div>
+                <div class="notification-desc">New messages from applicants</div>
+              </div>
+              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">Internship Expiry</div>
+                <div class="notification-desc">Reminders when internship postings are about to expire</div>
+              </div>
+              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Push Notifications</h3>
+            
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">Urgent Messages</div>
+                <div class="notification-desc">Important messages that need immediate attention</div>
+              </div>
+              <div class="toggle-switch" onclick="toggleNotification(this)"></div>
+            </div>
+
+            <div class="notification-item">
+              <div class="notification-info">
+                <div class="notification-title">Daily Summary</div>
+                <div class="notification-desc">Daily summary of applications and activities</div>
+              </div>
+              <div class="toggle-switch" onclick="toggleNotification(this)"></div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
+            <button type="button" class="btn primary" onclick="saveNotificationSettings()">Save Preferences</button>
+          </div>
+        </div>
+
+        <!-- Billing Tab -->
+        <div id="billing" class="tab-content">
+          <div class="profile-container">
+            <div>
+              <div class="form-section">
+                <h3>Current Plan</h3>
+                <div style="background: #f8f9fa; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 20px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h4 style="margin: 0; color: var(--primary);">Professional Plan</h4>
+                    <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px;">ACTIVE</span>
+                  </div>
+                  <p style="margin: 0 0 12px 0; color: var(--muted);">Up to 50 active internship postings</p>
+                  <div style="font-size: 24px; font-weight: 700; color: var(--text);">$99/month</div>
+                  <div style="margin-top: 16px;">
+                    <button class="btn secondary small">Change Plan</button>
+                    <button class="btn small" style="margin-left: 8px;">Cancel Subscription</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>Billing History</h3>
+                <div style="border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
+                  <div style="background: #f8f9fa; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.1); font-weight: 600;">
+                    Recent Invoices
+                  </div>
+                  <div style="padding: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                      <div>
+                        <div>January 2024</div>
+                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
+                      </div>
+                      <div style="text-align: right;">
+                        <div>$99.00</div>
+                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
+                      </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
+                      <div>
+                        <div>December 2023</div>
+                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
+                      </div>
+                      <div style="text-align: right;">
+                        <div>$99.00</div>
+                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
+                      </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+                      <div>
+                        <div>November 2023</div>
+                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
+                      </div>
+                      <div style="text-align: right;">
+                        <div>$99.00</div>
+                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="form-section">
+                <h3>Payment Method</h3>
+                <div style="background: #f8f9fa; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 20px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 40px; height: 24px; background: var(--primary); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">VISA</div>
+                      <div>
+                        <div>•••• •••• •••• 4242</div>
+                        <div style="font-size: 14px; color: var(--muted);">Expires 12/25</div>
+                      </div>
+                    </div>
+                    <button class="btn secondary small">Update</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3>Billing Address</h3>
+                <label>
+                  <span>Company Name</span>
+                  <input type="text" value="TechCorp Inc." />
+                </label>
+                <label>
+                  <span>Address</span>
+                  <textarea rows="2">123 Tech Street, Silicon Valley, CA 94000</textarea>
+                </label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                  <label>
+                    <span>Country</span>
+                    <select>
+                      <option value="US" selected>United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="UK">United Kingdom</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span>Tax ID</span>
+                    <input type="text" placeholder="Optional" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>Help & Support</h4>
+          <ul>
+            <li><a href="#" id="contactUsLink">Contact us</a></li>
+            <li><a href="#" id="faqLink">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Privacy</h4>
+          <ul>
+            <li><a href="#" id="privacyPolicyLink">Privacy Policy</a></li>
+            <li><a href="#" id="pdpaNoticeLink">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Logo upload functionality
+        document.getElementById('logoUpload').addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              const logo = document.querySelector('.company-logo');
+              logo.style.backgroundImage = `url(${e.target.result})`;
+              logo.style.backgroundSize = 'cover';
+              logo.style.backgroundPosition = 'center';
+              logo.textContent = '';
+              showToast('Logo updated successfully!', 'success');
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+        // Password validation
+        const newPasswordInput = document.getElementById('newPassword');
+        if (newPasswordInput) {
+          newPasswordInput.addEventListener('input', validatePassword);
+        }
+
+        function validatePassword() {
+          const password = newPasswordInput.value;
+          const requirements = {
+            length: password.length >= 8,
+            upper: /[A-Z]/.test(password),
+            lower: /[a-z]/.test(password),
+            number: /\d/.test(password)
+          };
+
+          updateRequirement('lengthReq', requirements.length);
+          updateRequirement('upperReq', requirements.upper);
+          updateRequirement('lowerReq', requirements.lower);
+          updateRequirement('numberReq', requirements.number);
+        }
+
+        function updateRequirement(id, isValid) {
+          const element = document.getElementById(id);
+          if (element) {
+            element.className = `requirement ${isValid ? 'valid' : 'invalid'}`;
+            element.querySelector('span').textContent = isValid ? '✓' : '✗';
+          }
+        }
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+          if (confirm('Are you sure you want to logout?')) {
+            showToast('Logging out...', 'info');
+            setTimeout(() => {
+              window.location.href = '../pages/auth/login.html';
+            }, 1000);
+          }
+        });
+      });
+
+      // Tab switching
+      function switchTab(tabId) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.remove('active');
+        });
+
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+
+        // Show selected tab content
+        document.getElementById(tabId).classList.add('active');
+
+        // Add active class to clicked tab
+        event.target.classList.add('active');
+      }
+
+      // Notification toggle
+      function toggleNotification(toggle) {
+        toggle.classList.toggle('active');
+      }
+
+      // Save functions
+      function saveCompanyInfo() {
+        // Validate required fields
+        const requiredFields = ['companyName', 'industry', 'companySize', 'companyDescription', 'businessEmail', 'phoneNumber', 'address'];
+        
+        for (let fieldId of requiredFields) {
+          const field = document.getElementById(fieldId);
+          if (!field.value.trim()) {
+            showToast(`Please fill in the ${fieldId.replace(/([A-Z])/g, ' $1').toLowerCase()} field`, 'error');
+            return;
+          }
+        }
+
+        showToast('Company information updated successfully!', 'success');
+      }
+
+      function saveAccountSettings() {
+        const currentPassword = document.getElementById('currentPassword').value;
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (newPassword && newPassword !== confirmPassword) {
+          showToast('New passwords do not match', 'error');
+          return;
+        }
+
+        if (newPassword && !currentPassword) {
+          showToast('Please enter your current password', 'error');
+          return;
+        }
+
+        showToast('Account settings updated successfully!', 'success');
+      }
+
+      function saveNotificationSettings() {
+        showToast('Notification preferences saved!', 'success');
+      }
+
+      function exportData() {
+        showToast('Preparing data export...', 'info');
+        setTimeout(() => {
+          showToast('Data export will be sent to your email', 'success');
+        }, 2000);
+      }
+
+      function deactivateAccount() {
+        if (confirm('Are you sure you want to deactivate your account? This action cannot be undone.')) {
+          showToast('Account deactivation initiated. You will receive a confirmation email.', 'info');
+        }
+      }
+    </script>
+  </body>
+</html>
