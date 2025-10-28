@@ -5,6 +5,8 @@ let currentPage = 1;
 let itemsPerPage = 10;
 let selectedCourseId = null;
 
+
+
 // Sample course data
 const sampleCourses = [
     {
@@ -160,10 +162,8 @@ function createCourseRow(course) {
         <td>${course.id}</td>
         <td>
             <div class="course-info">
-                <img src="${course.thumbnail}" alt="${course.title}" class="course-thumbnail">
                 <div class="course-details">
                     <strong>${course.title}</strong>
-                    <small>by ${course.instructor}</small>
                 </div>
             </div>
         </td>
@@ -175,17 +175,8 @@ function createCourseRow(course) {
         <td>${formatDate(course.createdDate)}</td>
         <td>
             <div class="action-buttons">
-                <button class="btn btn-sm btn-info" onclick="viewCourse('${course.id}')" title="View Details">
-                    <i class="fas fa-eye"></i>
-                </button>
                 <button class="btn btn-sm btn-primary" onclick="editCourse('${course.id}')" title="Edit">
                     <i class="fas fa-edit"></i>
-                </button>
-                <button class="btn btn-sm btn-success" onclick="publishCourse('${course.id}')" title="Publish">
-                    <i class="fas fa-upload"></i>
-                </button>
-                <button class="btn btn-sm btn-warning" onclick="archiveCourse('${course.id}')" title="Archive">
-                    <i class="fas fa-archive"></i>
                 </button>
                 <button class="btn btn-sm btn-danger" onclick="deleteCourse('${course.id}')" title="Delete">
                     <i class="fas fa-trash"></i>
@@ -631,3 +622,74 @@ function showNotification(message, type = 'info') {
         }
     }, 5000);
 }
+
+
+/* ===============================
+   CREATE COURSE POPUP LOGIC
+================================*/
+document.addEventListener('DOMContentLoaded', () => {
+    // Elements for the popup
+    const createBtn = document.getElementById('create-course-btn');
+    const popup = document.getElementById('create-course-popup');
+    const closeBtn = document.getElementById('close-popup-btn');
+    const form = document.getElementById('create-course-form');
+
+    // Check if elements exist before binding (avoid console errors)
+    if (createBtn && popup && closeBtn && form) {
+        
+        // Show popup when clicking "Create New Course" button
+        createBtn.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+
+        // Close popup when clicking Cancel
+        closeBtn.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Submit popup form
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('course-title').value.trim();
+            const category = document.getElementById('course-category').value;
+            const level = document.getElementById('course-level').value;
+            const duration = parseInt(document.getElementById('course-duration').value);
+
+            // Create a new course object
+            const newCourse = {
+                id: 'CRS' + String(courses.length + 1).padStart(3, '0'),
+                title,
+                category,
+                level,
+                duration,
+                price: 0,
+                instructor: 'Unknown',
+                description: '',
+                objectives: [],
+                prerequisites: '',
+                thumbnail: 'https://via.placeholder.com/300x200?text=Course',
+                status: 'draft',
+                tags: [],
+                enrollments: 0,
+                createdDate: new Date().toISOString().split('T')[0],
+                lastUpdated: new Date().toISOString().split('T')[0]
+            };
+
+            courses.push(newCourse);
+            applyFilters();
+            updateStats();
+            showNotification(`New course "${title}" created successfully!`, 'success');
+
+            popup.style.display = 'none';
+            form.reset();
+        });
+
+        // Close popup when clicking outside the form
+        window.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    }
+});
