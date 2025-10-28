@@ -3,70 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InteU — Register</title>
+    <title>InteU — Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
   </head>
-  <body data-page="register">
+  <body data-page="profile">
     <header class="site-header" aria-label="Main Navigation">
       <div class="container header-inner">
-        <a class="logo" href="index.html"><span class="logo-mark"><img src="images/image1.jpg" alt="InteU logo" /></span> InteU</a>
+        <a class="logo" href="../../index.html"><span class="logo-mark"><img src="../../images/image1.jpg" alt="InteU logo" /></span> InteU</a>
         <nav class="nav">
-          <a href="index.html" data-i18n="nav.home">Home</a>
-          <a href="companies.html" data-i18n="nav.companies">Companies</a>
-          <a href="articles.html" data-i18n="nav.articles">Articles</a>
-          <a href="sections.html" data-i18n="nav.sections">Sections</a>
+          <a href="../../index.html" data-i18n="nav.home">Home</a>
+          <a href="../main/companies.html" data-i18n="nav.companies">Companies</a>
+          <a href="../main/articles.html" data-i18n="nav.articles">Articles</a>
+          <a href="../main/sections.html" data-i18n="nav.sections">Sections</a>
         </nav>
         <div class="actions">
           <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
           <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
           <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
-          <a href="login.html" class="btn small primary" data-i18n="nav.login">Login</a>
+          <a href="../auth/login.html" class="btn small primary" data-i18n="nav.login">Login</a>
         </div>
       </div>
     </header>
 
-    <main class="container narrow">
-      <section class="card">
-        <h1 class="card-title" data-i18n="register.title">Register</h1>
-        <form id="registerPageForm" novalidate>
-          <label>
-            <span data-i18n="register.role">Role</span>
-            <select id="registerPageRole" required>
-              <option value="student" selected>Student</option>
-              <option value="employer">Employer</option>
-              <option value="admin">Admin</option>
-            </select>
-          </label>
-          <label>
-            <span data-i18n="register.name">Full Name</span>
-            <input type="text" id="registerPageName" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" id="registerPageEmail" required />
-          </label>
-          <label>
-            <span data-i18n="register.password">Password</span>
-            <input type="password" id="registerPagePassword" required />
-          </label>
-          <div class="row">
-            <label class="half">
-              <span data-i18n="register.resume">Resume (simulated)</span>
-              <input type="file" id="registerPageResume" accept=".pdf,.doc,.docx" />
-            </label>
-            <label class="half">
-              <span data-i18n="register.transcript">Transcript (simulated)</span>
-              <input type="file" id="registerPageTranscript" accept=".pdf,.doc,.docx" />
-            </label>
-          </div>
-          <div class="row space-between">
-            <button type="submit" class="btn primary" data-i18n="register.submit">Create Account</button>
-            <span class="muted"><a href="login.html" data-i18n="login.title">Login</a></span>
-          </div>
-        </form>
+    <main class="container">
+      <section class="card profile-card">
+        <span class="pro">PRO</span>
+        <img class="round" src="../../images/jen.jpg" alt="user" />
+        <h3 id="profileName">Jennie Kim</h3>
+        <h6 id="profileRole">Student</h6>
+        <p><span id="profileEmail">jennie@gmail.com</span></p>
+        <div class="buttons">
+          <button class="btn small primary" id="editProfileBtn">Edit</button>
+          <button class="btn small link" onclick="history.back()">Back</button>
+        </div>
+        <div class="skills">
+          <h6>Skills</h6>
+          <ul id="profileSkills">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
       </section>
     </main>
 
@@ -218,9 +198,52 @@
         </div>
     </dialog>
 
-    <script src="js/notifications.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Edit Profile Modal -->
+    <dialog id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-i18n="profile.edit.title">Edit Profile</h2>
+                <button class="modal-close" onclick="document.getElementById('editProfileModal').close()" aria-label="Close">&times;</button>
+            </div>
+            <form id="editProfileForm" novalidate>
+                <div class="form-group">
+                    <label for="editProfileImage" data-i18n="profile.edit.image">Profile Image</label>
+                    <div class="profile-image-section">
+                        <img id="currentProfileImage" class="round" src="../../images/jen.jpg" alt="Current profile" />
+                        <input type="file" id="editProfileImage" name="profileImage" accept="image/*">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editProfileName" data-i18n="profile.edit.name">Full Name</label>
+                    <input type="text" id="editProfileName" name="name" required value="Jennie Kim">
+                </div>
+                <div class="form-group">
+                    <label for="editProfileEmail" data-i18n="profile.edit.email">Email</label>
+                    <input type="email" id="editProfileEmail" name="email" required value="jennie@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="editProfileRole" data-i18n="profile.edit.role">Role</label>
+                    <select id="editProfileRole" name="role" required>
+                        <option value="Student" selected>Student</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="Professional">Professional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editProfileSkills" data-i18n="profile.edit.skills">Skills (comma-separated)</label>
+                    <textarea id="editProfileSkills" name="skills" rows="3" placeholder="HTML, CSS, JavaScript">HTML, CSS, JavaScript</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn primary" data-i18n="profile.edit.save">Save Changes</button>
+                    <button type="button" class="btn" onclick="document.getElementById('editProfileModal').close()" data-i18n="profile.edit.cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <script src="../../js/notifications.js"></script>
+    <script src="../../js/search.js"></script>
+    <script src="../../js/main.js"></script>
   </body>
   
 </html>
