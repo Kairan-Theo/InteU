@@ -12,9 +12,9 @@
       .company-nav {
         background: var(--card);
         border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
+        border-radius: 25px;
         box-shadow: var(--shadow);
-        padding: 16px;
+        padding: 8px 16px;
         margin-bottom: 24px;
         max-width: 100%;           /* Prevent overflow */
         min-width: 100%;           /* Force full width */
@@ -23,18 +23,28 @@
 
       .company-nav-links {
         display: flex;
-        justify-content: center;   /* Centers the nav */
-        gap: 8px;
+        justify-content: space-between;   /* Space between main nav and logout */
+        align-items: center;
+        gap: 6px;
         flex-wrap: wrap;
-        max-width: 1200px;         /* ✅ Lock nav width to dashboard’s container size */
+        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
         margin: 0 auto;            /* Center the whole group */
       }
+      .nav-main-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .nav-logout {
+        margin-left: auto;
+      }
       .company-nav-link {
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: 6px 12px;
+        border-radius: 20px;
         text-decoration: none;
         color: var(--text);
         transition: background-color 0.2s ease;
+        font-size: 14px;
       }
       .company-nav-link:hover {
         background: rgba(75, 123, 229, 0.1);
@@ -284,12 +294,15 @@
       <!-- Company Navigation -->
       <nav class="company-nav">
         <div class="company-nav-links">
-          <a href="dashboard.html" class="company-nav-link">Dashboard</a>
-          <a href="post-internship.html" class="company-nav-link">Post Internship</a>
-          <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
-          <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
-          <a href="messages.html" class="company-nav-link">Messages</a>
-          <a href="profile.html" class="company-nav-link active">Company Profile</a>
+          <div class="nav-main-links">
+            <a href="dashboard.html" class="company-nav-link">Dashboard</a>
+            <a href="post-internship.html" class="company-nav-link">Post Internship</a>
+            <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+            <a href="messages.html" class="company-nav-link">Messages</a>
+            <a href="profile.html" class="company-nav-link active">Company Profile</a>
+          </div>
+          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
         </div>
       </nav>
 

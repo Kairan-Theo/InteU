@@ -12,9 +12,9 @@
         .company-nav {
         background: var(--card);
         border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
+        border-radius: 25px;
         box-shadow: var(--shadow);
-        padding: 16px;
+        padding: 8px 16px;
         margin-bottom: 24px;
         max-width: 100%;           /* Prevent overflow */
         min-width: 100%;           /* Force full width */
@@ -23,18 +23,28 @@
 
       .company-nav-links {
         display: flex;
-        justify-content: center;   /* Centers the nav */
-        gap: 8px;
+        justify-content: space-between;   /* Space between main nav and logout */
+        align-items: center;
+        gap: 6px;
         flex-wrap: wrap;
-        max-width: 1200px;         /* ✅ Lock nav width to dashboard’s container size */
+        max-width: 1200px;         /* ✅ Lock nav width to dashboard's container size */
         margin: 0 auto;            /* Center the whole group */
       }
+      .nav-main-links {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .nav-logout {
+        margin-left: auto;
+      }
       .company-nav-link {
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: 6px 12px;
+        border-radius: 20px;
         text-decoration: none;
         color: var(--text);
         transition: background-color 0.2s ease;
+        font-size: 14px;
       }
       .company-nav-link:hover {
         background: rgba(75, 123, 229, 0.1);
@@ -91,42 +101,7 @@
       .stat-change.negative {
         color: #dc3545;
       }
-      .quick-actions {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 16px;
-        margin-bottom: 32px;
-      }
-      .action-card {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
-        padding: 24px;
-        text-align: center;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        text-decoration: none;
-        color: var(--text);
-      }
-      .action-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        text-decoration: none;
-        color: var(--text);
-      }
-      .action-icon {
-        font-size: 48px;
-        margin-bottom: 16px;
-      }
-      .action-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 8px;
-      }
-      .action-description {
-        color: var(--muted);
-        font-size: 14px;
-      }
+
       .recent-activity {
         background: var(--card);
         border: 1px solid rgba(0,0,0,0.06);
@@ -223,8 +198,6 @@
       <div class="actions">
         <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
         <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
-        <a href="profile.html" class="btn small">Profile</a>
-        <a href="auth/login.html" class="btn small primary">Logout</a>
       </div>
     </div>
   </header>
@@ -233,12 +206,15 @@
       <!-- Company Navigation -->
       <nav class="company-nav">
         <div class="company-nav-links">
-          <a href="dashboard.html" class="company-nav-link active">Dashboard</a>
-          <a href="post-internship.html" class="company-nav-link">Post Internship</a>
-          <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
-          <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
-          <a href="messages.html" class="company-nav-link">Messages</a>
-          <a href="profile.html" class="company-nav-link">Company Profile</a>
+          <div class="nav-main-links">
+            <a href="dashboard.html" class="company-nav-link active">Dashboard</a>
+            <a href="post-internship.html" class="company-nav-link">Post Internship</a>
+            <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+            <a href="messages.html" class="company-nav-link">Messages</a>
+            <a href="profile.html" class="company-nav-link">Company Profile</a>
+          </div>
+          <a href="auth/login.html" class="company-nav-link nav-logout">Logout</a>
         </div>
       </nav>
 
@@ -272,32 +248,7 @@
         </div>
       </div>
 
-      <!-- Quick Actions -->
-      <section>
-        <h2 style="margin-bottom: 16px;">Quick Actions</h2>
-        <div class="quick-actions">
-          <a href="post-internship.html" class="action-card">
-            <div class="action-icon">📝</div>
-            <div class="action-title">Post New Internship</div>
-            <div class="action-description">Create a new internship opportunity to attract talented students</div>
-          </a>
-          <a href="view-applicants.html" class="action-card">
-            <div class="action-icon">👥</div>
-            <div class="action-title">Review Applicants</div>
-            <div class="action-description">View and manage applications for your internship positions</div>
-          </a>
-          <a href="messages.html" class="action-card">
-            <div class="action-icon">💬</div>
-            <div class="action-title">Messages</div>
-            <div class="action-description">Communicate with potential interns and answer their questions</div>
-          </a>
-          <a href="manage-internships.html" class="action-card">
-            <div class="action-icon">📊</div>
-            <div class="action-title">Manage Internships</div>
-            <div class="action-description">Edit, close, or view analytics for your posted internships</div>
-          </a>
-        </div>
-      </section>
+
 
       <!-- Dashboard Grid -->
       <div class="dashboard-grid">
