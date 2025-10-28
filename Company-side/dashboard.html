@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InteU — Company Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .company-nav {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 16px;
+        margin-bottom: 24px;
+      }
+      .company-nav-links {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .company-nav-link {
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text);
+        transition: background-color 0.2s ease;
+      }
+      .company-nav-link:hover {
+        background: rgba(75, 123, 229, 0.1);
+        text-decoration: none;
+        color: var(--text);
+      }
+      .company-nav-link.active {
+        background: var(--primary);
+        color: white;
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .stat-card {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        text-align: center;
+        transition: transform 0.2s ease;
+      }
+      .stat-card:hover {
+        transform: translateY(-2px);
+      }
+      .stat-number {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+      .stat-label {
+        color: var(--muted);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .stat-change {
+        font-size: 12px;
+        margin-top: 4px;
+      }
+      .stat-change.positive {
+        color: #28a745;
+      }
+      .stat-change.negative {
+        color: #dc3545;
+      }
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .action-card {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        text-align: center;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+        color: var(--text);
+      }
+      .action-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        text-decoration: none;
+        color: var(--text);
+      }
+      .action-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+      .action-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .action-description {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .recent-activity {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+      .activity-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+      .activity-item:last-child {
+        border-bottom: none;
+      }
+      .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+      .activity-icon.new-applicant {
+        background: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+      }
+      .activity-icon.message {
+        background: rgba(75, 123, 229, 0.1);
+        color: var(--primary);
+      }
+      .activity-icon.internship {
+        background: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+      }
+      .activity-content {
+        flex: 1;
+      }
+      .activity-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .activity-description {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .activity-time {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .chart-container {
+        background: var(--card);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+      }
+      .welcome-banner {
+        background: linear-gradient(135deg, var(--primary), #5a7fd8);
+        color: white;
+        border-radius: 14px;
+        padding: 32px;
+        margin-bottom: 32px;
+        text-align: center;
+      }
+      .welcome-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .welcome-subtitle {
+        opacity: 0.9;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body data-page="dashboard">
+    <header class="site-header" aria-label="Company Portal Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark">🏢</span> 
+          InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+        </a>
+        <nav class="nav">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="post-internship.html">Post Internship</a>
+          <a href="manage-internships.html">Manage</a>
+          <a href="view-applicants.html">Applicants</a>
+          <a href="messages.html">Messages</a>
+        </nav>
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+          <a href="profile.html" class="btn small">Profile</a>
+          <a href="auth/login.html" class="btn small primary">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Company Navigation -->
+      <nav class="company-nav">
+        <div class="company-nav-links">
+          <a href="dashboard.html" class="company-nav-link active">Dashboard</a>
+          <a href="post-internship.html" class="company-nav-link">Post Internship</a>
+          <a href="manage-internships.html" class="company-nav-link">Manage Internships</a>
+          <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
+          <a href="messages.html" class="company-nav-link">Messages</a>
+          <a href="profile.html" class="company-nav-link">Company Profile</a>
+        </div>
+      </nav>
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner">
+        <div class="welcome-title">Welcome back, TechCorp Inc.!</div>
+        <div class="welcome-subtitle">Here's what's happening with your internship programs</div>
+      </div>
+
+      <!-- Statistics Overview -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Active Internships</div>
+          <div class="stat-change positive">+1 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">47</div>
+          <div class="stat-label">New Applicants</div>
+          <div class="stat-change positive">+12 today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">156</div>
+          <div class="stat-label">Total Views</div>
+          <div class="stat-change positive">+23% this month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Messages</div>
+          <div class="stat-change">3 unread</div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <section>
+        <h2 style="margin-bottom: 16px;">Quick Actions</h2>
+        <div class="quick-actions">
+          <a href="post-internship.html" class="action-card">
+            <div class="action-icon">📝</div>
+            <div class="action-title">Post New Internship</div>
+            <div class="action-description">Create a new internship opportunity to attract talented students</div>
+          </a>
+          <a href="view-applicants.html" class="action-card">
+            <div class="action-icon">👥</div>
+            <div class="action-title">Review Applicants</div>
+            <div class="action-description">View and manage applications for your internship positions</div>
+          </a>
+          <a href="messages.html" class="action-card">
+            <div class="action-icon">💬</div>
+            <div class="action-title">Messages</div>
+            <div class="action-description">Communicate with potential interns and answer their questions</div>
+          </a>
+          <a href="manage-internships.html" class="action-card">
+            <div class="action-icon">📊</div>
+            <div class="action-title">Manage Internships</div>
+            <div class="action-description">Edit, close, or view analytics for your posted internships</div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+          <h3 style="margin-bottom: 20px;">Recent Activity</h3>
+          
+          <div class="activity-item">
+            <div class="activity-icon new-applicant">👤</div>
+            <div class="activity-content">
+              <div class="activity-title">New Application Received</div>
+              <div class="activity-description">Sarah Johnson applied for Software Engineering Intern</div>
+            </div>
+            <div class="activity-time">2 hours ago</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon message">💬</div>
+            <div class="activity-content">
+              <div class="activity-title">New Message</div>
+              <div class="activity-description">Question about UX Design Intern position</div>
+            </div>
+            <div class="activity-time">4 hours ago</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon new-applicant">👤</div>
+            <div class="activity-content">
+              <div class="activity-title">New Application Received</div>
+              <div class="activity-description">Michael Chen applied for Data Science Intern</div>
+            </div>
+            <div class="activity-time">6 hours ago</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon internship">📝</div>
+            <div class="activity-content">
+              <div class="activity-title">Internship Published</div>
+              <div class="activity-description">Marketing Intern position is now live</div>
+            </div>
+            <div class="activity-time">1 day ago</div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon new-applicant">👤</div>
+            <div class="activity-content">
+              <div class="activity-title">Application Status Updated</div>
+              <div class="activity-description">Emma Wilson accepted for UX Design Intern</div>
+            </div>
+            <div class="activity-time">2 days ago</div>
+          </div>
+
+          <div style="text-align: center; margin-top: 16px;">
+            <a href="#" class="btn small">View All Activity</a>
+          </div>
+        </section>
+
+        <!-- Analytics Chart Placeholder -->
+        <section class="chart-container">
+          <div style="text-align: center;">
+            <h3 style="margin-bottom: 16px;">Application Analytics</h3>
+            <p>📈 Chart visualization would go here</p>
+            <p style="color: var(--muted); font-size: 14px;">Track application trends, view counts, and engagement metrics</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Current Internships Overview -->
+      <section class="card">
+        <h3 class="card-title">Your Active Internships</h3>
+        <p class="muted" style="margin-bottom: 24px;">Quick overview of your current internship postings</p>
+        
+        <div style="display: grid; gap: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">Software Engineering Intern</div>
+              <div style="color: var(--muted); font-size: 14px;">24 applicants • 12 days left</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span style="background: #e8f5e8; color: #2d5a2d; padding: 4px 8px; border-radius: 12px; font-size: 12px;">Active</span>
+              <a href="view-applicants.html?id=1" class="btn small">View Applicants</a>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">UX Design Intern</div>
+              <div style="color: var(--muted); font-size: 14px;">18 applicants • 8 days left</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span style="background: #e8f5e8; color: #2d5a2d; padding: 4px 8px; border-radius: 12px; font-size: 12px;">Active</span>
+              <a href="view-applicants.html?id=2" class="btn small">View Applicants</a>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px;">
+            <div>
+              <div style="font-weight: 600; margin-bottom: 4px;">Marketing Intern</div>
+              <div style="color: var(--muted); font-size: 14px;">5 applicants • 20 days left</div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <span style="background: #e8f5e8; color: #2d5a2d; padding: 4px 8px; border-radius: 12px; font-size: 12px;">Active</span>
+              <a href="view-applicants.html?id=3" class="btn small">View Applicants</a>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 24px;">
+          <a href="manage-internships.html" class="btn">Manage All Internships</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <h4>Help & Support</h4>
+          <ul>
+            <li><a href="#" id="contactUsLink">Contact us</a></li>
+            <li><a href="#" id="faqLink">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Privacy</h4>
+          <ul>
+            <li><a href="#" id="privacyPolicyLink">Privacy Policy</a></li>
+            <li><a href="#" id="pdpaNoticeLink">PDPA Notice</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>InteU</h4>
+          <p class="muted">Trusted internships for global learners.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Simulate real-time updates
+        function updateStats() {
+          // This would typically fetch real data from an API
+          console.log('Updating dashboard stats...');
+        }
+
+        // Update stats every 30 seconds
+        setInterval(updateStats, 30000);
+
+        // Logout functionality
+        // Logout functionality handled by the logout link in header
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.action-card').forEach(card => {
+          card.addEventListener('click', function() {
+            const action = this.querySelector('.action-title').textContent;
+            console.log(`Dashboard action clicked: ${action}`);
+          });
+        });
+
+        // Add hover effects for stat cards
+        document.querySelectorAll('.stat-card').forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px)';
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(-2px)';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
