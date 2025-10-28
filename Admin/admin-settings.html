@@ -6,6 +6,7 @@
     <title>Admin Settings - Admin Panel</title>
     <link rel="stylesheet" href="css/admin-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="admin-container">
@@ -48,7 +49,7 @@
                             <span class="notification-badge">5</span>
                         </div>
                         <div class="admin-profile">
-                            <img src="https://via.placeholder.com/40" alt="Admin">
+                            <img src="../images/john-doe.png" alt="Admin">
                             <span>Admin</span>
                         </div>
                     </div>
@@ -84,7 +85,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="site-name">Site Name</label>
-                                    <input type="text" id="site-name" name="siteName" value="InternEU Platform" required>
+                                    <input type="text" id="site-name" name="siteName" value="InteU Platform" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="site-tagline">Site Tagline</label>
@@ -94,11 +95,11 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="site-url">Site URL</label>
-                                    <input type="url" id="site-url" name="siteUrl" value="https://interneu.com" required>
+                                    <input type="url" id="site-url" name="siteUrl" value="https://inteu.com" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="admin-email">Admin Email</label>
-                                    <input type="email" id="admin-email" name="adminEmail" value="admin@interneu.com" required>
+                                    <input type="email" id="admin-email" name="adminEmail" value="admin@inteu.com" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -377,7 +378,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="smtp-username">SMTP Username</label>
-                                    <input type="text" id="smtp-username" name="smtpUsername" value="noreply@interneu.com">
+                                    <input type="text" id="smtp-username" name="smtpUsername" value="noreply@inteu.com">
                                 </div>
                                 <div class="form-group">
                                     <label for="smtp-password">SMTP Password</label>
@@ -568,7 +569,6 @@
             </div>
         </div>
     </div>
-
     <script src="js/admin-main.js"></script>
     <script src="js/admin-settings.js"></script>
 </body>
