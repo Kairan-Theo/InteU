@@ -9,19 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
     <style>
-      .company-nav {
-        background: var(--card);
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
-        box-shadow: var(--shadow);
-        padding: 16px;
-        margin-bottom: 24px;
-      }
-      .company-nav-links {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
+     .company-nav {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin-bottom: 24px;
+      max-width: 100%;           /* Prevent overflow */
+      min-width: 100%;           /* Force full width */
+      box-sizing: border-box;    /* Keeps width consistent */
+    }
+
+    .company-nav-links {
+      display: flex;
+      justify-content: center;   /* Centers the nav */
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: 1200px;         /* ✅ Lock nav width to dashboard’s container size */
+      margin: 0 auto;            /* Center the whole group */
+    }
       .company-nav-link {
         padding: 8px 16px;
         border-radius: 8px;
@@ -209,28 +216,22 @@
       }
     </style>
   </head>
-  <body data-page="manage-internships">
-    <header class="site-header" aria-label="Company Portal Navigation">
-      <div class="container header-inner">
-        <a class="logo" href="index.html">
-          <span class="logo-mark">🏢</span> 
-          InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
-        </a>
-        <nav class="nav">
-          <a href="dashboard.html">Dashboard</a>
-          <a href="post-internship.html">Post Internship</a>
-          <a href="manage-internships.html" class="active">Manage</a>
-          <a href="view-applicants.html">Applicants</a>
-          <a href="messages.html">Messages</a>
-        </nav>
-        <div class="actions">
-          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
-          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
-          <a href="profile.html" class="btn small">Profile</a>
-          <a href="auth/login.html" class="btn small primary">Logout</a>
-        </div>
+  <body data-page="dashboard">
+  <header class="site-header" aria-label="Company Portal Navigation">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">🏢</span> 
+        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+      </a>
+
+      <div class="actions">
+        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+        <a href="profile.html" class="btn small">Profile</a>
+        <a href="auth/login.html" class="btn small primary">Logout</a>
       </div>
-    </header>
+    </div>
+  </header>
 
     <main class="container">
       <!-- Company Navigation -->
