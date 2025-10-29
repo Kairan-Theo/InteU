@@ -9,187 +9,143 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css" />
     <style>
-        /* Remove header bar styling to make it seamless */
-        .site-header {
-          position: static !important;
-          background: transparent !important;
-          backdrop-filter: none !important;
-          border-bottom: none !important;
-          box-shadow: none !important;
-        }
-        
-        .header-inner {
-          padding: 20px 0 !important;
-        }
-
-        /* Compact Heading Bar Navigation Styling */
-        .company-nav {
-          margin: 10px auto 0;
-          padding: 0;
-          list-style: none;
-          display: table;
-          width: 100%;
-          max-width: 800px;
-          text-align: center;
-          margin-bottom: 15px;
-          background: rgba(0, 0, 0, 0.8);
-          border-radius: 8px;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .company-nav-links {
-          display: table;
-          width: 100%;
-        }
-
-        .nav-main-links {
-          display: table-row;
-        }
-
-        .nav-main-links a {
-          display: table-cell;
-          position: relative;
-          padding: 8px 12px;
-          color: #fff;
-          text-transform: uppercase;
-          text-decoration: none;
-          letter-spacing: 0.1em;
-          font-size: 12px;
-          font-weight: 500;
-          transition: all 0.3s ease;
-        }
-
-        .nav-main-links a:after {
-          background: none repeat scroll 0 0 transparent;
-          bottom: 0;
-          content: "";
-          display: block;
-          height: 2px;
-          left: 50%;
-          position: absolute;
-          background: #4CAF50;
-          transition: width 0.3s ease 0s, left 0.3s ease 0s;
-          width: 0;
-        }
-
-        .nav-main-links a:hover {
-          background: rgba(255, 255, 255, 0.1);
-          color: #4CAF50;
-        }
-
-        .nav-main-links a:hover:after {
-          width: 100%;
-          left: 0;
-        }
-
-        .nav-main-links a.active {
-          background: rgba(76, 175, 80, 0.2);
-          color: #4CAF50;
-        }
-
-        .nav-main-links a.active:after {
-          width: 100%;
-          left: 0;
-        }
-
-        @media screen and (max-width: 768px) {
-          .company-nav {
-            margin: 5px;
-            width: calc(100% - 10px);
-          }
-          
-          .nav-main-links a {
-            font-size: 10px;
-            padding: 6px 8px;
-          }
-        }
-      .profile-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 32px;
-      }
-      .profile-section {
+      /* Compact Heading Bar Navigation - Enhanced with Design System */
+      .company-nav {
         background: var(--card);
         border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 14px;
+        border-radius: 25px;
         box-shadow: var(--shadow);
-        padding: 24px;
-        margin-bottom: 24px;
-      }
-      .profile-section h3 {
-        color: var(--primary);
+        padding: 6px 12px;
         margin-bottom: 20px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid rgba(75, 123, 229, 0.1);
+        max-width: 100%;
+        min-width: 100%;
+        box-sizing: border-box;
       }
-      .company-header {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 32px 24px;
+      .company-nav-links { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 4px; 
+        flex-wrap: wrap; 
+        max-width: 1200px; 
+        margin: 0 auto; 
       }
-      .company-logo {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        background: var(--primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 48px;
-        font-weight: 700;
-        margin: 0 auto 16px;
-        position: relative;
-        cursor: pointer;
-        transition: transform 0.2s ease;
+      .nav-main-links { 
+        display: flex; 
+        gap: 4px; 
+        flex-wrap: wrap; 
       }
-      .company-logo:hover {
-        transform: scale(1.05);
+      .nav-logout { 
+        margin-left: auto; 
       }
-      .logo-upload {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 36px;
-        height: 36px;
-        background: white;
-        border: 2px solid var(--primary);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-size: 16px;
-        color: var(--primary);
+      .company-nav-link { 
+        padding: 4px 10px; 
+        border-radius: 18px; 
+        text-decoration: none; 
+        color: var(--text); 
+        transition: background-color 0.2s ease; 
+        font-size: 12px; 
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
-      .company-name {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--text);
-        margin-bottom: 8px;
+      .company-nav-link:hover { 
+        background: rgba(75, 123, 229, 0.1); 
+        color: var(--text); 
+        text-decoration: none;
       }
-      .company-industry {
-        color: var(--muted);
-        font-size: 16px;
-        margin-bottom: 16px;
+      .company-nav-link.active { 
+        background: var(--primary); 
+        color: white; 
       }
-      .company-stats {
-        display: flex;
-        justify-content: center;
-        gap: 32px;
-        margin-top: 20px;
+
+      .profile-container { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 32px; 
       }
-      .stat-item {
-        text-align: center;
+      .profile-section { 
+        background: var(--card); 
+        border: 1px solid rgba(0,0,0,0.06); 
+        border-radius: 14px; 
+        box-shadow: var(--shadow); 
+        padding: 24px; 
+        margin-bottom: 24px; 
       }
-      .stat-number {
-        font-size: 24px;
-        font-weight: 700;
-        color: var(--primary);
+      .profile-section h3 { 
+        color: var(--primary); 
+        margin-bottom: 20px; 
+        padding-bottom: 12px; 
+        border-bottom: 2px solid rgba(75, 123, 229, 0.1); 
       }
-      .stat-label {
-        font-size: 14px;
-        color: var(--muted);
+      .company-header { 
+        grid-column: 1 / -1; 
+        text-align: center; 
+        padding: 32px 24px; 
+      }
+      .company-logo { 
+        width: 120px; 
+        height: 120px; 
+        border-radius: 50%; 
+        background: var(--primary); 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        color: white; 
+        font-size: 48px; 
+        font-weight: 700; 
+        margin: 0 auto 16px; 
+        position: relative; 
+        cursor: pointer; 
+        transition: transform 0.2s ease; 
+      }
+      .company-logo:hover { 
+        transform: scale(1.05); 
+      }
+      .logo-upload { 
+        position: absolute; 
+        bottom: 0; 
+        right: 0; 
+        width: 36px; 
+        height: 36px; 
+        background: white; 
+        border: 2px solid var(--primary); 
+        border-radius: 50%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        cursor: pointer; 
+        font-size: 16px; 
+        color: var(--primary); 
+      }
+      .company-name { 
+        font-size: 28px; 
+        font-weight: 700; 
+        color: var(--text); 
+        margin-bottom: 8px; 
+      }
+      .company-industry { 
+        color: var(--muted); 
+        font-size: 16px; 
+        margin-bottom: 16px; 
+      }
+      .company-stats { 
+        display: flex; 
+        justify-content: center; 
+        gap: 32px; 
+        margin-top: 20px; 
+      }
+      .stat-item { 
+        text-align: center; 
+      }
+      .stat-number { 
+        font-size: 24px; 
+        font-weight: 700; 
+        color: var(--primary); 
+      }
+      .stat-label { 
+        font-size: 14px; 
+        color: var(--muted); 
       }
       .form-section {
         margin-bottom: 24px;
@@ -197,10 +153,10 @@
       .form-section:last-child {
         margin-bottom: 0;
       }
-      .social-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
+      .social-links { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 16px; 
       }
       .file-upload {
         position: relative;
@@ -319,27 +275,53 @@
       .toggle-switch.active::after {
         transform: translateX(26px);
       }
+      .danger-zone { 
+        border: 1px dashed rgba(239, 68, 68, 0.5); 
+        background: rgba(239, 68, 68, 0.06); 
+        border-radius: 12px; 
+        padding: 16px; 
+      }
+      .danger-zone h4 { 
+        margin: 0 0 8px; 
+        color: var(--danger); 
+      }
+      .btn-danger { 
+        background: var(--danger); 
+        color: #fff; 
+        border: none; 
+        border-radius: 10px; 
+        height: 40px; 
+        padding: 0 14px; 
+        cursor: pointer; 
+        font-weight: 700; 
+      }
+      @media (max-width: 768px) { 
+        .profile-container { 
+          grid-template-columns: 1fr; 
+        } 
+      }
     </style>
   </head>
-  <body data-page="dashboard">
-  <header class="site-header" aria-label="Company Portal Navigation">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <span class="logo-mark">🏢</span> 
-        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
-      </a>
 
-      <div class="actions">
-        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
-        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
-        <a href="profile.html" class="btn small">Profile</a>
-        <a href="auth/login.html" class="btn small primary">Logout</a>
+  <body data-page="profile">
+    <header class="site-header" aria-label="Company Portal Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark">🏢</span>
+          InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
+        </a>
+
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+
+          <a href="profile.html" class="btn small">Profile</a>
+          <a id="logoutLink" href="#" class="btn small primary">Logout</a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
     <main class="container">
-      <!-- Company Navigation -->
       <nav class="company-nav">
         <div class="company-nav-links">
           <div class="nav-main-links">
@@ -350,274 +332,203 @@
             <a href="messages.html" class="company-nav-link">Messages</a>
             <a href="profile.html" class="company-nav-link active">Company Profile</a>
           </div>
+<<<<<<< HEAD
+=======
+          <a id="logoutLink2" href="#" class="company-nav-link nav-logout">Logout</a>
+>>>>>>> e449c5f665b2bcad37097650851a28337b4e4995
         </div>
       </nav>
 
-      <!-- Company Header -->
       <div class="profile-section company-header">
-        <div class="company-logo" onclick="document.getElementById('logoUpload').click()">
-          TC
+        <div class="company-logo" id="companyLogo" title="Upload logo">
+          <span id="logoInitials">CO</span>
           <div class="logo-upload">📷</div>
-          <input type="file" id="logoUpload" accept="image/*" style="display: none;" />
+          <input type="file" id="logoUpload" accept="image/*" style="display:none" />
         </div>
-        <div class="company-name">TechCorp Inc.</div>
-        <div class="company-industry">Technology • Software Development</div>
+        <div class="company-name" id="headerCompanyName">Company</div>
+        <div class="company-industry" id="headerCompanyIndustry">Industry • Size</div>
         <div class="company-stats">
           <div class="stat-item">
-            <div class="stat-number">15</div>
+            <div class="stat-number" id="statActiveInternships">0</div>
             <div class="stat-label">Active Internships</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">127</div>
+            <div class="stat-number" id="statTotalApplications">0</div>
             <div class="stat-label">Total Applications</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">23</div>
+            <div class="stat-number" id="statHiredInterns">0</div>
             <div class="stat-label">Hired Interns</div>
           </div>
         </div>
       </div>
 
-      <!-- Tabs -->
       <div class="profile-section" style="grid-column: 1 / -1;">
         <div class="tabs">
-          <button class="tab active" onclick="switchTab('company-info')">Company Information</button>
-          <button class="tab" onclick="switchTab('account-settings')">Account Settings</button>
-          <button class="tab" onclick="switchTab('notifications')">Notifications</button>
-          <button class="tab" onclick="switchTab('billing')">Billing & Plans</button>
+          <button class="tab active" data-tab="company-info">Company Information</button>
+          <button class="tab" data-tab="account-settings">Account Settings</button>
+          <button class="tab" data-tab="notifications">Notifications</button>
+          <button class="tab" data-tab="billing">Billing & Plans</button>
         </div>
 
-        <!-- Company Information Tab -->
         <div id="company-info" class="tab-content active">
           <div class="profile-container">
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Basic Information</h3>
-                <label>
-                  <span>Company Name *</span>
-                  <input type="text" id="companyName" value="TechCorp Inc." required />
-                </label>
-
+                <label><span>Company Name *</span><input type="text" id="companyName" required /></label>
                 <label>
                   <span>Industry *</span>
                   <select id="industry" required>
                     <option value="">Select Industry</option>
-                    <option value="technology" selected>Technology</option>
+                    <option value="technology">Technology</option>
                     <option value="finance">Finance</option>
                     <option value="healthcare">Healthcare</option>
                     <option value="education">Education</option>
                     <option value="retail">Retail</option>
                     <option value="manufacturing">Manufacturing</option>
                     <option value="consulting">Consulting</option>
+                    <option value="media">Media & Entertainment</option>
+                    <option value="nonprofit">Non-Profit</option>
                     <option value="other">Other</option>
                   </select>
                 </label>
-
-                <label>
-                  <span>Company Size *</span>
+                <label><span>Company Size *</span>
                   <select id="companySize" required>
                     <option value="">Select Size</option>
                     <option value="1-10">1-10 employees</option>
                     <option value="11-50">11-50 employees</option>
-                    <option value="51-200" selected>51-200 employees</option>
+                    <option value="51-200">51-200 employees</option>
                     <option value="201-500">201-500 employees</option>
                     <option value="501-1000">501-1000 employees</option>
                     <option value="1000+">1000+ employees</option>
                   </select>
                 </label>
-
-                <label>
-                  <span>Founded Year</span>
-                  <input type="number" id="foundedYear" value="2015" min="1800" max="2024" />
-                </label>
-
-                <label>
-                  <span>Company Description *</span>
-                  <textarea id="companyDescription" required rows="4" placeholder="Describe your company, mission, and what makes it unique...">TechCorp Inc. is a leading software development company specializing in innovative web and mobile applications. We're passionate about creating technology solutions that make a positive impact on businesses and communities worldwide.</textarea>
-                </label>
+                <label><span>Founded Year</span><input type="number" id="foundedYear" min="1800" max="2099" placeholder="e.g., 2015" /></label>
+                <label><span>Company Description *</span><textarea id="companyDescription" required rows="4" placeholder="Describe your company, mission, and what makes it unique..."></textarea></label>
               </div>
             </div>
 
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Contact Information</h3>
-                <label>
-                  <span>Business Email *</span>
-                  <input type="email" id="businessEmail" value="contact@techcorp.com" required />
-                </label>
-
-                <label>
-                  <span>Phone Number *</span>
-                  <input type="tel" id="phoneNumber" value="+1 (555) 123-4567" required />
-                </label>
-
-                <label>
-                  <span>Website</span>
-                  <input type="url" id="website" value="https://www.techcorp.com" placeholder="https://www.yourcompany.com" />
-                </label>
-
-                <label>
-                  <span>Address *</span>
-                  <textarea id="address" required rows="3" placeholder="Full business address...">123 Tech Street, Silicon Valley, CA 94000, United States</textarea>
-                </label>
+                <label><span>Business Email *</span><input type="email" id="businessEmail" required /></label>
+                <label><span>Phone Number *</span><input type="tel" id="phoneNumber" required /></label>
+                <label><span>Website</span><input type="url" id="website" placeholder="https://www.company.com" /></label>
+                <label><span>Address *</span><textarea id="address" required rows="3" placeholder="Full business address including city and postal code..."></textarea></label>
               </div>
 
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Social Media</h3>
                 <div class="social-links">
-                  <label>
-                    <span>LinkedIn</span>
-                    <input type="url" id="linkedin" value="https://linkedin.com/company/techcorp" placeholder="LinkedIn company page" />
-                  </label>
-
-                  <label>
-                    <span>Twitter</span>
-                    <input type="url" id="twitter" value="https://twitter.com/techcorp" placeholder="Twitter profile" />
-                  </label>
-
-                  <label>
-                    <span>Facebook</span>
-                    <input type="url" id="facebook" placeholder="Facebook page" />
-                  </label>
-
-                  <label>
-                    <span>Instagram</span>
-                    <input type="url" id="instagram" placeholder="Instagram profile" />
-                  </label>
+                  <label><span>LinkedIn</span><input type="url" id="linkedin" placeholder="https://linkedin.com/company/..." /></label>
+                  <label><span>Twitter</span><input type="url" id="twitter" placeholder="https://twitter.com/..." /></label>
+                  <label><span>Facebook</span><input type="url" id="facebook" placeholder="https://facebook.com/..." /></label>
+                  <label><span>Instagram</span><input type="url" id="instagram" placeholder="https://instagram.com/..." /></label>
                 </div>
               </div>
             </div>
           </div>
 
           <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
-            <button type="button" class="btn secondary">Cancel</button>
-            <button type="button" class="btn primary" onclick="saveCompanyInfo()">Save Changes</button>
+            <button type="button" class="btn secondary" id="btnCancelCompany">Cancel</button>
+            <button type="button" class="btn primary" id="btnSaveCompany">Save Changes</button>
           </div>
         </div>
 
-        <!-- Account Settings Tab -->
         <div id="account-settings" class="tab-content">
           <div class="profile-container">
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Account Information</h3>
-                <label>
-                  <span>Account Email *</span>
-                  <input type="email" id="accountEmail" value="admin@techcorp.com" required />
-                </label>
-
-                <label>
-                  <span>Account Manager Name *</span>
-                  <input type="text" id="managerName" value="John Smith" required />
-                </label>
-
-                <label>
-                  <span>Manager Title</span>
-                  <input type="text" id="managerTitle" value="HR Director" />
-                </label>
+                <label><span>Account Email *</span><input type="email" id="accountEmail" required /></label>
+                <label><span>Account Manager Name *</span><input type="text" id="managerName" required /></label>
+                <label><span>Manager Title</span><input type="text" id="managerTitle" /></label>
               </div>
 
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Change Password</h3>
-                <label>
-                  <span>Current Password *</span>
-                  <input type="password" id="currentPassword" required />
-                </label>
-
-                <label>
-                  <span>New Password *</span>
-                  <input type="password" id="newPassword" required />
-                </label>
-
-                <label>
-                  <span>Confirm New Password *</span>
-                  <input type="password" id="confirmPassword" required />
-                </label>
-
+                <label><span>Current Password</span><input type="password" id="currentPassword" /></label>
+                <label><span>New Password</span><input type="password" id="newPassword" /></label>
+                <label><span>Confirm New Password</span><input type="password" id="confirmPassword" /></label>
                 <div class="password-requirements">
-                  <div class="requirement" id="lengthReq">
-                    <span>✗</span> At least 8 characters
-                  </div>
-                  <div class="requirement" id="upperReq">
-                    <span>✗</span> One uppercase letter
-                  </div>
-                  <div class="requirement" id="lowerReq">
-                    <span>✗</span> One lowercase letter
-                  </div>
-                  <div class="requirement" id="numberReq">
-                    <span>✗</span> One number
-                  </div>
+                  <div class="requirement" id="lengthReq"><span>✗</span> At least 8 characters</div>
+                  <div class="requirement" id="upperReq"><span>✗</span> One uppercase letter</div>
+                  <div class="requirement" id="lowerReq"><span>✗</span> One lowercase letter</div>
+                  <div class="requirement" id="numberReq"><span>✗</span> One number</div>
                 </div>
               </div>
             </div>
 
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Account Preferences</h3>
-                <label>
-                  <span>Time Zone</span>
+                <label><span>Time Zone</span>
                   <select id="timezone">
-                    <option value="UTC-8" selected>Pacific Time (UTC-8)</option>
+                    <option value="UTC-8">Pacific Time (UTC-8)</option>
                     <option value="UTC-5">Eastern Time (UTC-5)</option>
                     <option value="UTC-6">Central Time (UTC-6)</option>
                     <option value="UTC-7">Mountain Time (UTC-7)</option>
                     <option value="UTC+0">UTC</option>
+                    <option value="UTC+7">Bangkok (UTC+7)</option>
                   </select>
                 </label>
-
-                <label>
-                  <span>Language</span>
+                <label><span>Language</span>
                   <select id="language">
-                    <option value="en" selected>English</option>
+                    <option value="en">English</option>
                     <option value="th">ไทย (Thai)</option>
                     <option value="es">Español</option>
                     <option value="fr">Français</option>
                   </select>
                 </label>
-
-                <label>
-                  <span>Date Format</span>
+                <label><span>Date Format</span>
                   <select id="dateFormat">
-                    <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                    <option value="MM/DD/YYYY">MM/DD/YYYY</option>
                     <option value="DD/MM/YYYY">DD/MM/YYYY</option>
                     <option value="YYYY-MM-DD">YYYY-MM-DD</option>
                   </select>
                 </label>
               </div>
 
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Account Actions</h3>
-                <button class="btn secondary" onclick="exportData()">Export Account Data</button>
-                <button class="btn" style="background: #dc3545; margin-top: 12px;" onclick="deactivateAccount()">Deactivate Account</button>
+                <div class="row" style="gap:12px; flex-wrap: wrap;">
+                  <button class="btn secondary" id="btnExport">Export Account Data</button>
+                  <button class="btn" style="background:#dc3545; color:#fff;" id="btnDeactivate">Deactivate Account</button>
+                </div>
+
+                <div class="danger-zone" style="margin-top:16px;">
+                  <h4>Danger Zone</h4>
+                  <p class="muted" style="margin:0 0 10px;">Deleting your account permanently removes your data (this device) and ends your session.</p>
+                  <button class="btn-danger" id="btnDelete">Delete Account Permanently</button>
+                </div>
               </div>
             </div>
           </div>
 
           <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
-            <button type="button" class="btn secondary">Cancel</button>
-            <button type="button" class="btn primary" onclick="saveAccountSettings()">Save Changes</button>
+            <button type="button" class="btn secondary" id="btnCancelAccount">Cancel</button>
+            <button type="button" class="btn primary" id="btnSaveAccount">Save Changes</button>
           </div>
         </div>
 
-        <!-- Notifications Tab -->
         <div id="notifications" class="tab-content">
-          <div class="form-section">
+          <div class="profile-section">
             <h3>Email Notifications</h3>
-            
             <div class="notification-item">
               <div class="notification-info">
                 <div class="notification-title">New Applications</div>
-                <div class="notification-desc">Get notified when someone applies to your internships</div>
+                <div class="notification-desc">Get notified when someone applies</div>
               </div>
-              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="notif_new_apps"></div>
             </div>
 
             <div class="notification-item">
               <div class="notification-info">
                 <div class="notification-title">Application Updates</div>
-                <div class="notification-desc">Updates on application status changes</div>
+                <div class="notification-desc">Status changes</div>
               </div>
-              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="notif_app_updates"></div>
             </div>
 
             <div class="notification-item">
@@ -625,99 +536,77 @@
                 <div class="notification-title">Messages</div>
                 <div class="notification-desc">New messages from applicants</div>
               </div>
-              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="notif_messages"></div>
             </div>
 
             <div class="notification-item">
               <div class="notification-info">
                 <div class="notification-title">Internship Expiry</div>
-                <div class="notification-desc">Reminders when internship postings are about to expire</div>
+                <div class="notification-desc">Expiry reminders</div>
               </div>
-              <div class="toggle-switch active" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="notif_expiry"></div>
             </div>
           </div>
 
-          <div class="form-section">
+          <div class="profile-section">
             <h3>Push Notifications</h3>
-            
             <div class="notification-item">
               <div class="notification-info">
                 <div class="notification-title">Urgent Messages</div>
-                <div class="notification-desc">Important messages that need immediate attention</div>
+                <div class="notification-desc">Immediate attention needed</div>
               </div>
-              <div class="toggle-switch" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="push_urgent"></div>
             </div>
 
             <div class="notification-item">
               <div class="notification-info">
                 <div class="notification-title">Daily Summary</div>
-                <div class="notification-desc">Daily summary of applications and activities</div>
+                <div class="notification-desc">Daily digest</div>
               </div>
-              <div class="toggle-switch" onclick="toggleNotification(this)"></div>
+              <div class="toggle-switch" data-key="push_daily"></div>
             </div>
           </div>
 
           <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px;">
-            <button type="button" class="btn primary" onclick="saveNotificationSettings()">Save Preferences</button>
+            <button type="button" class="btn primary" id="btnSaveNotifs">Save Preferences</button>
           </div>
         </div>
 
-        <!-- Billing Tab -->
         <div id="billing" class="tab-content">
           <div class="profile-container">
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Current Plan</h3>
-                <div style="background: #f8f9fa; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 20px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <h4 style="margin: 0; color: var(--primary);">Professional Plan</h4>
-                    <span style="background: var(--primary); color: white; padding: 4px 12px; border-radius: 16px; font-size: 12px;">ACTIVE</span>
+                <div style="background:#f8f9fa; border:1px solid rgba(0,0,0,0.1); border-radius:8px; padding:20px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                    <h4 style="margin:0; color:var(--primary);">Professional Plan</h4>
+                    <span style="background:var(--primary); color:#fff; padding:4px 12px; border-radius:16px; font-size:12px;">ACTIVE</span>
                   </div>
-                  <p style="margin: 0 0 12px 0; color: var(--muted);">Up to 50 active internship postings</p>
-                  <div style="font-size: 24px; font-weight: 700; color: var(--text);">$99/month</div>
-                  <div style="margin-top: 16px;">
+                  <p class="muted" style="margin:0 0 12px;">Up to 50 active internship postings</p>
+                  <div style="font-size:24px; font-weight:700;">$99/month</div>
+                  <div style="margin-top:16px;">
                     <button class="btn secondary small">Change Plan</button>
-                    <button class="btn small" style="margin-left: 8px;">Cancel Subscription</button>
+                    <button class="btn small" style="margin-left:8px;">Cancel Subscription</button>
                   </div>
                 </div>
               </div>
 
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Billing History</h3>
-                <div style="border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden;">
-                  <div style="background: #f8f9fa; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.1); font-weight: 600;">
-                    Recent Invoices
-                  </div>
-                  <div style="padding: 16px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
-                      <div>
-                        <div>January 2024</div>
-                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
-                      </div>
-                      <div style="text-align: right;">
-                        <div>$99.00</div>
-                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
-                      </div>
+                <div style="border:1px solid rgba(0,0,0,0.1); border-radius:8px; overflow:hidden;">
+                  <div style="background:#f8f9fa; padding:12px 16px; border-bottom:1px solid rgba(0,0,0,0.1); font-weight:600;">Recent Invoices</div>
+                  <div style="padding:16px;">
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
+                      <div><div>January 2024</div><div class="muted" style="font-size:14px;">Professional Plan</div></div>
+                      <div style="text-align:right;"><div>$99.00</div><a href="#" style="font-size:14px; color:var(--primary);">Download</a></div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.06);">
-                      <div>
-                        <div>December 2023</div>
-                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
-                      </div>
-                      <div style="text-align: right;">
-                        <div>$99.00</div>
-                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
-                      </div>
+                    <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
+                      <div><div>December 2023</div><div class="muted" style="font-size:14px;">Professional Plan</div></div>
+                      <div style="text-align:right;"><div>$99.00</div><a href="#" style="font-size:14px; color:var(--primary);">Download</a></div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
-                      <div>
-                        <div>November 2023</div>
-                        <div style="font-size: 14px; color: var(--muted);">Professional Plan</div>
-                      </div>
-                      <div style="text-align: right;">
-                        <div>$99.00</div>
-                        <a href="#" style="font-size: 14px; color: var(--primary);">Download</a>
-                      </div>
+                    <div style="display:flex; justify-content:space-between; padding:8px 0;">
+                      <div><div>November 2023</div><div class="muted" style="font-size:14px;">Professional Plan</div></div>
+                      <div style="text-align:right;"><div>$99.00</div><a href="#" style="font-size:14px; color:var(--primary);">Download</a></div>
                     </div>
                   </div>
                 </div>
@@ -725,15 +614,15 @@
             </div>
 
             <div>
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Payment Method</h3>
-                <div style="background: #f8f9fa; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; padding: 20px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 40px; height: 24px; background: var(--primary); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">VISA</div>
+                <div style="background:#f8f9fa; border:1px solid rgba(0,0,0,0.1); border-radius:8px; padding:20px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="display:flex; align-items:center; gap:12px;">
+                      <div style="width:40px; height:24px; background:var(--primary); border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:600;">VISA</div>
                       <div>
                         <div>•••• •••• •••• 4242</div>
-                        <div style="font-size: 14px; color: var(--muted);">Expires 12/25</div>
+                        <div class="muted" style="font-size:14px;">Expires 12/25</div>
                       </div>
                     </div>
                     <button class="btn secondary small">Update</button>
@@ -741,35 +630,26 @@
                 </div>
               </div>
 
-              <div class="form-section">
+              <div class="profile-section">
                 <h3>Billing Address</h3>
-                <label>
-                  <span>Company Name</span>
-                  <input type="text" value="TechCorp Inc." />
-                </label>
-                <label>
-                  <span>Address</span>
-                  <textarea rows="2">123 Tech Street, Silicon Valley, CA 94000</textarea>
-                </label>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                  <label>
-                    <span>Country</span>
-                    <select>
-                      <option value="US" selected>United States</option>
+                <label><span>Company Name</span><input type="text" id="billCompany" /></label>
+                <label><span>Address</span><textarea rows="2" id="billAddress"></textarea></label>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                  <label><span>Country</span>
+                    <select id="billCountry">
+                      <option value="US">United States</option>
                       <option value="CA">Canada</option>
                       <option value="UK">United Kingdom</option>
+                      <option value="TH">Thailand</option>
                     </select>
                   </label>
-                  <label>
-                    <span>Tax ID</span>
-                    <input type="text" placeholder="Optional" />
-                  </label>
+                  <label><span>Tax ID</span><input type="text" id="billTaxId" placeholder="Optional" /></label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div><!-- /tabs wrapper -->
     </main>
 
     <footer class="site-footer">
@@ -797,139 +677,375 @@
 
     <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="js/main.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Logo upload functionality
-        document.getElementById('logoUpload').addEventListener('change', function(e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-              const logo = document.querySelector('.company-logo');
-              logo.style.backgroundImage = `url(${e.target.result})`;
-              logo.style.backgroundSize = 'cover';
-              logo.style.backgroundPosition = 'center';
-              logo.textContent = '';
-              showToast('Logo updated successfully!', 'success');
+      /************ THEME ************/
+      const THEME_KEY = 'theme';
+      function applyTheme(theme) {
+        document.body.classList.toggle('dark', theme === 'dark');
+        const toggle = document.getElementById('dark-mode');
+        if (toggle) toggle.checked = theme === 'dark';
+      }
+      function getStoredTheme() { return localStorage.getItem(THEME_KEY) || 'light'; }
+      function setStoredTheme(t) { localStorage.setItem(THEME_KEY, t); }
+
+      /************ NEW STORAGE KEYS ************/
+      const AUTH_KEY = 'inteu_company_auth';          // { email }
+      const PROFILES_KEY = 'inteu_company_profiles';  // { [email]: profile }
+      const NOTIF_NS = 'companyNotifications';        // per-user: companyNotifications:<email>
+
+      /************ HELPERS ************/
+      const $ = sel => document.querySelector(sel);
+      const initialsFromName = (name='') => name.trim().split(/\s+/).slice(0,2).map(s=>s[0]?.toUpperCase()||'').join('') || 'CO';
+
+      function readProfiles(){ try { return JSON.parse(localStorage.getItem(PROFILES_KEY) || '{}'); } catch { return {}; } }
+      function writeProfiles(obj){ localStorage.setItem(PROFILES_KEY, JSON.stringify(obj)); }
+      function readNotifs(email){ try { return JSON.parse(localStorage.getItem(`${NOTIF_NS}:${email}`) || '{}'); } catch { return {}; } }
+      function writeNotifs(email, obj){ localStorage.setItem(`${NOTIF_NS}:${email}`, JSON.stringify(obj)); }
+
+      /************ LEGACY MIGRATION ************/
+      function migrateLegacyIfAny() {
+        // old single profile
+        try {
+          const legacy = JSON.parse(localStorage.getItem('inteu_company_profile') || 'null');
+          if (legacy && legacy.businessEmail) {
+            const map = readProfiles();
+            map[legacy.businessEmail.toLowerCase()] = { ...legacy };
+            writeProfiles(map);
+            localStorage.removeItem('inteu_company_profile');
+          }
+        } catch {}
+        // very old: 'companyAccount'
+        try {
+          const oldAcc = JSON.parse(localStorage.getItem('companyAccount') || 'null');
+          if (oldAcc && oldAcc.businessEmail) {
+            const map = readProfiles();
+            const email = String(oldAcc.businessEmail).toLowerCase();
+            map[email] = {
+              companyName: oldAcc.companyName || 'Company',
+              industry: oldAcc.industry || '',
+              companySize: oldAcc.companySize || '',
+              foundedYear: oldAcc.foundedYear || '',
+              companyDescription: oldAcc.description || '',
+              businessEmail: email,
+              phoneNumber: oldAcc.phoneNumber || '',
+              website: oldAcc.website || '',
+              linkedin: oldAcc.socials?.linkedin || '',
+              address: oldAcc.address || '',
+              managerName: oldAcc.account?.managerName || '',
+              managerTitle: oldAcc.account?.managerTitle || '',
+              internshipAreas: [],
+              settings: { timezone: oldAcc.account?.timezone || 'UTC+7', language: oldAcc.account?.language || 'en', dateFormat: oldAcc.account?.dateFormat || 'YYYY-MM-DD' },
+              stats: { activeInternships: oldAcc.stats?.active ?? 0, totalApplications: oldAcc.stats?.apps ?? 0, hired: oldAcc.stats?.hired ?? 0 },
+              createdAt: Date.now(),
+              logoDataUrl: oldAcc.logoDataUrl || ''
             };
-            reader.readAsDataURL(file);
+            writeProfiles(map);
+            localStorage.removeItem('companyAccount');
           }
-        });
+        } catch {}
+      }
 
-        // Password validation
-        const newPasswordInput = document.getElementById('newPassword');
-        if (newPasswordInput) {
-          newPasswordInput.addEventListener('input', validatePassword);
-        }
+      /************ AUTH GUARD ************/
+      function getAuthedEmail() {
+        try {
+          const a = JSON.parse(localStorage.getItem(AUTH_KEY) || 'null');
+          return a?.email || null;
+        } catch { return null; }
+      }
 
-        function validatePassword() {
-          const password = newPasswordInput.value;
-          const requirements = {
-            length: password.length >= 8,
-            upper: /[A-Z]/.test(password),
-            lower: /[a-z]/.test(password),
-            number: /\d/.test(password)
-          };
+      /************ PAGE INIT ************/
+      document.addEventListener('DOMContentLoaded', () => {
+        // Theme
+        applyTheme(getStoredTheme());
+        const themeToggle = document.getElementById('dark-mode');
+        if (themeToggle) themeToggle.addEventListener('change', (e) => { const t = e.target.checked ? 'dark' : 'light'; applyTheme(t); setStoredTheme(t); });
 
-          updateRequirement('lengthReq', requirements.length);
-          updateRequirement('upperReq', requirements.upper);
-          updateRequirement('lowerReq', requirements.lower);
-          updateRequirement('numberReq', requirements.number);
-        }
+        // Auth
+        const email = getAuthedEmail();
+        if (!email) { window.location.replace('auth/login.html'); return; }
 
-        function updateRequirement(id, isValid) {
-          const element = document.getElementById(id);
-          if (element) {
-            element.className = `requirement ${isValid ? 'valid' : 'invalid'}`;
-            element.querySelector('span').textContent = isValid ? '✓' : '✗';
-          }
-        }
-
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-          if (confirm('Are you sure you want to logout?')) {
-            showToast('Logging out...', 'info');
-            setTimeout(() => {
-              window.location.href = '../pages/auth/login.html';
-            }, 1000);
-          }
-        });
+        migrateLegacyIfAny();
+        loadAccountIntoUI(email);
+        initTabs();
+        initLogoUpload(email);
+        initFormButtons(email);
+        initNotificationToggles(email);
+        initLogout();
       });
 
-      // Tab switching
-      function switchTab(tabId) {
-        // Hide all tab contents
-        document.querySelectorAll('.tab-content').forEach(content => {
-          content.classList.remove('active');
+      function loadAccountIntoUI(email) {
+        const map = readProfiles();
+        let acc = map[email];
+        if (!acc) {
+          // if somehow missing, create a minimal stub so UI is writable
+          acc = {
+            companyName: "Your Company",
+            industry: "", companySize: "", foundedYear: "",
+            companyDescription: "",
+            businessEmail: email,
+            phoneNumber: "", website: "", linkedin: "", address: "",
+            managerName: "", managerTitle: "",
+            settings: { timezone:'UTC+7', language:'en', dateFormat:'YYYY-MM-DD' },
+            stats: { activeInternships: 0, totalApplications: 0, hired: 0 },
+            logoDataUrl: ""
+          };
+          map[email] = acc; writeProfiles(map);
+        }
+
+        // Header
+        $('#headerCompanyName').textContent = acc.companyName || 'Company';
+        const industryLabel = (acc.industry || '').replace(/(^|\s|-)\S/g, s=>s.toUpperCase());
+        $('#headerCompanyIndustry').textContent = `${industryLabel || '—'} • ${acc.companySize || '—'}`;
+        $('#statActiveInternships').textContent = acc.stats?.activeInternships ?? acc.stats?.active ?? 0;
+        $('#statTotalApplications').textContent = acc.stats?.totalApplications ?? acc.stats?.apps ?? 0;
+        $('#statHiredInterns').textContent = acc.stats?.hired ?? 0;
+
+        // Logo
+        renderLogo(acc);
+
+        // Company info form
+        $('#companyName').value = acc.companyName || '';
+        $('#industry').value = acc.industry || '';
+        $('#companySize').value = acc.companySize || '';
+        $('#foundedYear').value = acc.foundedYear || '';
+        $('#companyDescription').value = acc.companyDescription || '';
+        $('#businessEmail').value = acc.businessEmail || '';
+        $('#phoneNumber').value = acc.phoneNumber || '';
+        $('#website').value = acc.website || '';
+        $('#address').value = acc.address || '';
+        $('#linkedin').value = acc.linkedin || '';
+        $('#twitter').value = acc.twitter || '';
+        $('#facebook').value = acc.facebook || '';
+        $('#instagram').value = acc.instagram || '';
+
+        // Account settings
+        $('#accountEmail').value = acc.businessEmail || '';
+        $('#managerName').value = acc.managerName || '';
+        $('#managerTitle').value = acc.managerTitle || '';
+        $('#timezone').value = acc.settings?.timezone || 'UTC+7';
+        $('#language').value = acc.settings?.language || 'en';
+        $('#dateFormat').value = acc.settings?.dateFormat || 'YYYY-MM-DD';
+
+        // Billing demo defaults
+        $('#billCompany').value = acc.companyName || '';
+        $('#billAddress').value = acc.billing?.address || acc.address || '';
+        $('#billCountry').value = acc.billing?.country || 'TH';
+        $('#billTaxId').value = acc.billing?.taxId || '';
+      }
+
+      function renderLogo(acc) {
+        const logo = $('#companyLogo');
+        const initialsEl = $('#logoInitials');
+        if (acc.logoDataUrl) {
+          logo.style.backgroundImage = `url(${acc.logoDataUrl})`;
+          logo.style.backgroundSize = 'cover';
+          logo.style.backgroundPosition = 'center';
+          initialsEl.style.display = 'none';
+        } else {
+          logo.style.backgroundImage = 'none';
+          initialsEl.textContent = initialsFromName(acc.companyName);
+          initialsEl.style.display = 'block';
+        }
+      }
+
+      function initLogoUpload(email) {
+        const input = $('#logoUpload');
+        $('#companyLogo').addEventListener('click', () => input.click());
+        input.addEventListener('change', (e) => {
+          const file = e.target.files?.[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const map = readProfiles();
+            const acc = map[email] || {};
+            acc.logoDataUrl = ev.target.result;
+            map[email] = acc;
+            writeProfiles(map);
+            renderLogo(acc);
+          };
+          reader.readAsDataURL(file);
         });
+      }
 
-        // Remove active class from all tabs
-        document.querySelectorAll('.tab').forEach(tab => {
-          tab.classList.remove('active');
+      function initTabs() {
+        document.querySelectorAll('.tab').forEach(btn => {
+          btn.addEventListener('click', (evt) => {
+            document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
+          });
         });
-
-        // Show selected tab content
-        document.getElementById(tabId).classList.add('active');
-
-        // Add active class to clicked tab
-        event.target.classList.add('active');
       }
 
-      // Notification toggle
-      function toggleNotification(toggle) {
-        toggle.classList.toggle('active');
+      function initFormButtons(email) {
+        $('#btnSaveCompany').addEventListener('click', () => saveCompanyInfo(email));
+        $('#btnCancelCompany').addEventListener('click', () => loadAccountIntoUI(email));
+
+        $('#btnSaveAccount').addEventListener('click', () => saveAccountSettings(email));
+        $('#btnCancelAccount').addEventListener('click', () => loadAccountIntoUI(email));
+
+        $('#btnExport').addEventListener('click', () => exportData(email));
+        $('#btnDeactivate').addEventListener('click', () => deactivateAccount());
+        $('#btnDelete').addEventListener('click', () => deleteAccountPermanently(email));
+
+        // Live password reqs
+        const newPw = $('#newPassword');
+        if (newPw) newPw.addEventListener('input', validatePassword);
       }
 
-      // Save functions
-      function saveCompanyInfo() {
-        // Validate required fields
-        const requiredFields = ['companyName', 'industry', 'companySize', 'companyDescription', 'businessEmail', 'phoneNumber', 'address'];
-        
-        for (let fieldId of requiredFields) {
-          const field = document.getElementById(fieldId);
-          if (!field.value.trim()) {
-            showToast(`Please fill in the ${fieldId.replace(/([A-Z])/g, ' $1').toLowerCase()} field`, 'error');
-            return;
-          }
+      function validatePassword() {
+        const pw = $('#newPassword').value || '';
+        const reqs = { length: pw.length >= 8, upper: /[A-Z]/.test(pw), lower: /[a-z]/.test(pw), number: /\d/.test(pw) };
+        setReq('lengthReq', reqs.length); setReq('upperReq', reqs.upper); setReq('lowerReq', reqs.lower); setReq('numberReq', reqs.number);
+      }
+      function setReq(id, ok) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.className = `requirement ${ok ? 'valid' : 'invalid'}`;
+        el.querySelector('span').textContent = ok ? '✓' : '✗';
+      }
+
+      function saveCompanyInfo(email) {
+        const fields = ['companyName','industry','companySize','companyDescription','businessEmail','phoneNumber','address'];
+        for (const id of fields) { const el = document.getElementById(id); if (!el.value.trim()) { el.focus(); return; } }
+
+        const map = readProfiles();
+        const acc = map[email] || {};
+
+        // If user changed email, we should move the profile to the new key
+        const newEmail = $('#businessEmail').value.trim().toLowerCase();
+        const keyChanged = newEmail && newEmail !== email;
+
+        const updated = {
+          ...acc,
+          companyName: $('#companyName').value.trim(),
+          industry: $('#industry').value,
+          companySize: $('#companySize').value,
+          foundedYear: $('#foundedYear').value ? parseInt($('#foundedYear').value, 10) : '',
+          companyDescription: $('#companyDescription').value.trim(),
+          businessEmail: newEmail || email,
+          phoneNumber: $('#phoneNumber').value.trim(),
+          website: $('#website').value.trim(),
+          address: $('#address').value.trim(),
+          linkedin: $('#linkedin').value.trim(),
+          twitter: $('#twitter').value.trim(),
+          facebook: $('#facebook').value.trim(),
+          instagram: $('#instagram').value.trim()
+        };
+
+        if (keyChanged) {
+          delete map[email];
+          map[newEmail] = updated;
+          // also update auth email to keep session consistent
+          localStorage.setItem(AUTH_KEY, JSON.stringify({ email: newEmail, loggedInAt: Date.now() }));
+        } else {
+          map[email] = updated;
         }
 
-        showToast('Company information updated successfully!', 'success');
+        writeProfiles(map);
+
+        // Update header
+        $('#headerCompanyName').textContent = updated.companyName;
+        $('#headerCompanyIndustry').textContent = `${updated.industry.replace(/(^|\s|-)\S/g, s=>s.toUpperCase())} • ${updated.companySize}`;
+        renderLogo(updated);
       }
 
-      function saveAccountSettings() {
-        const currentPassword = document.getElementById('currentPassword').value;
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+      function saveAccountSettings(email) {
+        const map = readProfiles();
+        const acc = map[email] || {};
+        acc.businessEmail = $('#accountEmail').value.trim().toLowerCase() || acc.businessEmail || email;
+        acc.managerName = $('#managerName').value.trim();
+        acc.managerTitle = $('#managerTitle').value.trim();
+        acc.settings = acc.settings || {};
+        acc.settings.timezone = $('#timezone').value;
+        acc.settings.language = $('#language').value;
+        acc.settings.dateFormat = $('#dateFormat').value;
 
-        if (newPassword && newPassword !== confirmPassword) {
-          showToast('New passwords do not match', 'error');
-          return;
+        // "Change password" demo only: store base64 (not real security)
+        const npw = $('#newPassword').value;
+        const cpw = $('#confirmPassword').value;
+        if (npw || cpw) {
+          if (npw !== cpw) return;
+          if (!(npw.length >= 8 && /[A-Z]/.test(npw) && /[a-z]/.test(npw) && /\d/.test(npw))) return;
+          acc.account = acc.account || {};
+          acc.account.passwordHash = btoa(unescape(encodeURIComponent(npw)));
         }
 
-        if (newPassword && !currentPassword) {
-          showToast('Please enter your current password', 'error');
-          return;
+        // if email changed in account settings, move key
+        if (acc.businessEmail !== email) {
+          delete map[email];
+          map[acc.businessEmail] = acc;
+          localStorage.setItem(AUTH_KEY, JSON.stringify({ email: acc.businessEmail, loggedInAt: Date.now() }));
+        } else {
+          map[email] = acc;
         }
+        writeProfiles(map);
 
-        showToast('Account settings updated successfully!', 'success');
+        // Clear password inputs after save
+        $('#currentPassword').value = '';
+        $('#newPassword').value = '';
+        $('#confirmPassword').value = '';
+        validatePassword();
+
+        // refresh UI banner bits
+        loadAccountIntoUI(acc.businessEmail);
       }
 
-      function saveNotificationSettings() {
-        showToast('Notification preferences saved!', 'success');
+      function initNotificationToggles(email) {
+        const state = readNotifs(email);
+        document.querySelectorAll('.toggle-switch').forEach(sw => {
+          const key = sw.getAttribute('data-key');
+          if (state[key]) sw.classList.add('active');
+          sw.addEventListener('click', () => sw.classList.toggle('active'));
+        });
+        $('#btnSaveNotifs').addEventListener('click', () => {
+          const st = {};
+          document.querySelectorAll('.toggle-switch').forEach(sw => {
+            const key = sw.getAttribute('data-key');
+            st[key] = sw.classList.contains('active');
+          });
+          writeNotifs(email, st);
+        });
       }
 
-      function exportData() {
-        showToast('Preparing data export...', 'info');
-        setTimeout(() => {
-          showToast('Data export will be sent to your email', 'success');
-        }, 2000);
+      function exportData(email) {
+        const map = readProfiles();
+        const acc = map[email] || {};
+        const notifs = readNotifs(email) || {};
+        const dump = JSON.stringify({ account: acc, notifications: notifs }, null, 2);
+        const blob = new Blob([dump], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = `inteu-company-data-${email}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
       }
 
       function deactivateAccount() {
-        if (confirm('Are you sure you want to deactivate your account? This action cannot be undone.')) {
-          showToast('Account deactivation initiated. You will receive a confirmation email.', 'info');
-        }
+        localStorage.removeItem(AUTH_KEY);
+        window.location.href = 'auth/login.html';
+      }
+
+      function deleteAccountPermanently(email) {
+        const map = readProfiles();
+        delete map[email];
+        writeProfiles(map);
+        localStorage.removeItem(`${NOTIF_NS}:${email}`);
+        localStorage.removeItem(AUTH_KEY);
+        window.location.href = 'index.html';
+      }
+
+      function initLogout() {
+        const handler = (e) => {
+          e.preventDefault();
+          localStorage.removeItem(AUTH_KEY);
+          window.location.href = 'auth/login.html';
+        };
+        $('#logoutLink').addEventListener('click', handler);
+        $('#logoutLink2').addEventListener('click', handler);
       }
     </script>
   </body>

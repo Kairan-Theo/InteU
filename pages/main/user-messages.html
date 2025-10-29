@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InteU — Messages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #4B7BE5;
+      --card: #ffffff;
+      --text: #333;
+      --muted: #777;
+      --shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Open Sans', sans-serif; }
+
+    body {
+      background: #f0f2f5;
+      color: var(--text);
+      padding: 16px;
+    }
+
+    header.site-header {
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 14px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .logo span { color: var(--primary); font-weight: 600; }
+
+    h1 { font-family: 'Poppins', sans-serif; font-weight: 700; margin-bottom: 8px; }
+    p.muted { color: var(--muted); margin-bottom: 24px; }
+
+    .messages-container {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 24px;
+      height: 70vh;
+    }
+
+    /* Conversations panel */
+    .conversations-panel {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conversations-header { padding: 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .conversations-header h3 { margin-bottom: 16px; }
+
+    .conversations-list { flex: 1; overflow-y: auto; }
+    .conversation-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      position: relative;
+    }
+    .conversation-item.unread::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+    .conversation-name { font-weight: 600; margin-bottom: 4px; }
+    .conversation-preview {
+      font-size: 14px;
+      color: var(--muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-bottom: 4px;
+    }
+    .conversation-time { font-size: 12px; color: var(--muted); }
+
+    /* Chat panel */
+    .chat-panel {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-chat { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; }
+    .empty-chat-icon { font-size: 48px; margin-bottom: 16px; }
+
+    /* Disable pointer events for conversations */
+    .conversation-item {
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="../../index.html" class="back-btn">← Back</a>
+    <a class="logo" href="#">🏢 InteU <span>Companies</span></a>
+  </header>
+
+  <h1>Messages</h1>
+  <p class="muted">Communicate with applicants and manage conversations</p>
+
+  <div class="messages-container">
+
+    <!-- Conversations Panel (non-clickable) -->
+    <div class="conversations-panel">
+      <div class="conversations-header">
+        <h3>Conversations</h3>
+      </div>
+      <div class="conversations-list">
+        <div class="conversation-item unread">
+          <div class="conversation-name">Sarah Johnson</div>
+          <div class="conversation-preview">Thank you for considering my application...</div>
+          <div class="conversation-time">2 hours ago</div>
+        </div>
+        <div class="conversation-item">
+          <div class="conversation-name">Michael Chen</div>
+          <div class="conversation-preview">I'm excited about the interview opportunity...</div>
+          <div class="conversation-time">1 day ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Panel -->
+    <div class="chat-panel">
+      <div class="empty-chat">
+        <div class="empty-chat-icon">💬</div>
+        <h3>Select a conversation</h3>
+        <p>Choose a conversation from the left to start messaging</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
