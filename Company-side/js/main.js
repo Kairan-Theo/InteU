@@ -457,6 +457,7 @@
   initLanguage();
   wireHeaderActions();
   wireFooterActions();
+  initMessageNotifications();
   const page = document.body.dataset.page;
   if (page === 'home') initHomePage();
   if (page === 'companies') initCompaniesPage();
@@ -2014,11 +2015,66 @@
    });
  }
 
- // Make functions globally available for onclick handlers
- window.viewApplicationDetails = viewApplicationDetails;
- window.viewEnrollmentDetails = viewEnrollmentDetails;
- window.updateApplicationStatus = updateApplicationStatus;
- window.updateEnrollmentStatus = updateEnrollmentStatus;
+ // Message Icon Notification Functionality
+function initMessageNotifications() {
+  const messageIcon = document.getElementById('messageIcon');
+  const notificationBadge = document.getElementById('notificationBadge');
+  
+  if (messageIcon && notificationBadge) {
+    // Auto-clear notifications when on messages page
+    if (window.location.pathname.includes('messages.html')) {
+      clearNotifications();
+    }
+  }
+}
+
+// Update notification count
+function updateNotificationCount(count) {
+  const notificationBadge = document.getElementById('notificationBadge');
+  if (notificationBadge) {
+    if (count > 0) {
+      notificationBadge.textContent = count;
+      notificationBadge.classList.remove('hidden');
+    } else {
+      notificationBadge.classList.add('hidden');
+    }
+  }
+}
+
+// Add new message notification
+function addMessageNotification() {
+  const notificationBadge = document.getElementById('notificationBadge');
+  if (notificationBadge) {
+    let currentCount = parseInt(notificationBadge.textContent) || 0;
+    updateNotificationCount(currentCount + 1);
+    
+    // Show toast notification
+    showToast('New message received!', 'info');
+  }
+}
+
+// Clear all notifications
+function clearNotifications() {
+  updateNotificationCount(0);
+}
+
+// Simulate receiving messages (for demo purposes)
+setInterval(() => {
+  if (!window.location.pathname.includes('messages.html')) {
+    // Only add notifications when not on messages page
+    if (Math.random() < 0.3) { // 30% chance every 30 seconds
+      addMessageNotification();
+    }
+  }
+}, 30000);
+
+// Make functions globally available for onclick handlers
+window.viewApplicationDetails = viewApplicationDetails;
+window.viewEnrollmentDetails = viewEnrollmentDetails;
+window.updateApplicationStatus = updateApplicationStatus;
+window.updateEnrollmentStatus = updateEnrollmentStatus;
+window.addMessageNotification = addMessageNotification;
+window.clearNotifications = clearNotifications;
 
 })();
 

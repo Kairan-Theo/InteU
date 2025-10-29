@@ -274,37 +274,35 @@
       }
     </style>
   </head>
-  <body data-page="dashboard">
-  <header class="site-header" aria-label="Company Portal Navigation">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <span class="logo-mark">🏢</span> 
-        InteU <span style="color: var(--primary); font-weight: 600;">Companies</span>
-      </a>
-
-      <div class="actions">
-        <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
-        <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
-        <a href="profile.html" class="btn small">Profile</a>
-        <a href="auth/login.html" class="btn small primary">Logout</a>
+  <body data-page="company-manage-internships">
+    <header class="site-header" aria-label="Company Navigation">
+      <div class="container header-inner">
+        <a class="logo" href="dashboard.html" aria-label="InteU Company Portal">
+            <span class="logo-mark"><img src="../images/image1.jpg" alt="InteU logo" /></span> InteU
+        </a>
+        <nav class="nav">
+          <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
+          <a href="manage-internships.html" class="active" data-i18n="nav.manage">Manage Internships</a>
+          <a href="post-internship.html" data-i18n="nav.post">Post Internship</a>
+          <a href="view-applicants.html" data-i18n="nav.applicants">View Applicants</a>
+          <a href="messages.html" class="nav-link message-icon" id="messageIcon" aria-label="Messages" title="Messages">
+            <span style="font-size: 28px;">💬</span>
+            <span class="notification-badge" id="notificationBadge">3</span>
+          </a>
+        </nav>
+        <div class="actions">
+          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
+          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
+          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
+          <a href="profile.html" class="icon-btn" aria-label="Profile" title="Profile">
+            <img src="../../images/user.png" alt="Profile" width="28" height="28">
+          </a>
+          <a href="../pages/auth/company-login.html" id="logoutBtn" class="btn small primary" data-i18n="nav.logout">Logout</a>
+        </div>
       </div>
-    </div>
-  </header>
+    </header>
 
     <main class="container">
-      <!-- Company Navigation -->
-      <nav class="company-nav">
-        <div class="company-nav-links">
-          <div class="nav-main-links">
-            <a href="dashboard.html" class="company-nav-link">Dashboard</a>
-            <a href="post-internship.html" class="company-nav-link">Post Internship</a>
-            <a href="manage-internships.html" class="company-nav-link active">Manage Internships</a>
-            <a href="view-applicants.html" class="company-nav-link">View Applicants</a>
-            <a href="messages.html" class="company-nav-link">Messages</a>
-            <a href="profile.html" class="company-nav-link">Company Profile</a>
-          </div>
-        </div>
-      </nav>
 
       <section class="card">
         <div class="internships-header">

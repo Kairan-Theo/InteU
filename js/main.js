@@ -457,6 +457,7 @@
   initLanguage();
   wireHeaderActions();
   wireFooterActions();
+  initNotificationBell(); // Initialize notification bell functionality
   const page = document.body.dataset.page;
   if (page === 'home') initHomePage();
   if (page === 'companies') initCompaniesPage();
@@ -2012,6 +2013,67 @@
      month: 'short',
      day: 'numeric'
    });
+ }
+
+ // Notification Bell Functionality
+ function initNotificationBell() {
+   const notificationBell = document.getElementById('notificationBell');
+   const notificationBadge = document.getElementById('notificationBadge');
+   
+   if (!notificationBell || !notificationBadge) return;
+
+   // Simulate receiving new messages
+   let messageCount = parseInt(notificationBadge.textContent) || 0;
+
+   // Click handler for notification bell
+   notificationBell.addEventListener('click', function() {
+     // When clicked, navigate to messages page
+     window.location.href = 'messages.html';
+   });
+
+   // Function to update notification count
+   function updateNotificationCount(count) {
+     if (count > 0) {
+       notificationBadge.textContent = count;
+       notificationBadge.style.display = 'flex';
+     } else {
+       notificationBadge.style.display = 'none';
+     }
+   }
+
+   // Function to add new message notification
+   function addMessageNotification() {
+     messageCount++;
+     updateNotificationCount(messageCount);
+     
+     // Show toast notification for new message
+     if (typeof Toast !== 'undefined') {
+       Toast.show('info', 'New message received!');
+     }
+   }
+
+   // Function to clear notifications (call this when user visits messages page)
+   function clearNotifications() {
+     messageCount = 0;
+     updateNotificationCount(0);
+   }
+
+   // Simulate receiving messages every 30 seconds (for demo purposes)
+   setInterval(() => {
+     // Only add notifications if not on messages page
+     if (!window.location.pathname.includes('messages.html')) {
+       addMessageNotification();
+     }
+   }, 30000);
+
+   // Clear notifications when on messages page
+   if (window.location.pathname.includes('messages.html')) {
+     clearNotifications();
+   }
+
+   // Make functions globally available
+   window.addMessageNotification = addMessageNotification;
+   window.clearNotifications = clearNotifications;
  }
 
  // Make functions globally available for onclick handlers
