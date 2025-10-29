@@ -1,346 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InteU Portal</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/styles.css" />
-    <style>
-      .company-hero {
-        background: linear-gradient(135deg, #4b7be5 0%, #6c5ce7 100%);
-        color: white;
-        padding: 80px 0;
-        text-align: center;
-      }
-      .company-hero h1 {
-        font-size: 48px;
-        font-weight: 700;
-        margin-bottom: 16px;
-      }
-      .company-hero p {
-        font-size: 20px;
-        margin-bottom: 32px;
-        opacity: 0.9;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 16px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .hero-actions .btn {
-        padding: 16px 32px;
-        font-size: 18px;
-        font-weight: 600;
-      }
-      .features-section {
-        padding: 80px 0;
-        background: #f8f9fa;
-      }
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 32px;
-        margin-top: 48px;
-      }
-      .feature-card {
-        background: white;
-        border-radius: 16px;
-        padding: 32px;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        transition: transform 0.3s ease;
-      }
-      .feature-card:hover {
-        transform: translateY(-4px);
-      }
-      .feature-icon {
-        width: 80px;
-        height: 80px;
-        background: linear-gradient(135deg, #4b7be5, #6c5ce7);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 24px;
-        font-size: 32px;
-        color: white;
-      }
-      .feature-title {
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        color: var(--text);
-      }
-      .feature-desc {
-        color: var(--muted);
-        line-height: 1.6;
-      }
-      .stats-section {
-        padding: 80px 0;
-        background: white;
-      }
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 32px;
-        margin-top: 48px;
-      }
-      .stat-card {
-        text-align: center;
-        padding: 24px;
-      }
-      .stat-number {
-        font-size: 48px;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 8px;
-      }
-      .stat-label {
-        color: var(--muted);
-        font-weight: 600;
-      }
-      .cta-section {
-        background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
-        color: white;
-        padding: 80px 0;
-        text-align: center;
-      }
-      .cta-section h2 {
-        font-size: 36px;
-        margin-bottom: 16px;
-      }
-      .cta-section p {
-        font-size: 18px;
-        margin-bottom: 32px;
-        opacity: 0.9;
-      }
-      @media (max-width: 768px) {
-        .company-hero h1 {
-          font-size: 36px;
-        }
-        .hero-actions {
-          flex-direction: column;
-          align-items: center;
-        }
-        .hero-actions .btn {
-          width: 100%;
-          max-width: 300px;
-        }
-      }
-    </style>
-  </head>
-  <body data-page="company-portal">
-    <header class="site-header" aria-label="Company Navigation">
-      <div class="container header-inner">
-        <a class="logo" href="index.html" aria-label="InteU Company Portal">
-            <span class="logo-mark"><img src="../images/image1.jpg" alt="InteU logo" /></span> InteU
-        </a>
-        <nav class="nav">
-          <a href="index.html" class="active" data-i18n="nav.home">Home</a>
-          <a href="dashboard.html" data-i18n="nav.dashboard">Dashboard</a>
-          <a href="manage-internships.html" data-i18n="nav.manage">Manage Internships</a>
-          <a href="post-internship.html" data-i18n="nav.post">Post Internship</a>
-          <a href="view-applicants.html" data-i18n="nav.applicants">View Applicants</a>
-          <a href="messages.html" class="nav-link message-icon" id="messageIcon" aria-label="Messages" title="Messages">
-            <span style="font-size: 28px;">💬</span>
-            <span class="notification-badge" id="notificationBadge">3</span>
-          </a>
-        </nav>
-        <div class="actions">
-          <input type="checkbox" id="dark-mode" aria-label="Toggle theme" hidden>
-          <label for="dark-mode" class="theme-switch" aria-label="Toggle theme"></label>
-          <button id="toggleLang" class="btn small" aria-label="Toggle language">ไทย / EN</button>
-          <a href="profile.html" class="icon-btn" aria-label="Profile" title="Profile">
-            <img src="../images/user.png" alt="Profile" width="28" height="28">
-          </a>
-          <a href="auth/login.html" class="btn small primary" data-i18n="nav.login">Login</a>
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>InteU Companies — Internship hiring for modern teams</title>
+  <meta name="description" content="Publish internships, manage applicants, and hire faster. Clean UX. Zero setup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Prevent FOUC for theme -->
+  <script>
+    (function () {
+      const stored = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = stored || (prefersDark ? "dark" : "light");
+      const s = document.createElement("style");
+      s.textContent = "html{visibility:hidden} html.ready{visibility:visible}";
+      document.head.appendChild(s);
+      addEventListener("DOMContentLoaded", () => document.documentElement.classList.add("ready"));
+    })();
+  </script>
+
+  <style>
+    :root {
+      /* Light */
+      --bg: #f7f8fc;
+      --bg-hero: radial-gradient(1000px 400px at 20% -10%, #eaf0ff 0, transparent 60%) , radial-gradient(900px 500px at 110% 10%, #f6ebff 0, transparent 60%), #f7f8fc;
+      --card: #ffffff;
+      --soft: rgba(255,255,255,.65);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: rgba(15, 23, 42, 0.08);
+      --primary: #2463eb;
+      --primary-600: #1e4fd4;
+      --accent: #16a34a;
+      --warning: #f59e0b;
+      --shadow-sm: 0 6px 18px rgba(2, 6, 23, .06);
+      --shadow-md: 0 14px 50px rgba(2, 6, 23, .10);
+      color-scheme: light;
+    }
+    :root[data-theme="dark"] {
+      /* Dark */
+      --bg: #0a0f1a;
+      --bg-hero: radial-gradient(900px 360px at 10% -20%, #0e1c3d 0, transparent 60%) , radial-gradient(1000px 520px at 120% 0%, #1a1038 0, transparent 60%), #0a0f1a;
+      --card: #0f172a;
+      --soft: rgba(15,23,42,.7);
+      --text: #e6ebff;
+      --muted: #b7c1d9;
+      --border: rgba(148, 163, 184, 0.16);
+      --primary: #7aa2ff;
+      --primary-600: #5f89ff;
+      --accent: #34d399;
+      --warning: #fbbf24;
+      --shadow-sm: 0 6px 18px rgba(0, 0, 0, .3);
+      --shadow-md: 0 14px 50px rgba(0, 0, 0, .45);
+      color-scheme: dark;
+    }
+
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+    img { max-width: 100%; display: block; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; border-radius: 10px; }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .muted { color: var(--muted); }
+
+    /* Header */
+    .header {
+      position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(1.2) blur(8px);
+      background: color-mix(in oklab, var(--bg) 86%, transparent);
+    }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; height: 72px; }
+    .brand {
+      display:flex; align-items:center; gap: 12px; text-decoration: none; color: var(--text);
+      font: 800 18px/1 "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      letter-spacing:.2px;
+    }
+    .mark {
+      width: 36px; height: 36px; display:grid; place-items:center; border-radius: 11px; color:#fff;
+      background: linear-gradient(135deg, var(--primary), #8b5cf6);
+      box-shadow: var(--shadow-sm);
+    }
+    nav { display:none; gap: 18px; }
+    nav a { color: var(--muted); font-weight: 600; padding: 10px 12px; border-radius: 10px; }
+    nav a:hover { background: color-mix(in oklab, var(--primary) 14%, transparent); text-decoration: none; color: var(--text); }
+    .actions { display:flex; align-items:center; gap: 10px; }
+
+    /* Theme toggle */
+    #themeToggle { display: none; }
+    .toggle {
+      width: 50px; height: 28px; border-radius: 999px; background: var(--border); position: relative; cursor:pointer;
+    }
+    .toggle::after {
+      content:""; position:absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 999px; background:#fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s ease;
+    }
+    :root[data-theme="dark"] .toggle { background: #1f2937; }
+    :root[data-theme="dark"] .toggle::after { transform: translateX(22px); }
+
+    /* Buttons */
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid var(--border);
+      background: var(--card); color: var(--text); font: 700 14px/1 "Inter", system-ui;
+      letter-spacing:.2px; box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); text-decoration: none; }
+    .btn:active { transform: translateY(0); }
+    .btn.primary { background: var(--primary); border-color: transparent; color: #fff; }
+    .btn.primary:hover { background: var(--primary-600); }
+    .btn.ghost { background: transparent; box-shadow: none; }
+    .btn.small { height: 38px; padding: 0 14px; border-radius: 10px; }
+    .btn.block { width: 100%; }
+
+    /* Hero */
+    .hero {
+      background: var(--bg-hero);
+      padding: clamp(48px, 6vw, 96px) 0;
+      position: relative;
+    }
+    .hero-grid { display:grid; grid-template-columns: 1.05fr .95fr; gap: 38px; align-items: center; }
+
+    .eyebrow {
+      display:inline-flex; gap:8px; align-items:center; padding:6px 12px; border-radius:999px;
+      background: color-mix(in oklab, var(--primary) 16%, transparent); color: var(--primary);
+      font: 800 12px/1 "Inter"; letter-spacing:.6px; text-transform: uppercase;
+    }
+    .hero h1 { margin: 12px 0 14px; font: 800 clamp(28px, 5vw, 52px)/1.05 "Plus Jakarta Sans", system-ui; letter-spacing: -0.3px; }
+    .hero p { color: var(--muted); font-size: 16px; max-width: 60ch; }
+    .hero-ctas { display:flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+
+    /* Illustration card (replaces dashboard preview) */
+    .illus {
+      background: var(--soft); border: 1px solid var(--border); border-radius: 16px; padding: 22px;
+      box-shadow: var(--shadow-md);
+    }
+    .illus-inner {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    }
+    .illus-title { font-weight: 800; margin: 0 0 10px; }
+    .illus-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .illus-pill {
+      height: 44px; border: 1px solid var(--border); border-radius: 12px; display:flex; align-items:center; gap:10px; padding: 0 12px;
+      background: var(--card); color: var(--muted); font-weight: 700;
+    }
+    .illus-bar {
+      height: 10px; border-radius: 999px; background: color-mix(in oklab, var(--primary) 18%, transparent);
+    }
+    .illus-note { font-size: 12px; color: var(--muted); margin-top: 8px; }
+
+    /* Brand strip */
+    .brands { padding: 22px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .brand-row { display:grid; grid-template-columns: repeat(6,1fr); gap: 12px; opacity:.9; }
+    .pill {
+      height: 44px; border: 1px solid var(--border); border-radius: 12px; display:grid; place-items:center;
+      background: var(--card); color: var(--muted); font-weight: 700; letter-spacing:.6px;
+    }
+
+    /* Sections */
+    .section { padding: clamp(42px, 7vw, 96px) 0; }
+    .section h2 { font: 800 clamp(22px, 3.2vw, 34px)/1.08 "Plus Jakarta Sans"; margin: 0 0 10px; }
+    .lead { color: var(--muted); margin: 0 0 24px; }
+
+    /* Features */
+    .features { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .feature {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow-sm);
+      transition: transform .15s ease;
+    }
+    .feature:hover { transform: translateY(-4px); }
+    .ico {
+      width: 46px; height: 46px; border-radius: 12px; display:grid; place-items:center;
+      background: color-mix(in oklab, var(--primary) 16%, transparent); color: var(--primary); font-size: 18px; font-weight:800; margin-bottom: 10px;
+    }
+    .feature p { color: var(--muted); }
+
+    /* Split (How) */
+    .split { display:grid; grid-template-columns: 1.05fr .95fr; gap: 26px; align-items:center; }
+    .steps { display:grid; gap: 10px; }
+    .step {
+      display:grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items:center;
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px;
+    }
+    .badge { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #e8f5e8; color: #25694c; border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent); }
+    :root[data-theme="dark"] .badge { background: rgba(52,211,153,.18); color: #bfeedd; }
+
+    /* Pricing */
+    .pricing-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .plan {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);
+    }
+    .plan.best { outline: 2px solid color-mix(in oklab, var(--primary) 40%, transparent); }
+    .price { font: 800 28px/1 "Inter"; margin: 8px 0 12px; }
+    .ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--muted); }
+    .ul li::before { content: "✓"; color: var(--accent); margin-right: 8px; }
+
+    .toggle-row { display:flex; align-items:center; gap: 10px; margin-bottom: 16px; }
+    .switch {
+      width: 58px; height: 30px; border-radius: 999px; background:#cbd5e1; border:1px solid var(--border); position: relative; cursor: pointer;
+    }
+    .switch::after {
+      content:""; position:absolute; top:3px; left:3px; width:24px; height:24px; border-radius:999px; background:#fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .2s ease;
+    }
+    .switch.on { background: color-mix(in oklab, var(--primary) 65%, #cbd5e1); }
+    .switch.on::after { transform: translateX(28px); }
+
+    /* Testimonials carousel */
+    .carousel {
+      position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 16px; background: var(--card); box-shadow: var(--shadow-sm);
+    }
+    .track { display:flex; transition: transform .5s ease; }
+    .slide { flex: 0 0 100%; padding: 18px; }
+    .stars { color: #fbbf24; letter-spacing: .8px; margin-bottom: 6px; }
+    .person { display:flex; align-items:center; gap: 10px; margin-top: 10px; }
+    .avatar { width: 36px; height: 36px; border-radius: 999px; display:grid; place-items:center; background: color-mix(in oklab, var(--primary) 16%, transparent); color: var(--primary); font-weight: 800; }
+    .dots { position:absolute; inset:auto 0 8px 0; display:flex; gap:6px; justify-content:center; }
+    .dot { width:8px; height:8px; border-radius:999px; background:#cbd5e1; border:1px solid var(--border); }
+    .dot.on { background: var(--primary); }
+
+    /* CTA band */
+    .cta {
+      padding: 36px; border-radius: 18px; border: 1px solid var(--border);
+      background: radial-gradient(800px 250px at 80% 10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 60%), var(--card);
+      box-shadow: var(--shadow-md); display:grid; gap: 12px; justify-items:center; text-align:center;
+    }
+
+    /* Footer */
+    .footer { border-top: 1px solid var(--border); padding: 28px 0; }
+    .foot-grid { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 16px; }
+    .foot-grid h4 { margin: 0 0 10px; }
+
+    /* Cookie */
+    .cookie {
+      position: fixed; right: 16px; bottom: 16px; width: min(420px, calc(100% - 32px));
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-md); border-radius: 14px; padding: 14px; z-index: 60; display:none;
+    }
+    .cookie .row { display:flex; gap: 12px; align-items:center; }
+    .cookie .btns { display:flex; gap:8px; margin-top: 10px; }
+
+    /* Responsive */
+    @media (min-width: 1060px) { nav { display:flex; } }
+    @media (max-width: 1060px) {
+      .hero-grid, .split { grid-template-columns: 1fr; }
+      .features { grid-template-columns: repeat(2,1fr); }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .brand-row { grid-template-columns: repeat(3,1fr); }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 680px) {
+      .features, .pricing-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" aria-label="Site header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="InteU home">
+        <span class="mark">🏢</span> InteU <span style="color:var(--primary); font-weight:800;">Companies</span>
+      </a>
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Customers</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="actions">
+        <input type="checkbox" id="themeToggle" aria-label="Toggle theme">
+        <label for="themeToggle" class="toggle" title="Toggle light/dark"></label>
+        <a class="btn small ghost" href="auth/login.html">Sign in</a>
+        <a class="btn small primary" href="auth/register.html">Create account</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Built for internship programs</span>
+        <h1>Run your internship hiring with clarity. Post roles, screen, and offer — fast.</h1>
+        <p>InteU gives your team one organized place to manage applicants, send updates, and track results. Clean UI, zero clutter, no backend required for this demo.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="auth/register.html">Create free account</a>
+          <a class="btn ghost" href="auth/login.html">Sign in</a>
+          <a class="btn" style="background:transparent;border:none;padding:0;height:auto" href="#how">See how it works →</a>
         </div>
       </div>
-    </header>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="company-hero">
-        <div class="container">
-          <h1>Find Your Next Great Intern</h1>
-          <p>Connect with talented students from top universities across Thailand. Post internships, manage applications, and build your future team.</p>
-          <div class="hero-actions">
-            <a href="auth/register.html" class="btn large primary" style="background: white; color: var(--primary);">Start Hiring Today</a>
-            <a href="auth/login.html" class="btn large secondary" style="border-color: white; color: white;">Company Login</a>
+      <!-- Simple illustration card (no dashboard preview) -->
+      <aside class="illus" aria-label="Product illustration">
+        <div class="illus-inner">
+          <div class="illus-title">Everything in one place</div>
+          <div class="illus-grid">
+            <div class="illus-pill">📝 Post roles</div>
+            <div class="illus-pill">👥 Applicants</div>
+            <div class="illus-pill">💬 Messages</div>
+            <div class="illus-pill">📊 Metrics</div>
           </div>
+          <div style="margin:12px 0 6px;">
+            <div class="illus-bar"></div>
+          </div>
+          <div class="illus-note">A clean interface that stays out of your way.</div>
         </div>
-      </section>
+      </aside>
+    </div>
+  </section>
 
-      <!-- Features Section -->
-      <section class="features-section" id="features">
-        <div class="container">
-          <div style="text-align: center;">
-            <h2 style="font-size: 36px; margin-bottom: 16px;">Everything You Need to Hire Great Interns</h2>
-            <p style="font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 auto;">Streamline your internship program with our comprehensive platform designed specifically for companies.</p>
-          </div>
-          
-          <div class="features-grid">
-            <div class="feature-card">
-              <div class="feature-icon">📝</div>
-              <h3 class="feature-title">Easy Job Posting</h3>
-              <p class="feature-desc">Create detailed internship listings with our intuitive form. Specify requirements, compensation, and application deadlines with ease.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">👥</div>
-              <h3 class="feature-title">Applicant Management</h3>
-              <p class="feature-desc">Review applications, filter candidates, and manage your hiring pipeline all in one place. Never miss a great candidate again.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon"><img src="../images/email.png" alt="Message" style="width: 48px; height: 48px;" /></div>
-              <h3 class="feature-title">Direct Communication</h3>
-              <p class="feature-desc">Message candidates directly through our platform. Schedule interviews and keep all communication organized and secure.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">📊</div>
-              <h3 class="feature-title">Analytics Dashboard</h3>
-              <p class="feature-desc">Track your posting performance, application rates, and hiring metrics. Make data-driven decisions for your internship program.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">🎯</div>
-              <h3 class="feature-title">Targeted Reach</h3>
-              <p class="feature-desc">Your postings reach qualified students from partner universities. Connect with candidates who match your specific requirements.</p>
-            </div>
-            
-            <div class="feature-card">
-              <div class="feature-icon">🔒</div>
-              <h3 class="feature-title">Secure Platform</h3>
-              <p class="feature-desc">Enterprise-grade security protects your company data and candidate information. GDPR compliant and fully encrypted.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+  <!-- Brand strip -->
+  <section class="brands" aria-label="Trusted by">
+    <div class="container">
+      <div class="brand-row">
+        <div class="pill">NOVA</div>
+        <div class="pill">ATLAS</div>
+        <div class="pill">ECLIPSE</div>
+        <div class="pill">KITE</div>
+        <div class="pill">SPARK</div>
+        <div class="pill">SAGE</div>
+      </div>
+    </div>
+  </section>
 
-      <!-- Stats Section -->
-      <section class="stats-section">
-        <div class="container">
-          <div style="text-align: center;">
-            <h2 style="font-size: 36px; margin-bottom: 16px;">Trusted by Leading Companies</h2>
-            <p style="font-size: 18px; color: var(--muted);">Join hundreds of companies already using InteU to find exceptional interns</p>
-          </div>
-          
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-number">500+</div>
-              <div class="stat-label">Active Companies</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">10K+</div>
-              <div class="stat-label">Student Applications</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">2K+</div>
-              <div class="stat-label">Successful Placements</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-number">95%</div>
-              <div class="stat-label">Satisfaction Rate</div>
-            </div>
-          </div>
+  <!-- Features -->
+  <section id="features" class="section">
+    <div class="container">
+      <h2>Everything you need — without the noise</h2>
+      <p class="lead">Realistic, frictionless flows: publish roles, collect applicants, collaborate, and make offers.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="ico">📝</div>
+          <h3>Create polished job posts</h3>
+          <p>Include stipend, duration, skills, and screening questions. Publish in minutes, not hours.</p>
         </div>
-      </section>
-
-      <!-- CTA Section -->
-      <section class="cta-section">
-        <div class="container">
-          <h2>Ready to Find Your Next Intern?</h2>
-          <p>Join InteU today and start connecting with talented students from top universities across Thailand.</p>
-          <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <a href="auth/register.html" class="btn large primary" style="background: white; color: var(--text);">Create Company Account</a>
-            <a href="auth/login.html" class="btn large secondary" style="border-color: white; color: white;">Login to Existing Account</a>
-          </div>
+        <div class="feature">
+          <div class="ico">🎯</div>
+          <h3>Screen smarter</h3>
+          <p>Keyword and answer-based sorting to find the best candidates quickly.</p>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer" style="background: #2d3436; color: white;">
-      <div class="container footer-grid">
-        <div>
-          <h4>Company Portal</h4>
-          <ul>
-            <li><a href="auth/register.html" style="color: #ddd;">Get Started</a></li>
-            <li><a href="auth/login.html" style="color: #ddd;">Login</a></li>
-            <li><a href="#pricing" style="color: #ddd;">Pricing</a></li>
-          </ul>
+        <div class="feature">
+          <div class="ico">💬</div>
+          <h3>Built-in inbox</h3>
+          <p>Send templated replies, bulk updates, and schedule interviews from one clean inbox.</p>
         </div>
-        <div>
-          <h4>Support</h4>
-          <ul>
-            <li><a href="#" style="color: #ddd;">Help Center</a></li>
-            <li><a href="#" style="color: #ddd;">Contact Support</a></li>
-            <li><a href="#" style="color: #ddd;">API Documentation</a></li>
-          </ul>
+        <div class="feature">
+          <div class="ico">📊</div>
+          <h3>Metrics that matter</h3>
+          <p>Track views, conversion, and time-to-offer to keep hiring on pace.</p>
         </div>
-        <div>
-          <h4>Legal</h4>
-          <ul>
-            <li><a href="#" style="color: #ddd;">Terms of Service</a></li>
-            <li><a href="#" style="color: #ddd;">Privacy Policy</a></li>
-            <li><a href="#" style="color: #ddd;">GDPR Compliance</a></li>
-          </ul>
+        <div class="feature">
+          <div class="ico">👥</div>
+          <h3>Team collaboration</h3>
+          <p>Invite managers to review notes and decisions without email chaos.</p>
         </div>
-        <div>
-          <h4>InteU Companies</h4>
-          <p style="color: #ddd; margin: 0;">Connecting great companies with exceptional student talent.</p>
-          <div style="margin-top: 16px;">
-            <a href="../index.html" style="color: #74b9ff;">← Back to Student Portal</a>
-          </div>
+        <div class="feature">
+          <div class="ico">🔒</div>
+          <h3>Privacy by default</h3>
+          <p>Demo stores data in browser localStorage only. Ready for secure backend later.</p>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="../js/main.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          });
+  <!-- How it works -->
+  <section id="how" class="section">
+    <div class="container split">
+      <div>
+        <h2>From posting to offer in four simple steps</h2>
+        <p class="lead">A clean pipeline keeps everyone aligned and candidates informed.</p>
+        <div class="steps">
+          <div class="step">
+            <div style="font-weight:800;">1</div>
+            <div><strong>Create a posting</strong><br><span class="muted">Skills, stipend, must-have questions</span></div>
+            <div><span class="badge">Live in 2 mins</span></div>
+          </div>
+          <div class="step">
+            <div style="font-weight:800;">2</div>
+            <div><strong>Screen applicants</strong><br><span class="muted">Auto-sort by answers & keywords</span></div>
+            <div><span class="badge">Daily</span></div>
+          </div>
+          <div class="step">
+            <div style="font-weight:800;">3</div>
+            <div><strong>Message & interview</strong><br><span class="muted">Templates + scheduling</span></div>
+            <div><span class="badge">30–60 mins</span></div>
+          </div>
+          <div class="step">
+            <div style="font-weight:800;">4</div>
+            <div><strong>Offer & onboard</strong><br><span class="muted">Track acceptances</span></div>
+            <div><span class="badge">1–3 days</span></div>
+          </div>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="auth/register.html">Create company account</a>
+          <a class="btn ghost" href="auth/login.html">Sign in</a>
+        </div>
+      </div>
+      <aside class="illus" aria-label="Process illustration">
+        <div class="illus-inner">
+          <div class="illus-title">A simple, visual pipeline</div>
+          <div class="illus-grid" style="grid-template-columns:1fr;">
+            <div class="illus-pill">Applicants</div>
+            <div class="illus-bar" style="width:88%;"></div>
+            <div class="illus-pill">Interview</div>
+            <div class="illus-bar" style="width:48%;"></div>
+            <div class="illus-pill">Offer</div>
+            <div class="illus-bar" style="width:24%;"></div>
+            <div class="illus-pill">Hired</div>
+            <div class="illus-bar" style="width:12%; background: color-mix(in oklab, var(--accent) 35%, transparent);"></div>
+          </div>
+          <div class="illus-note">This is a static illustration (no backend needed).</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <h2>Teams that hire with InteU</h2>
+      <p class="lead">Startups, SMEs, and university partners use InteU to run internship programs at scale.</p>
+      <div class="carousel" aria-roledescription="carousel">
+        <div class="track" id="track" style="transform:translateX(0%)">
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            “We filled our software intern role in <strong>5 days</strong>. The pipeline is the cleanest I’ve used.”
+            <div class="person"><div class="avatar">AM</div><div><strong>Amina</strong><br><span class="muted">CTO, Nova Labs</span></div></div>
+          </div>
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            “Candidates got updates faster and our team stopped juggling spreadsheets.”
+            <div class="person"><div class="avatar">JL</div><div><strong>Jirawat</strong><br><span class="muted">HR Lead, Atlas Digital</span></div></div>
+          </div>
+          <div class="slide">
+            <div class="stars">★★★★☆</div>
+            “Made our internship program look professional from day one.”
+            <div class="person"><div class="avatar">SC</div><div><strong>Sora</strong><br><span class="muted">Program Coord., Eclipse</span></div></div>
+          </div>
+        </div>
+        <div class="dots" aria-hidden="true">
+          <div class="dot on"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <div class="toggle-row">
+        <h2 style="margin:0;">Simple pricing</h2>
+        <div style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+          <span class="muted">Monthly</span>
+          <div class="switch" id="billSwitch" role="switch" aria-checked="false" tabindex="0"></div>
+          <span class="muted">Annual <span style="color:var(--accent); font-weight:700;">(save 20%)</span></span>
+        </div>
+      </div>
+      <p class="lead">Start free. Upgrade when you’re ready to scale your program.</p>
+
+      <div class="pricing-grid">
+        <div class="plan">
+          <h3>Free</h3>
+          <div class="price"><span data-price="free">$0</span></div>
+          <ul class="ul">
+            <li>1 active posting</li>
+            <li>Basic analytics</li>
+            <li>Inbox messaging</li>
+          </ul>
+          <div style="margin-top:12px;"><a class="btn block" href="auth/register.html">Get started</a></div>
+        </div>
+
+        <div class="plan best">
+          <h3>Professional</h3>
+          <div class="price"><span data-price="pro" data-month="99" data-annual="79">$99</span><span class="muted">/mo</span></div>
+          <ul class="ul">
+            <li>Up to 50 postings</li>
+            <li>Team access</li>
+            <li>Advanced analytics</li>
+            <li>Email templates & bulk actions</li>
+          </ul>
+          <div style="margin-top:12px;"><a class="btn primary block" href="auth/register.html">Start trial</a></div>
+        </div>
+
+        <div class="plan">
+          <h3>Enterprise</h3>
+          <div class="price"><span data-price="ent" data-month="299" data-annual="239">$299</span><span class="muted">/mo</span></div>
+          <ul class="ul">
+            <li>SSO & security review</li>
+            <li>Custom roles & permissions</li>
+            <li>Priority support</li>
+          </ul>
+          <div style="margin-top:12px;"><a class="btn block" href="#faq">Contact sales</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container" style="max-width:900px;">
+      <h2>Frequently asked questions</h2>
+      <p class="lead">Short, clear answers to help you get started faster.</p>
+      <details class="feature" style="padding:14px;">
+        <summary style="cursor:pointer; font-weight:800;">Do I need a credit card to sign up?</summary>
+        <div class="muted" style="margin-top:8px;">No, you can create a free account and publish your first role without a credit card.</div>
+      </details>
+      <details class="feature" style="padding:14px; margin-top:10px;">
+        <summary style="cursor:pointer; font-weight:800;">Can I invite teammates?</summary>
+        <div class="muted" style="margin-top:8px;">Yes. The Professional plan includes multi-manager access and shared notes.</div>
+      </details>
+      <details class="feature" style="padding:14px; margin-top:10px;">
+        <summary style="cursor:pointer; font-weight:800;">Where is my data stored in this demo?</summary>
+        <div class="muted" style="margin-top:8px;">Only in your browser's localStorage. You can export or clear it anytime.</div>
+      </details>
+      <details class="feature" style="padding:14px; margin-top:10px;">
+        <summary style="cursor:pointer; font-weight:800;">Can I switch plans later?</summary>
+        <div class="muted" style="margin-top:8px;">Absolutely. Upgrade or cancel anytime from billing.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2 style="margin:0;">Ready to hire interns the easy way?</h2>
+        <p class="muted" style="margin:0;">Create your free company account and publish a role in minutes.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn primary" href="auth/register.html">Create account</a>
+          <a class="btn ghost" href="auth/login.html">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer">
+    <div class="container foot-grid">
+      <div>
+        <h4>InteU</h4>
+        <p class="muted">Trusted internships for global learners. Built for HR and hiring managers who value speed, clarity, and privacy.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul class="ul">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul class="ul">
+          <li><a href="#testimonials">Customers</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="mailto:support@inteu.example">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul class="ul">
+          <li><a href="legal/privacy.html">Privacy Policy</a></li>
+          <li><a href="legal/pdpa.html">PDPA Notice</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie -->
+  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+    <div class="row">
+      <div class="mark" style="width:32px;height:32px; font-size:16px;">🍪</div>
+      <p class="muted" style="margin:0;">We use minimal cookies to improve your experience. Manage from your browser settings.</p>
+    </div>
+    <div class="btns">
+      <button class="btn small ghost" id="cookieDecline">Decline</button>
+      <button class="btn small primary" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Theme
+    (function () {
+      const KEY = "theme";
+      const cb = document.getElementById("themeToggle");
+      function apply(val) {
+        document.documentElement.dataset.theme = val;
+        localStorage.setItem(KEY, val);
+        if (cb) cb.checked = val === "dark";
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const current = document.documentElement.dataset.theme || "light";
+        if (cb) {
+          cb.checked = current === "dark";
+          cb.addEventListener("change", () => apply(cb.checked ? "dark" : "light"));
+        }
+        if (!localStorage.getItem(KEY) && window.matchMedia) {
+          const mq = window.matchMedia("(prefers-color-scheme: dark)");
+          mq.addEventListener?.("change", e => apply(e.matches ? "dark" : "light"));
+        }
+      });
+    })();
+
+    // Cookie banner
+    (function () {
+      const KEY = "cookieConsent";
+      const el = document.getElementById("cookie");
+      function hide() { el.style.display = "none"; }
+      function show() { el.style.display = "block"; }
+      document.addEventListener("DOMContentLoaded", function () {
+        try {
+          const v = localStorage.getItem(KEY);
+          if (!v) show();
+        } catch {}
+        document.getElementById("cookieAccept").addEventListener("click", () => { localStorage.setItem(KEY, "accepted"); hide(); });
+        document.getElementById("cookieDecline").addEventListener("click", () => { localStorage.setItem(KEY, "declined"); hide(); });
+      });
+    })();
+
+    // Testimonials carousel (auto + dots)
+    (function () {
+      const track = document.getElementById("track");
+      const dots = document.querySelectorAll(".dot");
+      let i = 0, n = dots.length;
+      function go(idx) {
+        i = (idx + n) % n;
+        track.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, j) => d.classList.toggle("on", j === i));
+      }
+      let timer = setInterval(() => go(i + 1), 4000);
+      dots.forEach((d, j) => d.addEventListener("click", () => { go(j); clearInterval(timer); timer = setInterval(() => go(i + 1), 4000); }));
+      addEventListener("visibilitychange", () => { if (document.hidden) clearInterval(timer); else timer = setInterval(() => go(i + 1), 4000); });
+    })();
+
+    // Pricing toggle: monthly / annual (-20%)
+    (function () {
+      const sw = document.getElementById("billSwitch");
+      function apply(annual) {
+        sw.classList.toggle("on", annual);
+        document.querySelectorAll("[data-price='pro']").forEach(e => e.textContent = annual ? e.dataset.annual : e.dataset.month);
+        document.querySelectorAll("[data-price='ent']").forEach(e => e.textContent = annual ? e.dataset.annual : e.dataset.month);
+      }
+      const KEY = "billingCycle";
+      document.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem(KEY);
+        const annual = saved === "annual";
+        apply(annual);
+        sw.setAttribute("aria-checked", annual ? "true" : "false");
+        sw.addEventListener("click", () => {
+          const next = !sw.classList.contains("on");
+          apply(next);
+          sw.setAttribute("aria-checked", next ? "true" : "false");
+          localStorage.setItem(KEY, next ? "annual" : "monthly");
         });
-
-        // Add animation on scroll
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }
-          });
-        }, observerOptions);
-
-        // Observe feature cards
-        document.querySelectorAll('.feature-card, .stat-card').forEach(card => {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          observer.observe(card);
+        sw.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); sw.click(); }
         });
       });
-    </script>
-  </body>
+    })();
+
+    // Smooth-scroll
+    (function () {
+      document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (!t) return;
+          e.preventDefault();
+          t.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.pushState(null, "", a.getAttribute("href"));
+        });
+      });
+    })();
+  </script>
+</body>
 </html>
