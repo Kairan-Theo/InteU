@@ -64,8 +64,7 @@
     </style>
 </head>
 <body>
-
-    <!-- Top Header -->
+    <!-- Added admin-header outside admin-container to match index.html structure -->
     <header class="admin-header">
         <div class="header-content">
             <div class="logo-section">
@@ -83,15 +82,16 @@
                         <i class="fas fa-cog"></i>
                     </button>
                     <button class="btn-logout" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Sidebar -->
     <div class="admin-container">
+        <!-- Changed from aside.sidebar to nav.admin-sidebar -->
         <nav class="admin-sidebar">
             <ul class="nav-menu">
                 <li class="nav-item">
@@ -124,41 +124,43 @@
                         <span>Manage Courses</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="manage-articles.html" class="nav-link">
-                        <i class="fas fa-newspaper"></i>
-                        <span>Manage Articles</span>
-                    </a>
-                </li> -->
                 <li class="nav-item">
                     <a href="reports.html" class="nav-link">
                         <i class="fas fa-chart-bar"></i>
-                        <span>Reports</span>
+                        <span>Reports & Analytics</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="admin-settings.html" class="nav-link">
-                        <i class="fas fa-cog"></i>
-                        <span>Settings</span>
+                        <i class="fas fa-cogs"></i>
+                        <span>Site Settings</span>
                     </a>
                 </li>
             </ul>
         </nav>
 
-        <!-- Main Content -->
+        <!-- Changed from main.main-content to main.admin-main and removed content-header -->
         <main class="admin-main">
-            <!-- Page Header -->
-            <header class="page-header">
-                <h2>Manage Courses</h2>
-                <button class="btn btn-primary" id="create-course-btn">
-                    <i class="fas fa-plus"></i> Create New Course
-                </button>
-            </header>
+            <div class="page-header">
+                <div class="page-header-content">
+                    <h2>Manage Courses</h2>
+                    <p>Create and manage educational courses</p>
+                </div>
+                <div class="page-header-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search courses..." id="course-search">
+                    </div>
+                    <button class="btn btn-primary" onclick="openAddCourseModal()">
+                        <i class="fas fa-plus"></i> Add Course
+                    </button>
+                </div>
+            </div>
 
             <!-- Stats Cards -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-icon courses">
+                    <div class="stat-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="stat-content">
@@ -167,7 +169,7 @@
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon published">
+                    <div class="stat-icon">
                         <i class="fas fa-eye"></i>
                     </div>
                     <div class="stat-content">
@@ -176,7 +178,7 @@
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon drafts">
+                    <div class="stat-icon">
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="stat-content">
@@ -185,7 +187,7 @@
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon enrollments">
+                    <div class="stat-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="stat-content">
@@ -195,7 +197,7 @@
                 </div>
             </div>
 
-            <!-- Filters & Actions -->
+            <!-- Filters and Actions -->
             <div class="content-filters">
                 <div class="filter-group">
                     <select id="status-filter">
@@ -233,8 +235,8 @@
             </div>
 
             <!-- Courses Table -->
-            <div class="data-table">
-                <table id="courses-table">
+            <div class="table-container">
+                <table class="data-table" id="courses-table">
                     <thead>
                         <tr>
                             <th><input type="checkbox" id="select-all"></th>
@@ -250,7 +252,7 @@
                         </tr>
                     </thead>
                     <tbody id="courses-tbody">
-                        <!-- Courses loaded here dynamically -->
+                        <!-- Courses will be loaded here -->
                     </tbody>
                 </table>
             </div>
@@ -305,5 +307,12 @@
 
     <script src="js/admin-main.js"></script>
     <script src="js/manage-courses.js"></script>
+    <script>
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = '../index.html';
+            }
+        }
+    </script>
 </body>
 </html>
